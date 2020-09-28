@@ -279,6 +279,23 @@ strTStamp += str(tstamp.hour) + ":" + str(tstamp.minute) + ":" + str(tstamp.seco
 \end{Verbatim}
 Further changes were made in the \texttt{ControlAgent.py} and \texttt{DiscoveryAgent.py} files. In particular, the line in \texttt{subscribe} to connect to the server acting as the central exchange to process publish/subscribe messages between the web server backend and agents listening for subscriptions was altered to support string concatenation. After these alterations to the source code were made, the platform was succesfully started. However, it is clear that no messages published to the server were received by both either the \texttt{ControlAgent} or \texttt{DiscoveryAgent} which will need to be debugged in the next lab or possilby before. This is evident as the terminals showing the debug output of each agent not indicating any messages received. Messages should be published via the publish function in the file \texttt{PROJECT\_DIR/WebServer/pubsub.py}. All these problems must be fixed to allow the ActiveDevices page to discover and connect to devices.
 \end{addmargin}
+%--------------------------------------------------------------------c--------------------
+
+\labday{Monday, September 28, 2020}
+
+\experiment{Meeting Minutes}
+EW\\
+{\bf Agenda:}
+How to auto-detect devices on the network (interrupt or polling)? We were thinking of constantly pinging the network for supported devices in an infinite loop. Is there a way for a device to send a request to the server once it has joined the network?
+
+We would like to add support for a smart power meter that can connect to WiFi, so power data for the entire building/house can be shown in the UI. What would you recommend in terms of a cost-effective solution? I found a device called the Sense Energy Monitor that can send data over wifi to an mobile or web app that comes with the device. The device itself connects to the electrical panel of a house. However, it is quite expensive at a price of 299 dollars.
+
+Does the platform still need to be agent-based like BEMOSS? 
+
+{\bf Discussion:}
+For auto-detecting, we need to research how to create an interrupt. IF that turns out to be impossible, we will try to replicate Windows trying to find bluetooth devices. It will be a poling process that is explicitly demanded by the user.
+
+
 
 \end{document}
 
