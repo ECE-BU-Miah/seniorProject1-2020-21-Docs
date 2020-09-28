@@ -281,6 +281,12 @@ Further changes were made in the \texttt{ControlAgent.py} and \texttt{DiscoveryA
 \end{addmargin}
 %--------------------------------------------------------------------c--------------------
 
+\labday{Thursday, September 24, 2020}
+BL\\
+Today, I debugged some of the problems with the \texttt{ControlAgent} agent not receiving messages. The agent was run in isolation and tested with the publish function in the \texttt{pubsub.py} file. The agent was able to successfully receive messages. However, this was not tested while the platform was running which will need to be done in the next lab session.
+
+I (Elliot) started to create a device driver for the BeagleBone Blue based off of the WeMo Switch driver. In doing so, I also started researching ways to control individual pins via wifi, starting with the GPIO.
+
 \labday{Monday, September 28, 2020}
 
 \experiment{Meeting Minutes}
@@ -295,7 +301,15 @@ Does the platform still need to be agent-based like BEMOSS?
 {\bf Discussion:}
 For auto-detecting, we need to research how to create an interrupt. IF that turns out to be impossible, we will try to replicate Windows trying to find bluetooth devices. It will be a poling process that is explicitly demanded by the user.
 
+MATLAB can be used to measure power usage. Simscape is an addon that includes a power sensor module. After checking online, we also discovered it is possible to connect MATLAB to a website and transfer data. With this, we should be able to plot power usage on the UI.
 
+FInally, Dr. Miah informed us that the project will indeed be agent-based.
+
+Helpful Links:
+
+https://drive.google.com/file/d/1jx7SldW3zNLdA5WBNl89LUBIK0KQuEMl/view?usp=sharing
+https://www.codeguru.com/
+https://smile.amazon.com/Bluetooth-Voltmeter-Multimeter-Resistance-Impedance/dp/B07PZRSYXD/
 
 \end{document}
 
