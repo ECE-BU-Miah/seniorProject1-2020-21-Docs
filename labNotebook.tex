@@ -291,17 +291,29 @@ I (Elliot) started to create a device driver for the BeagleBone Blue based off o
 
 \experiment{Meeting Minutes}
 EW\\
-{\bf Agenda:}
+
+\textbf{Agenda:}
+
 How to auto-detect devices on the network (interrupt or polling)? We were thinking of constantly pinging the network for supported devices in an infinite loop. Is there a way for a device to send a request to the server once it has joined the network?
 
-We would like to add support for a smart power meter that can connect to WiFi, so power data for the entire building/house can be shown in the UI. What would you recommend in terms of a cost-effective solution? I found a device called the Sense Energy Monitor that can send data over wifi to an mobile or web app that comes with the device. The device itself connects to the electrical panel of a house. However, it is quite expensive at a price of 299 dollars.
+We would like to add support for a smart power meter that can connect to WiFi,
+so power data for the entire building/house can be shown in the UI. What would
+you recommend in terms of a cost-effective solution? I found a device called the
+Sense Energy Monitor that can send data over wifi to an mobile or web app that
+comes with the device. The device itself connects to the electrical panel of a
+house. However, it is quite expensive at a price of 299 dollars.
 
 Does the platform still need to be agent-based like BEMOSS? 
 
-{\bf Discussion:}
-For auto-detecting, we need to research how to create an interrupt. IF that turns out to be impossible, we will try to replicate Windows trying to find bluetooth devices. It will be a poling process that is explicitly demanded by the user.
+\textbf{Discussion:} For auto-detecting, we need to research how to create an
+interrupt. IF that turns out to be impossible, we will try to replicate Windows
+trying to find bluetooth devices. It will be a poling process that is explicitly
+demanded by the user.
 
-MATLAB can be used to measure power usage. Simscape is an addon that includes a power sensor module. After checking online, we also discovered it is possible to connect MATLAB to a website and transfer data. With this, we should be able to plot power usage on the UI.
+MATLAB can be used to measure power usage. Simscape is an addon that includes a
+power sensor module. After checking online, we also discovered it is possible to
+connect MATLAB to a website and transfer data. With this, we should be able to
+plot power usage on the UI.
 
 FInally, Dr. Miah informed us that the project will indeed be agent-based.
 
