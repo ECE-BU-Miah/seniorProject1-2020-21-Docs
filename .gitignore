@@ -1,3 +1,7 @@
+# Ignore some specific pdf files #
+##################################
+labNotebook.pdf
+
 # TeX auxiliary files #
 #######################
 *.aux
