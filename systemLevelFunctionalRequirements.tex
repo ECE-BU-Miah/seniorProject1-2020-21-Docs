@@ -32,6 +32,7 @@
 \usepackage{array} % for better arrays (eg matrices) in maths
 \usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
 \usepackage{epstopdf}
+\usepackage{float}
 \epstopdfsetup{suffix = {}}
 \usepackage{siunitx}
 \sisetup{unitsep = \cdot}
@@ -59,6 +60,7 @@
 \usepackage{tikz}
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
 \allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
 % (This matches ConTeXt defaults)
 
@@ -72,8 +74,8 @@
 
 %%% The "real" document content comes below...
 
-\title{Smart Control of 2-DOF Helicopter}
-\author{Glenn Janiak \and Kenneth Vonckx \and \underline{Advisor}: Dr. Suruz Miah
+\title{Development of an Intelligent Building Energy Management Platform}
+\author{Brian Lauer \and Elliot Watkins \and \underline{Advisor}: Dr. Suruz Miah
 }
 %\date{} % Activate to display a given date or no date (if empty),
          % otherwise the current date is printed 
@@ -83,59 +85,62 @@
 \begin{document}
 \maketitle
 
+
 \section{Project Description}
-%\todo[inline]{} Previously used
-%The aim of this project is to utilize machine learning techniques to control a team of helicopters.  Helicopters are very nonlinear and the dynamics complex, so control of them is challenging.  Convectional control techniques, such as (LQR) and LQG, are too simple to for this application.  Most research today based on simple control.  Additionally, this project will apply the concept of internet of things by providing a user interface for direct control via mobile devices. 
-
-Helicopters are of a paramount importance as they are used in many civilian and military applications due to their ability for vertical take-off and landing.  To enable their use in such applications, intensive research has been conducted in the literature to date since helicopters involve complex nonlinear dynamics.  Most of the work on helicopter-based research requires dedicated computers for controlling their motion to specific configurations and resistant to turbulent conditions.  Such methods are expensive and time-consuming to develop.  Implementation of motion control techniques using cost-effective hardware is still a challenge.
-
-
-In this project, we are proposing an algorithm for smart control of a team of two degree-of-freedom (2-DOF) helicopters using conventional motion control in cooperation with machine learning techniques where a user will be able to configure helicopters from any initial position.  Even though conventional techniques have been tested with simple platforms in the literature, the current project employs conventional motion control strategies in cooperation with machine learning technique (reinforcement learning, for instance) for a team of helicopters as well as introducing user control via mobile devices.  This project is expected to encourage research in this area as well as serve as an educational tool in teaching environments.   
-
-%billions of dollars for
-%aurdio (hobbies) platform for quanser
-
+% Significance of the project 
+The Internet of Things is a large network of embedded devices like sensors, wearables, and appliances capable of receiving control commands and reporting data over the Internet. Many industries take advantage of this infrastructure to improve process flow and efficiency. One of these industries is the commercial and industrial sector which often employ building automation or management systems to help better manage processes or devices in a building like air conditioning systems, lights or industrial machines. Technological advancements have allowed devices to become connected to a building network through communication protocols like WiFi, Ethernet, Modbus, or BACnet which enables them to be more easily controlled from a central system.
+\medbreak\noindent
+Our overall goal will be to create a platform in which users can login and access devices connected to a building's energy supply. This allow the user to closely monitor energy usage throughout a commercial or residential building. Additionally, the user will be able to control devices connected to the platform, allowing precise control over the building's energy use.
+\medbreak\noindent
+The minimum viable product of this project will be to connect to 1 or 2 devices via the the platform and control them. If time allows, we would like to have devices connected to wifi automatically connect to the platform for the user's convenience.
 
 \section{System Architecture}
-%Multiple helicopters will be controlled via embedded hardware interfacing devices which will receive input from a smart mobile device.  This general architecture is shown in \autoref{fig:ProblemStatementImage}.
-%
-% \autoref{fig:highLevel} shows the high-level system architecture of the proposed project for control of a team of helicopters.  %
-% %
-% \begin{figure}
-%   \centering
-%   \begin{mdframed}[backgroundcolor=yellow!20, roundcorner=7pt,outerlinewidth=1.2pt,outerlinecolor=blue!50]
-%   \includegraphics[scale=0.749]{figs/ipe/highLevel_yel_grn}
-%   \end{mdframed}
-%   \caption{General High-Level System Architecture}
-%   \label{fig:highLevel}
-% \end{figure}
-% %
-% As shown, mobile devices will serve as terminals for users to communicate with the helicopters.  Mobile devices can be used in a wider variety of locations over stationary and is desired by more people.  Information sent by the users will be transmitted through a wireless TCP/IP network.  Their inputs will interface with our proposed smart control algorithm and change the configuration of the helicopters.  In particular, we will be applying Linear Quadratic Regression (LQR), Linear Quadratic Gaussian (LQG), and a machine learning based algorithm for the control of these helicopters, Approximate Dynamic Programming (ADP).  
 
-% %Each of the helicopters we will be using have fixed bases as shown in \autoref{fig:QuanserAero} (courtesy of Quanser Inc.).
+\subsection{Inputs}
+This project will include input from users, smart power meter, devices, and a weather service. Users will be able to adjust the operation of a device (turn up the temperature of an AC unit, for instance) or turn a device on or off completely. Smart power meters will be able to connect the platform and give real-time updates of the building's overall power usage. We would also like to look into meters for individual appliances like AC units and furnaces. The connected devices themselves will continually communicate to the web server their current status. Finally, our platform will regularly receive weather updates from a weather services and warn the user about potential energy loss due to storms.
 
-% Each of the helicopters used will have fixed bases as shown in \autoref{fig:QuanserAero} (courtesy of Quanser Inc.).  
-
-% \begin{figure}
-%   \centering
-%   \captionsetup{justification=centering,margin=3cm}
-%   \includegraphics{figs/img/QuanserAero}
-%   \caption{Quanser Aero 2-DOF Helicopter \newline (\url{https://www.quanser.com/products/quanser-aero/})}
-%   \label{fig:QuanserAero}
-% \end{figure}
-% %
-% The tail of the helicopter has a motor that controls its yaw motion.  Similarly, the main rotor changes the pitch of the helicopter.  The directions in which the motors spin will be determined by the polarity of the applied voltages.  This will be regulated by our smart control algorithm.
+\subsection{BEMS Core}
+A high level view of the operation of the software platform is shown in Figure \ref{fig:functionalBlockDiagram}. Incorporated into the platform will be a web server developed in Python with the Flask web framework. All external and internal HTTP (Hyper Text Transfer Protocol) requests will be processed through this web server in order to store device or user information in the SQLite database. An external request is defined as a request made by a user or device to, for example, update information in the database with a series of SQLite queries. Internal requests are made by other entities or processes running in parallel on the platform including software agents. Similar to BEMOSS, these agents will help to communicate with various devices supported by the platform like broadcasting a discovery service, sending control commands to devices, and regularly requesting data from devices. The platform will be developed and deployed on a Linux machine to encourage support for deployment on SBCs (Single Board Computers) like the Raspberry Pi or BeagleBone Blue to be conveniently stored in a secure location of a building or home like a server cabinet for instance.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.35]{figs/highLevelArchitecture.pdf}
+    \caption{Caption}
+    \label{fig:my_label}
+\end{figure}
+\medbreak\noindent
+The SQLite database will be designed to store device information like the device IP address, MAC address, manufacturer name, and device name. A feature will be implemented to allow for customizing the device name. For example, a WeMo Switch connected to the building or home LAN (Local Area Network) could be renamed to "Lamp" or "Light". Secondly, a feature will be added to specify the room or location of each device within the building or home. This will aid any users of the software in distinguishing devices from each other. 
+\medbreak\noindent
+% Talk about time series feature
+Functionality will be avilable in the final version of the platform to store time-series data like on/off status and power data in a database using Apache Cassandra, an open-source NoSQL database management system. This offers a convenient way to log data from device readings in real time. In the future, machine learning algorithms can be used alongside this database to help optimize energy usage.
+\medbreak\noindent
+A further addition to the software will be added in the form of support for Simscape models, an addon for Simulink to model electromechanical systems. Matlab scripts will be associated with each of these models to collect power data from various electrical models created with Simscape. Using TCP/IP, Matlab will send data from the associated models over the network to the platform to be stored in the Cassandra database.
 
 
-% \section{Modes of Operations}
-% %\label{sec:modesOfOperations}
-% We plan on allowing the user to control the helicopter using three modes of operation.  A short description of each mode is given below.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{figs/functionalBlockDiagram}
+    \caption{High-level Functional Block Diagram}
+    \label{fig:functionalBlockDiagram}
+\end{figure}
+\subsection{Outputs}
+The BEMS Core will output all data from devices, smart power meter, and weather updates to the web server. The user will then be able to peruse all available data on any smart device connected to the network.
+\section{End-Use Requirements}
+By May 2021, users will be able to: remotely turn control devices and monitor energy usage by individual devices.
+\medbreak\noindent
+Some devices will have more complicated operation than on and off. For example, we plan to add a driver for a beaglebone blue that will include support for the motor drivers. This will require a speed control algorithm capable of precisely regulating motor speed through PWM.
+\medbreak\noindent
+Since we are writing most of the code in Python, we will use Python's matplotlib module to graph energy usage for a given time period. With the database we plan to implement, we could gather data for a user-defined time period and plot energy usage for that time period. For example, if the user selects a Wemo switch and inputs 10/3/2020 - 10/5/2020, a graph will be generated showing how much energy in kilowatt-hrs that Wemo switch has used.
 
-% \begin{enumerate}[\textbf{Mode~\#}1:]
-%     \item Allows the user to control the helicopters to a given configuration. For example, setting the pitch to 45 degrees and the yaw to 90 degrees will move the helicopter that much from the initial configuration.
-%     \item Allows the user to choose a time varying input signal, so the helicopter will have a wave-like motion shifting from one configuration to another.  Examples include sine and square waves.
-%     \item Allows the user to control the algorithm that the user wishes to apply.  They will be able to choose from LQR, LQG, or ADP.
-% \end{enumerate}
+By May, 2021, we want to have a modular design for the platform that will allow users to add drivers for new devices as they are developed. Once a new device driver is added, the platform will be able to interact with it how the user wants.
+
+\section{Modes of Operation}
+To operate properly, the software must include three main modes of operation:
+\indent
+\begin{enumerate}[leftmargin=*,start=0,label={\bfseries Mode~\#\arabic*:}]
+    \item Device discovery mode: the software will be able to discover supported devices automatically upon a device joining the network. To reduce network traffic, the settings page will allow specifying which devices can be discovered.
+    \item Manual device control mode: alter the state of devices manually through an easy to use interface in the web UI or through a command line based application accessible through the UI.
+    \item Power reporting mode: a page will be available in the UI for reporting the overall power consumption of the building as well as individual device power consumption (if available). 
+\end{enumerate}
 
 \end{document}
 
