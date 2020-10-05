@@ -323,6 +323,66 @@ https://drive.google.com/file/d/1jx7SldW3zNLdA5WBNl89LUBIK0KQuEMl/view?usp=shari
 https://www.codeguru.com/
 https://smile.amazon.com/Bluetooth-Voltmeter-Multimeter-Resistance-Impedance/dp/B07PZRSYXD/
 
+\labday{Tuesday, September 29, 2020}
+
+\experiment{Lab work}
+BL\\
+Today, work was done on getting the linux laptop connected to the "AERO" network in the senior project lab, so that experiments can be done properly with the WeMo Switch and eventually Beaglebone Blue. Because this was not working, Elliot set up a hotspot on his laptop which was tethered through BUSecure. Secondly, Elliot paired the WeMo Switch with the WiFi network in the lab with his phone as I did not remember the password to my WeMo account, so a new one was made. A couple of bugs were still present in the current version of the software. One of them was causing the \texttt{ControlAgent} to crash everytime a publish message was attempted to be sent through interprocess communication. We found the problem was due to the following error
+\begin{Verbatim}
+can't convert type 'dict' to 'str' implicitly
+\end{Verbatim} 
+This was fixed by using \texttt{json.dumps} in the \texttt{pubsub.publish} function. At the end of the lab session, we were able to succesfully toggle the WeMo Switch on and off through our platform. One of the things Elliot pointed out was the fact that the checkbox toggle button for turning the device on and off is not set to the proper position when the page is loaded as it is always in the off position. We decided this feature will need to be added soon as it had not been added.
+
+\labday{Thursday, October 1, 2020}
+
+\experiment{Lab work}
+BL\\
+We decided to write down the trace of commands/function calls that occur from the top layer (UI layer) all the way down to the bottom layer (device API layer) to turn on/off the Switch:
+\begin{itemize}
+\item Main active devices page: \texttt{PROJECT\_DIR/WebServer/templates/active\_devices.html}
+\item JS code running on \texttt{active\_device.js} calls \texttt{\$.ajax()} which sends an AJAX request to the url '/active\_devices/ajax/setDeviceStatus'
+\item Sending a POST request to URL '/active\_devices/ajax/setDeviceStatus' calls sendDeviceStatusToControlAgent()
+\item In subscribe of \texttt{PROJECT\_DIR/AgentPlatform/ControlAgent.py} a call to processMethod() occurs which calls setDeviceStatus()
+\item setDeviceStatus() calls \texttt{WeMoAPI.setState}
+\item \texttt{PROJECT\_DIR/DeviceDrivers/WeMoAPI.py} setState() function sends an XML SOAP request over HTTP to the WeMo Switch
+\end{itemize}
+In order to display the correct device status on the web server via the \texttt{getDeviceStatus()} method in the \texttt{ControlAgent} class:
+\begin{itemize}
+\item \texttt{getState} will retrieve the status using XML SOAP requests
+\item \texttt{renderActiveDevices()} will be called in \texttt{active\_devices.py}. We would like to eventually poll for a state change (Not necessarily this function). Also, we want to use the most recent timeseries data from a table.
+\item First we will need to use \texttt{getState()}, but eventually we want to use a data table. Also, we need to research interrupts. 
+\end{itemize}
+I suggested installing the Cassandra database in the software as a first step towards getting the status updated on the web page as it can store time series data easily. The instructions for install Cassandra are listed below taken from \footnote{\url{https://cassandra.apache.org/download/}}
+\begin{enumerate}
+\item \texttt{echo "deb https://downloads.apache.org/cassandra/debian 311x main" | sudo tee -a /etc/apt/sources.list.d/cassandra}
+\item \texttt{curl https://downloads.apache.org/cassandra/KEYS | sudo apt-key add -}
+\item \texttt{sudo apt-get update}
+\end{enumerate}
+We encountered the following error which was documented on the site
+\begin{verbatim}
+GPG error: http://www.apache.org 311x InRelease: 
+The following signatures couldn't be verified 
+because the public key is not available: NO\_PUBKEY: E91...
+\end{verbatim}
+The PUBKEY is extracted from the error message itself and must be added with 
+\texttt{sudo apt-key adv --keyserver pool.sks-keyservers.net --recv-key E91..}
+\medbreak\noindent
+Lastly the software was installed with \texttt{sudo apt-get install cassandra}. To interface with the software with Python, we decided to use the DataStax Python driver for Apache Cassandra. It was installed with the following commands
+\begin{enumerate}
+\item source venv/bin/activate
+\item pip3 install cassandra-driver
+\end{enumerate}
+
+\labday{Monday, October 5, 2020}
+\experiment{Meeting}
+BL\\
+\textbf{Agenda:}
+\begin{itemize}
+\item What is a reliable and efficient way to obtain the status of the WeMo and update the checkbox on the web page? This is needed in case someone turns the WeMo on and off manually.
+\item Is a Gantt chart required for the first deliverable?
+\item Could you review what we have written so far for the first deliverable?
+\item We are considering integrating the DC motor with the software through the BeagleBone Blue. As an extension from the project in 2019 would we be able to add a speed control algorithm to use PWM to control motor speed? If so, should we develop our own or use the one from your mechatronics textbook?
+\end{itemize}
 \end{document}
 
 
