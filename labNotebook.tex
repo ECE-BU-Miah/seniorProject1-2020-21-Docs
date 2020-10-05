@@ -383,6 +383,16 @@ BL\\
 \item Could you review what we have written so far for the first deliverable?
 \item We are considering integrating the DC motor with the software through the BeagleBone Blue. As an extension from the project in 2019 would we be able to add a speed control algorithm to use PWM to control motor speed? If so, should we develop our own or use the one from your mechatronics textbook?
 \end{itemize}
+
+\experiment{Meeting}
+BL\\
+\textbf{Minutes:}
+\begin{itemize}
+\item We should use an Interrupt Service Routine to get device status from Wemo Switch. This will be used to update the status being displayed on the web server. 
+\item We will not be using a Gantt chart.
+\item If we want to implement the DC motor, we have to come up with a useful application. The shaft must be connected to a load. We are thinking of driving a fan which could realistically be used to control a fan possibly a CPU heatsink fan. It does not matter if we use Dr. Miah's control algorithm or our own.
+\item Our current issue is: the Wemo switch fails to turn on/off from the application if someone turns it on/off manually. For
+\end{itemize}
 \end{document}
 
 
