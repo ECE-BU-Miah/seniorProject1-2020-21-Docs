@@ -8,9 +8,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="210mm"
-   height="297mm"
-   viewBox="0 0 210 297"
+   width="131mm"
+   height="154mm"
+   viewBox="0 0 131 154"
    version="1.1"
    id="svg8"
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
@@ -19,74 +19,74 @@
      id="defs2">
     <rect
        x="103.43331"
-       y="144.32554"
-       width="56.928409"
+       y="144.32555"
+       width="56.92841"
        height="12.027129"
        id="rect3454" />
     <rect
        x="31.537804"
        y="130.16026"
        width="110.64958"
-       height="20.312484"
+       height="20.312485"
        id="rect3437" />
     <marker
        style="overflow:visible"
        id="marker3349"
-       refX="0.0"
-       refY="0.0"
+       refX="0"
+       refY="0"
        orient="auto"
        inkscape:stockid="Arrow2Lstart"
        inkscape:isstock="true">
       <path
-         transform="scale(1.1) translate(1,0)"
-         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
-         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round;stroke:#000000;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         transform="matrix(1.1,0,0,1.1,1.1,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
          id="path3347" />
     </marker>
     <marker
        style="overflow:visible"
        id="Arrow1Lstart"
-       refX="0.0"
-       refY="0.0"
+       refX="0"
+       refY="0"
        orient="auto"
        inkscape:stockid="Arrow1Lstart"
        inkscape:isstock="true">
       <path
-         transform="scale(0.8) translate(12.5,0)"
-         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
-         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         transform="matrix(0.8,0,0,0.8,10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
          id="path3015" />
     </marker>
     <marker
        style="overflow:visible"
        id="Arrow2Lstart"
-       refX="0.0"
-       refY="0.0"
+       refX="0"
+       refY="0"
        orient="auto"
        inkscape:stockid="Arrow2Lstart"
        inkscape:isstock="true">
       <path
-         transform="scale(1.1) translate(1,0)"
-         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
-         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round;stroke:#000000;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         transform="matrix(1.1,0,0,1.1,1.1,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
          id="path3033" />
     </marker>
     <rect
-       x="58.208333"
-       y="72.571429"
+       x="58.208332"
+       y="72.571426"
        width="47.625"
-       height="5.6696433"
+       height="5.6696434"
        id="rect2962" />
     <rect
-       x="44.979167"
+       x="44.979168"
        y="75.595238"
-       width="43.089286"
-       height="5.669643"
+       width="43.089287"
+       height="5.6696429"
        id="rect2833" />
     <rect
-       x="69.925595"
+       x="69.925598"
        y="121.70833"
-       width="56.696428"
+       width="56.696426"
        height="6.0476193"
        id="rect2806" />
     <linearGradient
@@ -108,14 +108,14 @@
     <rect
        x="13.229167"
        y="43.467262"
-       width="58.964285"
+       width="58.964287"
        height="13.607143"
        id="rect22" />
     <rect
-       x="9.0714286"
+       x="9.0714283"
        y="12.85119"
-       width="89.202381"
-       height="17.386905"
+       width="89.202377"
+       height="17.386906"
        id="rect12" />
     <rect
        x="13.229167"
@@ -153,7 +153,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
      inkscape:cx="342.31436"
-     inkscape:cy="254.16006"
+     inkscape:cy="334.97226"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -171,7 +171,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -182,10 +182,10 @@
     <text
        xml:space="preserve"
        id="text10"
-       style="fill:black;fill-opacity:1;line-height:1.25;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:10.58333333px;white-space:pre;shape-inside:url(#rect12);" />
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect12);fill:#000000;fill-opacity:1;stroke:none;" />
     <g
        id="g1245"
-       transform="translate(1.0583333,-2.6458334)">
+       transform="translate(-35.454183,-20.10834)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
@@ -312,25 +312,25 @@
     </g>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker3349)"
-       d="M 103.0075,73.878061 V 61.404833"
+       d="M 66.494962,56.41555 V 43.942322"
        id="path3013" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker3349-1)"
-       d="M 102.90854,136.12023 V 123.647"
+       d="M 66.396002,118.65762 V 106.18439"
        id="path3013-9"
        inkscape:transform-center-x="2.9516791"
        inkscape:transform-center-y="14.678521" />
     <text
        xml:space="preserve"
        id="text3435"
-       style="fill:black;fill-opacity:1;line-height:1.25;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:10.58333333px;white-space:pre;shape-inside:url(#rect3437);" />
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect3437);fill:#000000;fill-opacity:1;stroke:none;" />
     <text
        xml:space="preserve"
        id="text3452"
-       style="fill:black;fill-opacity:1;line-height:1.25;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:10.58333333px;white-space:pre;shape-inside:url(#rect3454);" />
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect3454);fill:#000000;fill-opacity:1;stroke:none;" />
     <g
        id="g3877"
-       transform="translate(2.640461,-21.844919)"
+       transform="translate(-33.872055,-39.30743)"
        style="stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none">
       <g
          id="g3862"
@@ -406,7 +406,7 @@
     </g>
     <g
        id="g1181"
-       transform="translate(-4.2333335,-26.987511)">
+       transform="translate(-40.745853,-44.450022)">
       <g
          id="g3450"
          transform="translate(33.740429,-19.718851)"
