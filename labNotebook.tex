@@ -393,6 +393,36 @@ BL\\
 \item If we want to implement the DC motor, we have to come up with a useful application. The shaft must be connected to a load. We are thinking of driving a fan which could realistically be used to control a fan possibly a CPU heatsink fan. It does not matter if we use Dr. Miah's control algorithm or our own.
 \item Our current issue is: the Wemo switch fails to turn on/off from the application if someone turns it on/off manually. For
 \end{itemize}
+
+\labday{Tuesday, October 6, 2020}
+\experiment{Lab work}
+BL\\
+Today, Elliot and I worked on ways of possibly implementing an interrupt whenever the WeMo Switch is turned on or off. Various blogs on interrupts in Python3 were found regarding KeyboardInterrupts and GPIO with the Raspberry Pi. It may not be possible to cause the Switch to generate an interrupt signal on its own as this may not be built into the firmware of the device. Initially some problems were encountered as a problem was encountered in the file \texttt{PROJECT\_DIR/WebServer/static/js/apps/active\_device.js} as the Javascript object named \texttt{evt} was not passed as a parameter to the callback function for the input checkbox event listener. This was then used to call
+\begin{Verbatim}
+evt.preventDefault();
+\end{Verbatim}
+which according to the Jquery documentation cancels the default navigation of the click. This is not necessarily needed as it runs properly without the method call. Work was done on implementing the feature to update the checkbox position whenever the DOM is ready. One of the problems that needs to be solved is obtaining the data from the web server after sending a AJAX GET request. This will be done by receiving a JSON object in the response to the AJAX request. According the jQuery documentation\footnote{\url{https://api.jquery.com/jquery.ajax/}}, one of the optional arguments to be passed is the \texttt{success} parameter which can hold the arguments
+\begin{itemize}
+\item data
+\item status
+\item settings
+\end{itemize}
+
+\labday{Thursday, October 8, 2020}
+\experiment{Lab work}
+BL and EW\\
+One of the problems we faced into today's lab session was the Switch's port number incrementing by 1. Yesterday, the port number was 49154 and today it is 49155. We'll have to determine why this is happening.
+We are also trying to improve the getDeviceStatus() function to get both the id of the WeMo and the powerstate. A solution to this problem is using a list nested in a dictionary along with a key value pair for the id of the device. One of the feaures of javascript that we do not know to implement is how to set the checkbox position with javascript.
+
+\labday{Monday, October 12, 2020}
+\experiment{Meeting}
+BL\\
+\textbf{Agenda}
+\begin{itemize}
+\item Go over current presentation
+\item Schedule an appointment for presentation
+\item Additional ECE faculty member for presentation
+\end{itemize}
 \end{document}
 
 
