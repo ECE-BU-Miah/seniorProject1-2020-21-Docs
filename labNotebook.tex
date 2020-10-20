@@ -481,11 +481,20 @@ Minutes:
 \end{itemize}
 
 \labday{Tuesday, October 20, 2020}
-EW\\
 \experiment{Lab work}
+EW\\
 Today, I started looking into running python files on the BeagleBone Blue. I installed the Adafruit library: https://pypi.org/project/Adafruit-BBIO/ and was able to run a simple program to flash the on-board LEDs. However, Dr. Miah mentioned that I should look into the rcpy library as an alternative. After settling on a control library, I need to figure out how to connect to the BeagleBone Blue from the platform.
 Dr. Miah also reminded us both to start looking into standard features found in other energy management systems similar to BEMS.
-
+\medbreak\noindent
+BL\\
+I worked on adding calls to the various cassandra library methods and class constructors to interact with the Cassandra database. In the Discovery agent, I added a query to create a new table for each device when it is discovered by the discovery agent in the \texttt{setDeviceToActive} method. Each table will have fields
+\begin{itemize}
+\item id text
+\item power double
+\item status text
+\item tstamp timestamp
+\end{itemize}
+for now. However, this will likely need to be changed when new devices are added. Secondly, another query execution call was added to the method \texttt{periodicQueryBehavior} in the \texttt{ControlAgent} which will add a new entry to a given device table every 10 seconds inside a separate thread from the main program. In order to initialize the database, a keyspace was created titled "bemstimeseries" which will need to be added to the database when the platform is installed. This likely be added to the \texttt{install.sh} script. The last task I worked on was installing matplotlib which gave me trouble as python3.5 is installed on the LUbuntu laptop running the server. However, this python package requires Python3.6 and later. I will need to work on figuring out how to update python on the laptop if possible. 
 \end{document} 
 
 
