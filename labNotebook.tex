@@ -495,6 +495,38 @@ I worked on adding calls to the various cassandra library methods and class cons
 \item tstamp timestamp
 \end{itemize}
 for now. However, this will likely need to be changed when new devices are added. Secondly, another query execution call was added to the method \texttt{periodicQueryBehavior} in the \texttt{ControlAgent} which will add a new entry to a given device table every 10 seconds inside a separate thread from the main program. In order to initialize the database, a keyspace was created titled "bemstimeseries" which will need to be added to the database when the platform is installed. This likely be added to the \texttt{install.sh} script. The last task I worked on was installing matplotlib which gave me trouble as python3.5 is installed on the LUbuntu laptop running the server. However, this python package requires Python3.6 and later. I will need to work on figuring out how to update python on the laptop if possible. 
+
+\labday{Thursday, October 22, 2020}
+\experiment{Lab work}
+BL\\
+I decided to try just installing matplotlib and all the necessary dependencies like numpy with older versions supported by python3.5. The following dependencies and their corresponding versions are required for python3.5
+\begin{itemize}
+\item matplotlib==1.5.1
+\item numpy==1.11.0
+\item dateutil==2.4.2
+\item pytz==2014.10
+\end{itemize}
+Another problem was encountered when attempting to install the dateutil python3 package as a messaged was displayed that python3.5 reached the end of its life on September 13, 2020. A solution to this problem I will try to implement is installing the latest version of Lubuntu 20.04 LTS. Dr. Miah approved this.
+\medbreak\noindent
+The next task is to determine where to create a new keyspace in the cassandra table. I added this in the \texttt{run.sh} file for now but may make more sense to place in the \texttt{install.sh} file. Next I worked on inspecting the keyspace for new tables when a new device is discovered. Unfortunately, no new tables were showing up after the \texttt{DiscoveryAgent} did its work in the \texttt{setDeviceToActive} method. The CQL query:
+\begin{Verbatim}
+SELECT * FROM system_schema.tables WHERE keyspace_name = 'bemstimeseries';
+\end{Verbatim}
+should list all the table information in the 'bemstimeseries' keyspace. The next logical step is to run the query in the \texttt{setDeviceToActive} method which will create a table for the device. In the \texttt{cqlsh} command line program, I ran into the exception
+\begin{Verbatim}
+InvalidRequest: Error from server: code=2200 [Invalid query] 
+message="No PRIMARY KEY specifed (exactly one required)"
+\end{Verbatim}
+This error makes sense as no primary key was supplied in the CREATE TABLE command. A second error was encountered after adding in a primary key:
+\begin{Verbatim}
+SyntaxException: line 1:59 no viable alternative at input 
+'PRIMARY_KEY' (... EXISTS bemstimeseries.device1 (id [UUID] PRIMARY_KEY...)
+\end{Verbatim}
+After executing the query 
+\begin{Verbatim}
+CREATE TABLE IF NOT EXISTS bemstimeseries.wemo 
+(id UUID PRIMARY_KEY, power double, status text, tstamp timestamp);
+\end{Verbatim}
 \end{document} 
 
 
