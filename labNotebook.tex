@@ -527,6 +527,9 @@ After executing the query
 CREATE TABLE IF NOT EXISTS bemstimeseries.wemo 
 (id UUID PRIMARY_KEY, power double, status text, tstamp timestamp);
 \end{Verbatim}
+
+EW\\
+I have made some progress on the Beaglebone API. It is possible to connect to the beaglebone via python socket programming and send commands. This will be the basis for controlling the beaglebone from the platform. At the end of lab today, I was having trouble running the program to turn on the on-board LEDs. I need to figure out why that is not working and then add more functions to better control the LEDs. Eventually, this will be integrated into the platform and the discovery/control agents will be used to access and control beaglebones. We will also need wires to connect to the motor drivers.
 \end{document} 
 
 
