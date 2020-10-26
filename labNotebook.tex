@@ -443,8 +443,6 @@ EW\\
 \experiment{Lab work}
 Brian and I tried to get the refresh button on the "active devices" page to reload the check box for the WeMo switch. This task is proving to be more challenging than we thought. Neither of us has much experience with JavaScript. We need to learn how to access each button and their properties in active\_device.js if we want this feature to work.
 
-* Still need to finish *
-
 \labday{Thursday, October 15, 2020}
 EW\\
 \experiment{Lab work} Today, the Aero router was missing from the lab. We
@@ -481,6 +479,102 @@ Agenda:
 \item Should Elliot and I work together on the same features (pair programming) or work separately on different tasks?
 \item Should we have a well defined schedule of what features we would like to work for the rest of senior project?
 \end{itemize}
+
+Minutes:
+\begin{itemize}
+\item We should list all the features found in BEMOSS or another BEMS platforms and explain how ours is different. We need to gather some standard features that people have used in similar projects. Find at least 5 other platforms. Use library resources and contact Dr. Miah if we can't get access to a source.
+\item I (Elliot) will start implementing support for the beaglebone blue and Brian will work on implementing additional features (right now that is the Apache Cassandra Database and power recording).
+\end{itemize}
+
+\labday{Tuesday, October 20, 2020}
+\experiment{Lab work}
+EW\\
+Today, I started looking into running python files on the BeagleBone Blue. I installed the Adafruit library: https://pypi.org/project/Adafruit-BBIO/ and was able to run a simple program to flash the on-board LEDs. However, Dr. Miah mentioned that I should look into the rcpy library as an alternative. After settling on a control library, I need to figure out how to connect to the BeagleBone Blue from the platform.
+Dr. Miah also reminded us both to start looking into standard features found in other energy management systems similar to BEMS.
+\medbreak\noindent
+BL\\
+I worked on adding calls to the various cassandra library methods and class constructors to interact with the Cassandra database. In the Discovery agent, I added a query to create a new table for each device when it is discovered by the discovery agent in the \texttt{setDeviceToActive} method. Each table will have fields
+\begin{itemize}
+\item id text
+\item power double
+\item status text
+\item tstamp timestamp
+\end{itemize}
+for now. However, this will likely need to be changed when new devices are added. Secondly, another query execution call was added to the method \texttt{periodicQueryBehavior} in the \texttt{ControlAgent} which will add a new entry to a given device table every 10 seconds inside a separate thread from the main program. In order to initialize the database, a keyspace was created titled "bemstimeseries" which will need to be added to the database when the platform is installed. This likely be added to the \texttt{install.sh} script. The last task I worked on was installing matplotlib which gave me trouble as python3.5 is installed on the LUbuntu laptop running the server. However, this python package requires Python3.6 and later. I will need to work on figuring out how to update python on the laptop if possible. 
+
+\labday{Thursday, October 22, 2020}
+\experiment{Lab work}
+BL\\
+I decided to try just installing matplotlib and all the necessary dependencies like numpy with older versions supported by python3.5. The following dependencies and their corresponding versions are required for python3.5
+\begin{itemize}
+\item matplotlib==1.5.1
+\item numpy==1.11.0
+\item dateutil==2.4.2
+\item pytz==2014.10
+\end{itemize}
+Another problem was encountered when attempting to install the dateutil python3 package as a messaged was displayed that python3.5 reached the end of its life on September 13, 2020. A solution to this problem I will try to implement is installing the latest version of Lubuntu 20.04 LTS. Dr. Miah approved this.
+\medbreak\noindent
+The next task is to determine where to create a new keyspace in the cassandra table. I added this in the \texttt{run.sh} file for now but may make more sense to place in the \texttt{install.sh} file. Next I worked on inspecting the keyspace for new tables when a new device is discovered. Unfortunately, no new tables were showing up after the \texttt{DiscoveryAgent} did its work in the \texttt{setDeviceToActive} method. The CQL query:
+\begin{Verbatim}
+SELECT * FROM system_schema.tables WHERE keyspace_name = 'bemstimeseries';
+\end{Verbatim}
+should list all the table information in the 'bemstimeseries' keyspace. The next logical step is to run the query in the \texttt{setDeviceToActive} method which will create a table for the device. In the \texttt{cqlsh} command line program, I ran into the exception
+\begin{Verbatim}
+InvalidRequest: Error from server: code=2200 [Invalid query] 
+message="No PRIMARY KEY specifed (exactly one required)"
+\end{Verbatim}
+This error makes sense as no primary key was supplied in the CREATE TABLE command. A second error was encountered after adding in a primary key:
+\begin{Verbatim}
+SyntaxException: line 1:59 no viable alternative at input 
+'PRIMARY_KEY' (... EXISTS bemstimeseries.device1 (id [UUID] PRIMARY_KEY...)
+\end{Verbatim}
+After executing the query 
+\begin{Verbatim}
+CREATE TABLE IF NOT EXISTS bemstimeseries.wemo 
+(id UUID PRIMARY_KEY, power double, status text, tstamp timestamp);
+\end{Verbatim}
+
+EW\\
+I have made some progress on the Beaglebone API. It is possible to connect to the beaglebone via python socket programming and send commands. This will be the basis for controlling the beaglebone from the platform. At the end of lab today, I was having trouble running the program to turn on the on-board LEDs. I need to figure out why that is not working and then add more functions to better control the LEDs. Eventually, this will be integrated into the platform and the discovery/control agents will be used to access and control beaglebones. We will also need wires to connect to the motor drivers.
+
+\labday{Monday, October 26, 2020}
+\experiment{Meeting}
+EW\\
+\textbf{Agenda}
+\begin{itemize}
+\item Links to IEEE articles on BEMS we don't have access to: 
+	\begin{itemize}
+	\item https://ieeexplore-ieee-org.ezproxy.bradley.edu/document/6852647
+	\item https://ieeexplore-ieee-org.ezproxy.bradley.edu/document/8494012
+	\item https://ieeexplore-ieee-org.ezproxy.bradley.edu/document/8494012
+	\end{itemize}
+Other sources with features for BEMS:
+	\begin{itemize}
+	\item https://greencoast.org/building-energy-management-systems/
+	\end{itemize}
+
+\item Go over progress on BeagleBone Blue API (Elliot)
+
+\end{itemize}
+
+BL\\
+\textbf{Other links}
+\begin{itemize}
+\item https://ieeexplore.ieee.org/document/8403212
+\item https://www.mdpi.com/2071-1050/9/2/264/pdf-vor
+\item https://www.mdpi.com/2079-9292/8/7/763 - LoBEMS - LoRa Building and Energy Management System	
+\end{itemize}
+From third link (LoRa BEMS), some of the features added to their platform are
+\begin{itemize}
+\item LoRa support
+\item A/C automation
+\item Plot of A/C usage
+\item air quality monitoring
+\item If This Then That support - BEMS was tested at a school, parents were notified when the air quality was too low
+\item Sensors with SOC's, powered by batteries, using the LoRa communication interface monitored temperature, humidity, luminosity, and air quality
+\end{itemize}
+
+
 \end{document} 
 
 
