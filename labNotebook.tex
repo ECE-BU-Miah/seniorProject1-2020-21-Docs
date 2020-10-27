@@ -583,6 +583,10 @@ From third link (LoRa BEMS), some of the features added to their platform are
 \item Dr. Miah will look into the papers that Elliot found to see if they are good sources to use.
 \end{itemize}
 
+\labday{Thursday, October 22, 2020}
+\experiment{Lab work}
+EW\\
+Today, I made some more progress with the socket connection to the BBB (beaglebone blue). I wrote a couple a functions in a file called LED.py to control the LEDs. Then, I ran a socket server on my laptop and a client on the BBB that could call those functions in LED.py. This was a major milestone because it proved that programs can be run on the BBB from a laptop connected over wifi. My next task will be altering the server/client relationship to be more robust. Right now, it has to go back and forth between the server and client, I would like to be able to send multiple messages to the client and vice versa.
 
 \end{document} 
 
