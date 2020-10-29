@@ -588,6 +588,24 @@ From third link (LoRa BEMS), some of the features added to their platform are
 EW\\
 Today, I made some more progress with the socket connection to the BBB (beaglebone blue). I wrote a couple a functions in a file called LED.py to control the LEDs. Then, I ran a socket server on my laptop and a client on the BBB that could call those functions in LED.py. This was a major milestone because it proved that programs can be run on the BBB from a laptop connected over wifi. My next task will be altering the server/client relationship to be more robust. Right now, it has to go back and forth between the server and client, I would like to be able to send multiple messages to the client and vice versa.
 
+\labday{Thursday, October 29, 2020}
+BL\\
+Work was continued on getting the data logging feature implemented for the WeMo Switch. I came across this problem:
+\begin{Verbatim}
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+TypeError: periodicQueryBehavior() argument after * must be an iterable, not int
+\end{Verbatim}
+I decided to try and run the ControlAgent to debug the problem with an int getting sent to the \texttt{periodicQueryBehavior} rather than an iterable object like a list or string.
+\medbreak\noindent
+Further problems were encountered when multiple WeMo switches were appearing on the active devices page. Some of the problems were still being reported in the terminals. The next step is to determine how to properly add a timestamp to a database entry. Some of the problems were fixed with adding entries to the device table for the Switch. However, when adding a timestamp, the following was added by using the cql call \texttt{toTimeStamp(now())}
+\begin{Verbatim}
+2020-10-29 16:42:28.166000+0000
+\end{Verbatim}
+The current time in the lab was 11:42 am meaning the timezone must be configured. Research will have to be done on this topic. First, a problem with the current columns in the table is the presence of an id column which is actually defined in the name of the table. The id column will be removed. However, a primary key is required is required. Originally this was set as the id column but will be changed to the timestamp column.
 \end{document} 
 
 
