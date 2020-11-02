@@ -546,7 +546,7 @@ EW\\
 	\begin{itemize}
 	\item https://ieeexplore-ieee-org.ezproxy.bradley.edu/document/6852647
 	\item https://ieeexplore-ieee-org.ezproxy.bradley.edu/document/8494012
-	\item https://ieeexplore-ieee-org.ezproxy.bradley.edu/document/8494012
+	\item https://ieeexplore.ieee.org/document/8246800
 	\end{itemize}
 Other sources with features for BEMS:
 	\begin{itemize}
@@ -606,6 +606,9 @@ Further problems were encountered when multiple WeMo switches were appearing on 
 2020-10-29 16:42:28.166000+0000
 \end{Verbatim}
 The current time in the lab was 11:42 am meaning the timezone must be configured. Research will have to be done on this topic. First, a problem with the current columns in the table is the presence of an id column which is actually defined in the name of the table. The id column will be removed. However, a primary key is required. Originally this was set as the id column but will be changed to the timestamp column.
+
+EW\\
+Continued working on the server and client files for connecting to the BBB. I created 2 new files called new\_server.py and new\_client.py. new\_server.py uses object-oriented programming to create a server and then run specific functions. The goal here is to produce several functions for controlling the BBB that the BEMS core will be able to call instead of having the user manually type commands in a terminal.
 
 \labday{November 2, 2020}
 \experiment{Meeting}
