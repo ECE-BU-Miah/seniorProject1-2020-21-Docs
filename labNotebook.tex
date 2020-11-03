@@ -623,8 +623,6 @@ BL\\
 \item Go over current proposal
 \end{itemize}
 
-\labday{November 2, 2020}
-\experiment{Meeting}
 EW\\
 \textbf{Minutes}
 \begin{itemize}
@@ -635,7 +633,14 @@ EW\\
 \item In the Spring Semester, we will add features (that are not totally necessary, but add the the value of project) like simscape models for microgrid and HVAC systems.
 \end{itemize}
 
-
+\labday{November 3, 2020}
+\experiment{Lab work}
+BL\\
+I determined how to set the timezone of a CQL timestamp. It uses the RFC $822$ 4-digit time zone format (+/- HHmm) which is the offset from GMT (Greenwich Mean Time). When testing with the \texttt{cqlsh} command line program, I found that after adding an entry with an offset -0600 for the first time, the timestamps were each set to CST (Illinois time). So after a timestamp is added once with -0600, the further timestamps can be added with -0000. The data was properly added to the device[\*] table which corresponds to the device id. Another feature that needs to be added is adding seconds data into each timestamp. The strftime method is used to format the time in the form year-month-day hours:minutes:seconds. Data is succesfully being pushed to the database every 20 seconds as configured in the software agent. A simple command to clear out the table is
+\begin{Verbatim}
+TRUNCATE bemstimeseries.device1;
+\end{Verbatim}
+for instance for the table for device with id 1. There is a bug in the current version that causes three rows to be saved to the table rather than 1 intended row every 20 seconds. I believe the source of the problem is the pubsub.publish function that publishes three messages rather than 1 to ensure the message is sent.
 \end{document} 
 %%% Local Variables:
 %%% mode: latex
