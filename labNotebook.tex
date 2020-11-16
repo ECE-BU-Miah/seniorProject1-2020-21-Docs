@@ -675,7 +675,21 @@ Minutes
 EW\\
 I got the BeagleboneAPI.py file up and running. It has the same functionality as the test files did (I removed those from the repo). The next step is to alter the discovery agent so that it can run the BeaglboneAPI.py. After that, we should be able to create a button in the Web Server to control the LEDs from the BEMS Core.
 
+\labday{Monday, November 16, 2020}
+\experiment{Lab work}
+BL\\
+I worked on fixing one of the issues stemming from the HTML plot generation. One of the issues is the x and y values have different lengths which cause issues when plotting. This problem was fixed by constructing a tuple from the power level associated with a timestamp and the corresponding timestamp object. A problem I am currently facing is the xticks not rotating to 90 degrees although specified in the \texttt{matplotlib.pyplot.xticks} call. I would like to create a drop down menu that will allow the plots for a specific day to be selected.
 
+\experiment{Meeting Minutes}
+Agenda
+\begin{itemize}
+\item Schedule for proposal presentation practice
+\item Should we discuss previous work from IEEE papers in the presentation?
+\item Progress on Beaglebone
+\item Progress on power plotting
+\item Should the power and on/off status plots be placed on the home page or active devices page?
+\item How many references should we have in the proposal?
+\end{itemize}
 \end{document} 
 %%% Local Variables:
 %%% mode: latex
