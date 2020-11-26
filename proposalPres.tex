@@ -50,6 +50,7 @@
 \usepackage{media9}
 \usepackage{subfigure}
 
+
 % Customize Warsaw color 
 \setbeamercolor*{palette primary}{use=structure,fg=white,bg=blue!50!black}
 \setbeamercolor*{palette secondary}{use=structure,fg=white,bg=blue!60!black}
@@ -63,7 +64,9 @@
 
 
 
-\title[System Level Requirements]{Development of Building Energy Management Platform}
+\title[Project Proposal]{Senior Capstone Project I\\\textbf{\underline{Project Proposal}}\\
+\vspace{0.25in}
+Project Title: Development of an Intelligent Building Energy Management Platform}
 
 % % A subtitle is optional and this may be deleted
 % \subtitle{Product Proposal}
@@ -85,7 +88,7 @@ Advisor: Dr. Suruz Miah}
 % - Keep it simple, no one is interested in your street address.
 
 %\date[November~27,~2018]{Tuesday, November~27,~2018}
-\date[October~19,~2020]{Thursday, October~19,~2020}
+\date[November~30,~2020]{Monday, November~30,~2020}
 %\date[December~4,~2018]{Tuesday, December~4,~2016}
 
 % - Either use conference name or its abbreviation.
@@ -130,39 +133,14 @@ Advisor: Dr. Suruz Miah}
 % and table of contents.
 \section{Introduction}
 %\section{Project Description}
+\section{Background Study}
+\section{Functional Requirements}
 \section{System Architecture}
-\section{High Level Functionality}
-\section{Modes of Operation}
-\section{End-Use Requirements}
-
-\begin{frame}{Introduction}{} %Elliot
-    % Applications of Building Energy Management
-    \begin{itemize}
-        \item Why BEMS?
-            \begin{itemize}
-                \item Can help save on energy costs
-                \item Less impact on environment
-            \end{itemize}
-        \item How can the IoT help?
-            \begin{itemize}
-                \item WiFi integrated into most buildings
-                \item Our Web-based approach simplifies development and end-user experience
-            \end{itemize}
-        \item Overall Goal
-            \begin{itemize}
-                \item Create a platform in which users can login and access devices connected to a building’s energy supply
-                \item Allow the user to closely monitor energy usage throughout a commercial or residential building.
-            \end{itemize}
-    \end{itemize}
-\end{frame}
+\section{Preliminary Work}
+\section{Parts List}
+\section{Timeline and Milestones}
 
 \begin{frame}{Introduction}{}
-\centering
-Play Video
-\end{frame}
-
-% System Architecture Diagram
-\begin{frame}{System Architecture}{} %Elliot
     % High-Level Architecture Figure
     \begin{figure}
         \centering
@@ -172,30 +150,52 @@ Play Video
     \end{figure}
 \end{frame}
 
-% System Architecture - Supported Devices
-\begin{frame}{System Architecture - Supported Devices}{} %Elliot
-    % What are we using to build this?
+\begin{frame}{Introduction}{}
+    % Applications of Building Energy Management
     \begin{itemize}
-        \item WeMo Switch
-            \begin{itemize}
-                \item Turn on and off from web server
-                \item Record power usage month to month
-                \item Plot power usage for a given time frame using MatPlotLib library in Python
-            \end{itemize}
-        \item Embedded Computer
-            \begin{itemize}
-                \item Connect to BeagleBone Blue
-                \item Control motor drivers from web server
-            \end{itemize}
-        \item Smart Meter
-            \begin{itemize}
-                \item Cannot physically implement this
-                \item MATLAB has ability to simulate power meters
-            \end{itemize}
+        \item BEMS Core will interface with as many devices as it has support for 
+        \begin{itemize}
+            \item Wemo and Beaglebone will be fully functional by end of semester
+            \item User will be able to control these devices directly from the Web Server
+        \end{itemize}
+        \item In the Spring, we hope to simulate a microgrid with MATLAB Simscape and an HVAC System with Simulink
+        \begin{itemize}
+            \item The microgrid simulation will allow us to virtually measure a power meter
+            \item An HVAC System in Simulink could be controlled with a Linear Quadratic Regulator (LQR) based algorithm that can regulate the building temperature
+        \end{itemize}
+        \item If time allows, we will also have the BEMS Core ping a weather service for updates on severe weather as well
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Background Study}{}
+    \begin{itemize} % Break down more (talk about BEMOSS possibly) and the LoBEMS project
+        \item An existing BEMS described in~\cite{Mataloto2019} incorporates its own sensors for temperature, humidity, luminosity, air quality, and motion. The data from these sensors is then fed to the BEMS core where decisions are made for the HVAC system and lighting of a building. The sensor data is transferred to the BEMS though the IoT, like our own BEMS core.
+        \item One of the works in the literature discusses Model Predictive Control (MPC) which is a modern process control algorithm capable of taking into account current and previous time values to improve building automation~\cite{Mayer2017}. A multilevel hierarchy is presented to split control of a building into two levels: the energy supply level and user level. Example usage of this control scheme provided are temperature control of a building and its corresponding zones and interaction with a smart grid. Studies were performed on a commercial building with the building's energy supply system and hierarchy model predictive controller implemented in Matlab.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Background Study}{}
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.45]{figs/img/pvBESSystem.png}
+    \caption{Photovoltaic (Battery Energy Storage) BES system simulated in \cite{Barchi2018}}
+    \label{fig:pvBESSystem}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Functional Requirements}{}
+    \begin{itemize}
+        \item The minimum viable product will be to connect to a Wemo Insight Smart Plug and a BeagleBone Blue
+        \begin{itemize}
+            \item The WeMo Plug will simply be turned on and off from the Web Server. The BEMS Core will also record its power usage
+            \item The only functionality needed on the BeagleBone Blue will be PWM input to the motor drivers
+        \end{itemize}
+        \item A database (Apache Cassandra) will be implemented for recording power usage
     \end{itemize}
 \end{frame}
 
 \begin{frame}{System Architecture}{}
+    % Functional Block Diagram
     \begin{figure}
         \centering
         \includegraphics[scale=0.4]{figs/functionalBlockDiagram.pdf}
@@ -204,16 +204,23 @@ Play Video
     \end{figure}
 \end{frame}
 
-% System Architecture - Inputs
-\begin{frame}{System Architecture - Inputs}{} %Elliot
+\begin{frame}{System Architecture - Inputs}{}
+    % What are we using to build this?
     \begin{itemize}
-        \item Users will adjust the operation of a device (turn up temperature of AC unit or turn on/off a light)
-        \item Smart Power meters (BEMS core will need to receive power data from MATLAB scripts) will provide real-time power consumption for the entire building
-        \item Connected devices will give status updates when prompted by the BEMS Core
-        \item The BEMS core will scan a weather service website to receive updates on severe weather that may impact power transmission
+        \item Users
+            \begin{itemize}
+                \item Adjust the operation of a device (turn up the temperature of an AC unit, for instance)
+                \item Turn a device on or off
+            \end{itemize}
+        \item Smart power meters will be able to connect the platform and give real-time updates of the building's overall power usage
+        \item Connected Devices
+            \begin{itemize}
+                \item The Wemo Switch and BeagleBone Blue will have master-slave relationship with the BEMS Core
+                \item The BEMS Core will send commands through the router to download power data
+            \end{itemize}
+        \item The BEMS Core regularly receives weather updates from a weather service
     \end{itemize}
 \end{frame}
-
 
 % System Architecture - Web Server
 \begin{frame}{System Architecture - BEMS Core}{} %Brian
@@ -245,26 +252,174 @@ Play Video
 \begin{frame}{System Architecture - Outputs}{}
 \begin{itemize}
     \item BEMS core will output all data from connected devices to be accessed through the web server via a browser (accessed by any device that can browse the web)
-    \item All available data on any smart device will be able to be perused via the platform
-\end{itemize}    
+    \begin{itemize}
+        \item On/Off Status
+        \item PWM Setting
+    \end{itemize}
+    \item When prompted by user input, the BEMS core will run a python script to plot energy usage of a given device on a given day; this plot will appear on the active devices page
+    \item Warning on the Web Server home page about potential energy loss due to storms
+\end{itemize}
 \end{frame}
 
-\begin{frame}{Modes of Operation}{}
+\begin{frame}{Preliminary Work - Design}{}
     \begin{itemize}
-        \item \textbf{Mode \#0: Device discovery mode}: networked IoT devices will be automatically discovered on the local building network
-        \item \textbf{Mode \#1: Manual device control mode}: the state of each active device will be controllable through an easy-to-use web interface and command line application
-        \item \textbf{Mode \#2: Power reporting mode}: a page will be available for reporting overall building power consumption and individual device power consumption
+        \item The platform incorporates multiple agents to help facilitate communication between various parts of the software
+        \item Discovery agent
+        \begin{itemize}
+            \item Traverses through available API files and uses the findDevicesAPI call to locate devices on the network
+            \item Later on auto discovery will be implemented to allow devices to be shown in the software whenever a new supported device joins the network
+        \end{itemize}
+        \item Control agent
+        \begin{itemize}
+            \item General agent for all supported devices, capable of retrieving and modifying the status of a device available on the network through API calls
+            \item Supports starting up a separate thread to periodically query the device for information like ON/OFF status and power consumption 
+        \end{itemize}
     \end{itemize}
 \end{frame}
 
-\begin{frame}{End-Use Requirements}{}
-    \begin{itemize}
-        \item Device behavior should be implemented to seamlessly support different status configurations
-        \item Users (building admins, employees, home owners) will have the ability to see a plot of the past energy usage of a device 
-        \item Python's Matplotlib package will form the basis for the plotting functionality 
-        \item Support for new devices should be easily developed through multiple layers of abstractions
-    \end{itemize}    
+\begin{frame}{Preliminary Work - Design}{}
+    \begin{figure}
+        \centering
+        \includegraphics[scale=0.35]{figs/setDeviceToActiveFlow.pdf}
+        \caption{\texttt{DiscoveryAgent.setDeviceToActive()} flow chart}
+        \label{fig:setDeviceToActiveFlow}
+    \end{figure}
 \end{frame}
+
+\begin{frame}{Preliminary Work - Design}{}
+    \begin{figure}
+        \centering
+        \includegraphics[scale=0.3]{figs/searchForDevicesFlow.pdf}
+        \caption{\texttt{DiscoveryAgent.searchForDevices()} flow chart}
+        \label{fig:searchForDevicesFlow}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Preliminary Work - Design}{}
+    \begin{figure}
+        \centering
+        \includegraphics[scale=0.3]{figs/periodicQueryBehaviorFlow.pdf}
+        \caption{\texttt{ControlAgent.periodicQueryBehavior()} flow chart}
+        \label{fig:periodicQueryBehavior}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Device APIs}
+    \begin{itemize}
+        \item setState - Setter for Wemo Insight Switch and motor controllers on Embedded Computer
+        \item getState - Returns power usage and on/off status for Wemo Insight Switch and PWM setting for Embedded Computer
+        \item findDevices - Returns URL of supported devices on the network
+        \item findMetadata - Returns manufacturer, name, and MAC address of supported devices
+        \item For Wemo Insight Switch, IP multicasting and Universal Plug and Play are used to send messages
+        \item We are using a Beaglebone Blue for an embedded computer and so far have only used IP multicasting for communication
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Experimental Setup}
+    \begin{figure}
+        \centering
+        \includegraphics[scale=0.3]{figs/experimentalSetup.pdf}
+        \caption{Lab Setup for Testing and Development}
+        \label{fig:my_label}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Preliminary Work - Experimental Activities}{}
+    \begin{figure}
+        \centering
+        \includegraphics[scale=0.3]{figs/activeDevicesWithEmbeddedPicture.png}
+        \caption{Screenshot of Web Server (Active Devices Page)}
+        \label{fig:my_label}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Preliminary Work - Experimental Activities}{}
+    \begin{figure}
+        \centering
+        \includegraphics[scale=0.5]{figs/powerPlot2020-11-03.eps}
+        \caption{Plot of WeMo Switch power usage 2020-11-03}
+        \label{fig:powerPlotWeMoSwitch}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Preliminary Work - Experimental Activities}{}
+    \begin{itemize}
+        \item Up to this point, work has been completed on the web user interface which was developed with the Bootstrap CSS framework and the JQuery Javascript framework
+        \item When a request is sent to the active devices URL, the discovery agent will ping all possible supported devices on the network and newly discovered devices will appear on the active devices page
+        \item the refresh button will cause the position of the slide switch switch shown to change depending on whether the WeMo switch is on or off
+        \item The top nav bar will link to other pages including the home page, applications page, notifications and settings page (active devices is currently the only page implemented)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Parts List}{}
+    \begin{itemize}
+        \item WeMo Insight Smart Plug
+        \item BeagleBone Blue
+        \begin{itemize}
+            \item Octavo OSD3358 Microprocessor
+            \item Wifi/Bluetooth
+            \item IMU/Barometer
+            \item Power Regulation and state-of-charge LEDs for a 2-cell LiPo
+            \item H-Bridges
+            \item Connectors for 4 DC motors and 8 Servos
+        \end{itemize}
+        \item JST-ZH connector (for BeagleBone Blue Motor Connections)
+        \item DC Motor
+        \item ECE department laptop
+        \item ECE department lab computers
+    \end{itemize}
+\end{frame}
+% https://www.lucidchart.com/pages/templates/network-diagram
+\begin{frame}{Timeline and Milestones}
+\begin{ganttchart}[
+hgrid,vgrid,x unit=.55cm, y unit title=.6cm,y unit chart=.4cm,milestone label font=\tiny,bar label font=\tiny, group label font=\small,bar/.append style={fill=green},bar incomplete/.append style={fill=red}]{3}{16}
+\gantttitle{Fall 2020}{14}\\
+\gantttitle{Sep}{2}
+\gantttitle{Oct}{4}
+\gantttitle{Nov}{4}
+\gantttitle{Dec}{4}\\
+\ganttgroup[progress = 100,group progress label font = \tiny,group progress label anchor = east]{WeMo Functionality}{3}{5} \\
+\ganttbar[progress = 100,bar progress label font = \tiny,bar progress label anchor = east]{Refresh Status on Web Server}{3}{5}\\
+\ganttbar[progress = 100,bar progress label font = \tiny, bar progress label anchor = east]{Record Power Usage}{3}{5}\\
+\ganttgroup[progress = 67,group progress label font = \tiny,group progress label anchor = east]{Data Logging Feature}{5}{10}\\
+\ganttbar[progress = 80,bar progress label font = \tiny,bar progress label anchor = east]{Support for Cassandra database}{5}{9}\\
+\ganttbar[progress = 0,bar progress label font = \tiny,bar progress label anchor = east]{Matplotlib Plot in UI}{10}{10}\\
+\ganttgroup[progress = 0,group progress label font = \tiny, group progress label anchor = east]{User Login}{11}{14}\\
+\ganttbar[progress = 0,bar progress label font = \tiny,bar progress label anchor = east]{Login Page}{11}{12}\\
+\ganttbar[progress = 0,bar progress label font = \tiny,bar progress label anchor = east]{Session Management}{13}{14}\\
+\ganttgroup[progress = 55,group progress label font = \tiny,group progress label anchor = east]{BeagleBone Functionality}{7}{14}\\
+\ganttbar[progress = 90,bar progress label font = \tiny,bar progress label anchor = east]{Communication with BEMS}{7}{11}\\
+\ganttbar[progress = 0,bar progress label font = \tiny,bar progress label anchor = east]{PWM Motor Control}{12}{13}\\
+\ganttbar[progress = 0,bar progress label font = \tiny,bar progress label anchor = east]{Record Power Usage}{14}{14}
+\end{ganttchart}
+\end{frame}
+
+\begin{frame}{Timeline and Milestones}
+\begin{ganttchart}[
+hgrid,vgrid,x unit=.45cm, y unit title=.6cm,y unit chart=.4cm,milestone label font=\tiny,bar label font=\tiny, group label font=\small,bar/.append style={fill=green},bar incomplete/.append style={fill=red}]{3}{16}
+\gantttitle{Spring 2021}{14}\\
+\gantttitle{Jan}{2}
+\gantttitle{Feb}{4}
+\gantttitle{Mar}{4}
+\gantttitle{Apr}{4}\\
+\ganttgroup[progress = 0,group progress label font = \tiny, group progress label anchor = east]{Simscape Microgrid}{3}{8}\\
+\ganttbar[progress = 0,bar progress label font = \tiny,group progress label anchor = east]{Setup Simscape Microgrid}{3}{5}\\
+\ganttbar[progress = 0,bar progress label font = \tiny,group progress label anchor = east]{Get Power Meter Data}{6}{8}\\
+\ganttgroup[progress = 0,group progress label font = \tiny,group progress label anchor = east]{HVAC Control}{9}{14} \\
+\ganttbar[progress = 0,bar progress label font = \tiny,bar progress label anchor = east]{Create HVAC system in Simscape}{9}{11} \\
+\ganttbar[progress = 0,bar progress label font = \tiny,bar progress label anchor = east]{Implement LQR Algorithm for HVAC Control}{12}{14} \\
+\ganttgroup[progress = 0,group progress label font = \tiny,group progress label anchor = east]{Weather Service Update}{15}{16}\\
+\ganttbar[progress = 0,bar progress label font = \tiny,group progress label anchor = east]{Receive Weather Data}{15}{15}\\
+\ganttbar[progress = 0,bar progress label font = \tiny,group progress label anchor = east]{Display Notification}{16}{16}
+\end{ganttchart}    
+\end{frame}
+
+% \begin{frame}{Timeline and Milestone}
+% \begin{ganttchart}[
+% hgrid,vgrid,x unit=.55cm, y unit title=.6cm,y unit chart=.4cm,milestone label font=\tiny,bar label font=\tiny, group label font=\small,bar/.append style={fill=green},bar incomplete/.append style={fill=red}]{1}{18}
+
+% \end{ganttchart}    
+% \end{frame}
 
 % You can reveal the parts of a slide one at a time
 % with the \pause command:
@@ -311,13 +466,15 @@ Play Video
 
 % Placing a * after \section means it will not show in the
 % outline or table of contents.
-% \section*{Summary}
-% \begin{frame}{Summary} %Glenn
-%   \begin{itemize}
-%     \item Development of a platform to control devices
-%     \item Ability to read device status (power usage, state)
-%   \end{itemize}
-% \end{frame}
+\section*{Summary}
+\begin{frame}{Summary} %Brian
+  \begin{itemize}
+    \item Development of a platform to control devices
+    \item Ability to read device status (power usage, state)
+    \item Smart grid simulation using Simscape and Matlab
+    \item HVAC control algorithm using Linear Quadratic Regulator (LQR)
+  \end{itemize}
+\end{frame}
 % \begin{frame}{Summary}
 %   \begin{itemize}
 %   \item
@@ -370,6 +527,11 @@ Play Video
   Apache Cassandra Database
   \newblock \url{https://cassandra.apache.org/}
   \end{thebibliography}
+\end{frame}
+
+\begin{frame}{References}
+    \bibliographystyle{IEEEtran}
+    \bibliography{bib/references.bib}
 \end{frame}
 
 \end{document}
