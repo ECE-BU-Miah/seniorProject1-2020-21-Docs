@@ -169,9 +169,25 @@ Advisor: Dr. Suruz Miah}
 
 \begin{frame}{Background Study}{}
     \begin{itemize} % Break down more (talk about BEMOSS possibly) and the LoBEMS project
-        \item An existing BEMS described in~\cite{Mataloto2019} incorporates its own sensors for temperature, humidity, luminosity, air quality, and motion. The data from these sensors is then fed to the BEMS core where decisions are made for the HVAC system and lighting of a building. The sensor data is transferred to the BEMS though the IoT, like our own BEMS core.
-        \item One of the works in the literature discusses Model Predictive Control (MPC) which is a modern process control algorithm capable of taking into account current and previous time values to improve building automation~\cite{Mayer2017}. A multilevel hierarchy is presented to split control of a building into two levels: the energy supply level and user level. Example usage of this control scheme provided are temperature control of a building and its corresponding zones and interaction with a smart grid. Studies were performed on a commercial building with the building's energy supply system and hierarchy model predictive controller implemented in Matlab.
+        \item An existing BEMS described in~\cite{Mataloto2019} incorporates its own sensors for:
+        \begin{itemize}
+            \item temperature
+            \item humidity
+            \item luminosity
+            \item air quality
+            \item motion
+        \end{itemize}
+        \item The data from these sensors is fed to the BEMS core where decisions are made for the HVAC system and lighting of the building
+        \item While we will only be simulating HVAC with Simscape, our BEMS core is similar to this project in that we are using IoT as a communication platform
     \end{itemize}
+\end{frame}
+
+\begin{frame}{Background Study}{}
+\begin{itemize}
+    \item MPC (Model Predictive Control) used in~\cite{Mayer2017} 
+    \item Building control split into two levels for building automation improvement
+    \item Examples of the usage of MPC given are temperature control and interaction with smart grids
+\end{itemize}    
 \end{frame}
 
 \begin{frame}{Background Study}{}
