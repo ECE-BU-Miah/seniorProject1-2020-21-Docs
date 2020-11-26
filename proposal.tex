@@ -11,6 +11,7 @@
 \usepackage{amsmath,amssymb,bm}
 \usepackage{graphicx}
 \usepackage{rotating}
+\usepackage{float}
 \usepackage{subfigure}
 \graphicspath{%
   {figs/ipe/}
@@ -34,9 +35,9 @@ format=default,justification=centerlast]{caption} % Figure caption text customiz
 
 \title{ECE498:~Senior Capstone Project I\\\textbf{\underline{Project Proposal}}\\
 \vspace{0.5in}
-Project Title: ZigBee--Based Indoor Robot Localization and Mapping}
+Project Title: Development of an Intelligent Building Energy Management Platform}
 \vspace{1.5in}
-\author{Kyle Hevrdejs and Jacob Knoll\\ Advisor: Dr.~Suruz Miah
+\author{Brian Lauer and Elliot Watkins\\ Advisor: Dr.~Suruz Miah
 }
 %\date{February 6, 2003}  No need to write, Date will be automatically on the title page
 \date{}  % Do not show date on the title page
@@ -61,7 +62,7 @@ Caterpillar College of Engineering and Technology\\
 \href{http://www.bradley.edu/}{Bradley University}\\
 
 \vspace*{6.0cm}
-\copyright~K.~Hevrdejs~and~J.~Knoll, Peoria, IL, USA, 2016\\
+\copyright~B.~Lauer~and~E.~Watkins, Peoria, IL, USA, 2016\\
 
 \end{center}
 \thispagestyle{empty}
@@ -77,96 +78,163 @@ Caterpillar College of Engineering and Technology\\
 
 \section{Introduction} %introduction (basically what was in the abstract before)
 
-%applications
-As the use of mobile robots becomes more common in the workplace, the need for accurate navigation rises. There are systems currently on the market that aim to meet this need. The major drawback however is the cost, modularity between mobile robots, and scalability to larger environments. In this project, we propose a cost--effective, modular, and easily scalable system utilizing off the shelf components that will allow a mobile robot to navigate and map its environment using an EKF-SLAM (Extended Kalman Filter - Simultaneous Localization and Mapping) algorithm. This system will allow navigation and mapping of an indoor environment with an acceptable level of accuracy. Applications of this system include mining vehicles, research and education, deliveries within office builings, cleaning robots, and warehouses.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.35]{figs/highLevelArchitecture.pdf}
+    \caption{High Level Architecture of the Proposed System}
+    \label{fig:highLevelArchitecture}
+\end{figure}
+
+The BEMS Core will interface with as many devices as it has support for. By the end of this semester, we plan to have support for the Wemo Insight Switch and the BeagleBone Blue. The user will be able to control these devices directly from the Web Server. Additionally, we will try to simulate a microgrid with MATLAB Simscape. Another feature we would like to add (if time allows) is a weather notification. The BEMS core will ping an online weather service routinely and notify the user of any storms likely to cause power outage in the forecast. To simulate a building HVAC system, a Simulink model will be created, and the Linear Quadratic Regulator (LQR) based algorithm will be used to regulate the building temperature to optimize both user comfort and energy usage.
 
 \section{Background Study} %review of literature and prior work
 %write more here (related works from subsystem level functional requirements?)
+An existing BEMS described in~\cite{Mataloto2019} incorporates its own sensors for temperature, humidity, luminosity, air quality, and motion. The data from these sensors is then fed to the BEMS core where decisions are made for the HVAC system and lighting of a building. The sensor data is transferred to the BEMS though the IoT, like our own BEMS core. 
 
-A large amount of research in the field of robotics is concentrated in the areas of localization and navigation (see~\cite{Martinelli2015},~\cite{DiGiampaolo2014},~\cite{Song2012}). Currently, much of the work being done focuses on the use of passive RFID tags~\cite{Martinelli2015}\cite{DiGiampaolo2014}. These methods are highly accurate but also expensive, both in hardware and computational efficiency. In~\cite{Martinelli2015} and~\cite{DiGiampaolo2014}, an algorithm is implemented using UHF (ultra high frequency) RFID in order to localize a mobile robot. In there, the phase information is adopted in order to calculate the angle between the passive tags and the mobile robot. Overall, the system worked well, however, the experiments performed did not fully demonstrate the localization algorithm, as the mobile robot was preprogrammed to follow a line marked on the floor of the environment. This approach also requires understanding of RF such as phase shift and RFID. Another method, seen in~\cite{Song2012}, shows a similar system but instead using wireless sensors as beacons. This setup is easier to implement on a large scale due to the minimal RF knowledge required and ease of implementation of beacons. The system presented in~\cite{Song2012} also uses the technique of partitioning the environment into a grid in order to more accurately calculate signal strength and bearing using a forward mounted directional antenna. This approach shows accuracy over after long operation times, an undesired characteristic of our project. Although not directly used for localization, the work done in~\cite{Hood2011} shows a possible alternative method for localization and mapping. By utilizing a rotating reflector, the authors were able to accurately estimate the angle-of-arrival of wireless signals from multiple wireless sensors. Furthermore, there are similar systems currently in use by the military that implement this technique (rotating radar antennas). There are also similar systems available for civilian use in areas such as commercial marine radar. Using this method, the authors were able to estimate the angle-of-arrival with an accuracy of $\pm \SI{3}{\degree}$.\\
+One of the works in the literature discusses Model Predictive Control (MPC) which is a modern process control algorithm capable of taking into account current and previous time values to improve building automation~\cite{Mayer2017}. A multilevel hierarchy is presented to split control of a building into two levels: the energy supply level and user level. Example usage of this control scheme provided are temperature control of a building and its corresponding zones and interaction with a smart grid. Studies were performed on a commercial building with the building's energy supply system and hierarchy model predictive controller implemented in Matlab.
 
-In this project we aim to combine a rotating reflector system similar to the one presented in~\cite{Hood2011} and the widely used EKF-SLAM algorithm. The major challenges of this implementation will be obtaining a high enough accuracy in the range and bearing measurements. As more interference enters the environment, the system will become less accurate. This can, however, be reduced by the introduction of more beacons, at an increase in total cost.
+In~\cite{8246800}, the authors describe similar functional requirements to our own BEMS Core. They periodically gather power consumption and device status data and send that data to a database. We are doing exactly what they describe using the Apache Cassandra database. The authors also use an "analytics [sic] engine to process [the data] and generate reports, graphs, and charts." Our system only generates a power consumption plot for a given day, but we are still meeting this same requirement - just on a smaller scale. The communication with devices and power consumption reports are to be accessible through a web-based application that is easy to use. Again, our implementation is simple and very intuitive for the end-user. Finally, these authors mention a user-login feature. They explain that their system would include multiple levels of accessibility based on the user privileges. Our system does not currently have a user-login feature. However, in its current state, the BEMS Core simply uses a router to access devices that are also connected to the router. Since this is a closed system, users need only protect their router with a secure password.
 
-
-\section{Standards and Patents}
-The standards that are applicable to our project include the IEEE 802.15.4 protocol and the ZigBee protocol. The IEEE 802.15.4 protocol\footnote{IEEE Standard for Low-Rate Wireless Networks, 2015} outlines the physical layer (PHY) and the medium access control layer (MAC) specifications for low-data-rate wireless communication in personal area networks (LR-WPAN). The PHY layer contains the radio frequency transceiver and its low-level controller. The MAC layer provides access to the physical channel for transfer and defines an IEEE address for the device. Its goal is to maintain a simple and flexible protocol while also being easy to install, having reliable data transfer, being low cost, and having reasonable battery life. The ceiling mounted beacons will use XBee modules to communicate wirelessly with the mobile robot and uses the 802.15.4 protocol by default. The 802.15.4 protocol allows for a star network topology which is made up of one established personal area network (PAN) coordinator and other functional devices. In our system, the XBee mounted on the mobile robot will act as a coordinator and the ceiling mounted XBee’s will be the other functional devices. During our testing, we have established basic peer-to-peer communication with this protocol.\\
-
-The other standard known as ZigBee\footnote{Zigbee Pro Stack User Guide, 2014}\footnote{XBee/XBee-Pro S2C ZigBee User Guide, 2016} is an open global standard for low-power, low-cost, low-data-rate, wireless networking based on the IEEE 802.15.4 standard. It maintains the specifications of the PHY layer and the MAC layer while defining the higher network layer and setting the framework for the application layer. The network layer takes care of network structure, routing, and security. The application layer has an application support sub-layer (APS) which defines various addressing objects and has other features for device specific applications. The ZigBee protocol allows for star, peer-to-peer, and mesh network topologies. We will still use the star network topology which is made up of a coordinator who creates a network with a channel and a unique PAN ID and end devices who will join this network with extra power saving features. The XBee mounted on the mobile robot will act as the coordinator and the ceiling mounted beacons will act as the end devices. The fully functional system will be implemented with a ZigBee network. It offers well defined packetized communication, power saving features which is important for the battery powered ceiling mounted beacons, and future applications which may require a higher level mesh network.\\
-
-There are several patents that outline designs that are comparable to our project. The first patent~\cite{biehl} describes systems and methods for localization of a mobile device using beacons. This design uses a computer, a location signal receiver and beacons to determine the location of the mobile device. The beacons transmit the location signal and  the computer determines the location from the received location signal strength and a unique key based on the particular transmitting beacon. This patent is relevant to our work as it uses received signal strength from beacons and individual beacon IDs for localization of a mobile device in an indoor environment, but the patent is more general to what the mobile device is and uses a different localization algorithm. The second patent~\cite{lin} outlines positioning of an indoor mobile robot, and mapping of its environment and the beacons it detects. The mobile robot performs several positioning modes depending on the number on beacons it detects in its line of sight. This patent is more applicable to our project than the last patent. It utilizes a simultaneous localization and mapping technique for a mobile robot and beacons. However, the patent's positioning method is different than ours. The third patent~\cite{edlund} describes a localization method for a mobile robot with a system of beacons. It uses the signal strength and angle of arrival of the signal to localize and determine a coarse correction. This design is very similar to our approach by uses signal strength and angle, and similar localization algorithm, but we will be rotating a antennae reflector instead of the entire robot. A similar patent~\cite{younis} to the previous explains an indoor localization method for a mobile device using directional reflectors. The mobile device transmits a signal and the signal is delayed and returned by reflectors in the environment. The location of the mobile device is then determined from the range by the amount of delay and the angle of arrival at the reflector. This patent is relatively similar to our project as it describes an indoor localization technique using range and angle for a mobile device.
+A control scheme in~\cite{Barchi2018} is presented to manage a photovoltaic array and battery energy storage system. Tests were conducted in a shopping mall with an electronic load to emulate the power consumption of the building. Potentially, a similar technique could be used to model the energy demand of a house in Simulink or Simscape model. Through their scheme, an intelligent BEMS is used to collect measurable data like power, voltage, and current and stored for offline analysis later. Their platform collects data every five minutes compared to the 20 second polling rate currently configured in our platform. A control algorithm was presented proving that grid energy is consumed more heavily during periods of low power demand rather than PV power.
 
 \section{Functional Requirements}
+The minimum viable product of this project will be to connect to a Wemo Insight Smart Plug and a BeagleBone Blue. The only functionality needed on the BeagleBone Blue will be PWM input to the motor drivers. Additionally, we will be implementing a database to track power usage on both devices. To simulate power usage of an entire house, we will use MATLAB simscape to develop a microgrid and power meter.
 
-\subsection{System Architecture}
-%system architecture
-% For our project, we consider a scenario shown in~\autoref{fig:sysarch} where a mobile robot is deployed in a 3-dimensional environment with beacons distributed throughout. The mobile robot will also be given a list of waypoints located on the floor of the environment. Due to its widespread use in research applications, we have chosen the Pioneer 3-DX to implement our proposed project. 
+\section{System Architecture}
+\subsection{Inputs}
+This project will include input from users, smart power meter, devices, and a weather service. Users will be able to adjust the operation of a device (turn up the temperature of an AC unit, for instance) or turn a device on or off completely. Smart power meters will be able to connect the platform and give real-time updates of the building's overall power usage. We would also like to look into meters for individual appliances like AC units and furnaces. The connected devices themselves will communicate to the web server their current status when needed. Finally, our platform will regularly receive weather updates from a weather service and warn the user about potential energy loss due to storms.
 
-% \begin{figure}
-%     \centering
-%     \includegraphics[scale=.4]{figs/ipe/3D_System_2.PNG}
-%     \caption{Environment with mobile robot, ceiling mounted beacons, and waypoints}
-%     \label{fig:sysarch}
-% \end{figure}
+\subsection{BEMS Core}
+A high level view of the operation of the software platform is shown in Figure \ref{fig:functionalBlockDiagram}. Incorporated into the platform will be a web server developed in Python with the Flask web framework. All external and internal HTTP (Hyper Text Transfer Protocol) requests will be processed through this web server in order to store device or user information in the SQLite database. An external request is defined as a request made by a user or device to, for example, update information in the database with a series of SQLite queries. Internal requests are made by other entities or processes running in parallel on the platform including software agents. Similar to BEMOSS, these agents will help to communicate with various devices supported by the platform like broadcasting a discovery service, sending control commands to devices, and regularly requesting data from devices. The platform will be developed and deployed on a Linux machine to encourage support for deployment on SBCs (Single Board Computers) like the Raspberry Pi or BeagleBone Blue to be conveniently stored in a secure location of a building or home like a server cabinet for instance.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{figs/functionalBlockDiagram}
+    \caption{High-level Functional Block Diagram}
+    \label{fig:functionalBlockDiagram}
+\end{figure}
+\medbreak\noindent
+The SQLite database will be designed to store device information like the device IP address, MAC address, manufacturer name, and device name. A feature will be implemented to allow for customizing the device name. For example, a WeMo Switch connected to the building or home LAN (Local Area Network) could be renamed to "Lamp" or "Light". Secondly, a feature will be added to specify the room or location of each device within the building or home. This will aid any users of the software in distinguishing devices from each other. 
+\medbreak\noindent
+% Talk about time series feature
+Functionality will be available in the final version of the platform to store time-series data like on/off status and power data in a database using Apache Cassandra, an open-source NoSQL database management system. This offers a convenient way to log data from device readings in real time. In the future, machine learning algorithms can be used alongside this database to help optimize energy usage.
+\medbreak\noindent
+A further addition to the software will be added in the form of support for Simscape models, an addon for Simulink to model electromechanical systems. Matlab scripts will be associated with each of these models to collect power data from various electrical models created with Simscape. Using TCP/IP, Matlab will send data from the associated models over the network to the platform to be stored in the Cassandra database.
 
-\subsection{Block Diagrams}
-%system level
-% The system we propose for our project is fairly self--contained in the sense that it will handle its operation once it has started. This consideration will further promote modularity when the system is used with other mobile robots. A high level system block diagram can be seen in~\autoref{fig:highsys}. Many of the outputs shown are used for debugging purposes as well as being used for the proposed algorithm. The subsystem block diagram of the system shown in~\autoref{fig:highsys} can be seen in~\autoref{fig:subsys}. Due to the nature of the algorithm, we arranged our subsystem block diagram to resemble a conventional control system. This helps to better illustrate how data is being used within the system in order to localize the mobile robot and map the indoor environment.\\
+\subsection{Outputs}
+The BEMS Core will output all data from devices, smart power meter, and weather updates to the web server. The user will then be able to peruse all available data on any smart device connected to the network.
 
-% \begin{figure}
-%     \centering
-%     \includegraphics[scale=1]{figs/ipe/highLevelSysRequirements_robot}
-%     \caption{System level block diagram detailing inputs and outputs to the system}
-%     \label{fig:highsys}
-% \end{figure}
-
-% %subsystem level
-% \begin{figure}
-%     \centering
-%     \includegraphics[scale=.9]{figs/ipe/subsystemBlockDiagramAlternate}
-%     \caption{Subsystem level block diagram}
-%     \label{fig:subsys}
-% \end{figure}
-
-% As shown in~\autoref{fig:subsys}, the outputs labelled \emph{estimated pose} and \emph{estimated positions of XBees} are also used internally. This feedback design allows the system to use prior data and predictions to estimate the mobile robot's position with more accuracy each iteration. At the top of~\autoref{fig:subsys}, there are three separate subsystems. The first is the controller, which will be further explained in~\autoref{sec:model}. The internal values output by this subsystem are the linear velocity and the steering angle. These values are then used as inputs to the preprocessor subsystem where they are converted to control inputs accepted by the Pioneer 3-DX. This conversion is detailed in~\autoref{sec:model}. Once these control inputs are applied and the mobile robot has completed its movement, the noisy pose is sent to the estimation block where it is used to estimate the mobile robot's true pose. In this subsystem, the mapping of the XBee beacons within the environment is also done. The estimated pose is then used by the controller in order to repeat the process. As seen in~\autoref{fig:subsys}, the estimated position of the XBees is stored internally for use in the next iteration.
-
-\subsection{Specifications}
 
 \section{Preliminary Work}
+Prior to the start of the capstone project, work had been completed on the platform based off BEMOSS~\cite{BEMOSS}. Most of the software architecture was heavily derived from the previously developed software.
+% \subsection{Modelling} \label{sec:model}
 
-\subsection{Modelling} \label{sec:model}
+% \subsection{Simulation Results} \label{sec:simresults}
 
-\subsection{Simulation Results} \label{sec:simresults}
+\subsection{Software Agent Design} \label{sec:design}
+As part of the base requirements of the design, the platform incorporates multiple agents to help facilitate communication between various parts of the software. Some of the current agents which are Python classes in the software include
+\begin{itemize}
+    \item Discovery agent - Traverses through available API files and uses the \texttt{findDevices} API call to locate devices on the network, later on auto discovery will be implemented to allow devices to be shown in the software whenever a new supported device joins the network
+    \item Control agent - General agent for all supported devices, capable of retrieving and modifying the status of a device available on the network through API calls, supports starting up a separate thread to periodically query the device for information like ON/OFF status and power consumption 
+\end{itemize}
+A flow chart of the scheme the Discovery agent uses to initialize a device in the platform is shown in Figure \ref{fig:setdevicetoactive}. To ensure a new device is only stored once in the metadata database, a query is performed to ensure that only one device exists with the recently discovered device's name. Once a new table is created in the Cassandra database for the device which is unique for the specific device, the control agent is notified to start up a new thread to collect device data.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.95]{figs/setDeviceToActiveFlow.pdf}
+    \caption{Flow chart of the \texttt{setDeviceToActive} method}
+    \label{fig:setdevicetoactive}
+\end{figure}
 
-\subsection{Design} \label{sec:design}
+A second algorithm that the discovery agent uses to look for devices on the network is shown in Figure \ref{fig:searchfordevices}. The process to search for available devices on the network is executed for each individual device API. Once a device has been found it is then added to the active devices table if it does not already exist.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.75]{figs/searchForDevicesFlow.pdf}
+    \caption{Flow chart of the \texttt{searchForDevices} method}
+    \label{fig:searchfordevices}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.75]{figs/periodicQueryBehaviorFlow.pdf}
+    \caption{\texttt{ControlAgent.periodicQueryBehavior()} flow chart}
+    \label{fig:periodicQueryBehavior}
+\end{figure}
+
+More agents will likely be added later to help with supporting devices with behavior differing from that of the WeMo Switch and DC Motor. 
+
+\subsection{Device APIs}
+Common APIs are included for each supported device like \texttt{setState}, \texttt{getState}, \texttt{findDevices}, and \texttt{findMetadata}. In the WeMo Switch implementation, IP multicasting and Universal Plug and Play are utilized to send out messages to any devices listening on a multicast group with a specific IP address and port number. The location of an XML file is located whenever a Switch has been properly located on the network. This file contains information about the device including the nickname, manufacturer, and IP address as well as other information like Simple Object Access Protocol (SOAP) commands to alter the state of the device like ON/OFF status and commands to retrieve device information. The publish/subscribe model is used for communication between the web server and agents. Each agent supports a separate thread dedicated to subscribing to messages from publishers.
+
+Support for the SQlite database has been successfully added while the Cassandra database support is still being implemented. Also, driver support is still being developed for the Beaglebone Blue and ultimately the DC motor.
+
+\subsection{Experimental Setup} \label{sec:expsetup}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.8]{figs/experimentalSetup.pdf}
+    \caption{Current lab setup for testing purposes}
+    \label{fig:expLabSetup}
+\end{figure}
 
 \subsection{Experimental Activities} \label{sec:expresults}
+Up to this point, work has been completed on the web user interface which was developed with the Bootstrap CSS framework and the JQuery Javascript framework. The active device page in Figure~\ref{fig:activeDevicesPageScreenCap} displays the current controllable devices in the software. When a request is sent to the active devices URL, the discovery agent will ping all possible supported devices on the network and newly discovered devices will appear on the active devices page. Upon pressing the refresh button below the list of controllable devices, all buttons and icons will update with the current status obtained over the network. For example, the refresh button will cause the position of the slide switch shown to change depending on whether the WeMo switch is on or off. The top nav bar will link to other pages including the home page, applications page, notifications and settings page. However, only the active devices page has been implemented.
 
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.4]{figs/activeDevicesWithEmbeddedPicture.png}
+    \caption{Screenshot of Web Server (Active Devices Page)}
+    \label{fig:my_label}
+\end{figure}
+
+Figure 8 shows a plot of the Wemo power usage using data we collected during lab hours.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{figs/powerPlot2020-11-03.eps}
+    \caption{Plot of WeMo Switch power usage 2020-11-03}
+    \label{fig:powerPlotWeMoSwitch}
+\end{figure}
 
 \section{Parts List}
+\begin{itemize}
+    \item WeMo Insight Smart Plug
+    \item BeagleBone Blue
+    \begin{itemize}
+        \item Octavo OSD3358 Microprocessor
+        \item Wifi/Bluetooth
+        \item IMU/Barometer
+        \item Power Regulation and state-of-charge LEDs for a 2-cell LiPo
+        \item H-Bridges
+        \item Connectors for 4 DC motors and 8 Servos
+    \end{itemize}
+    \item JST-ZH connector (for BeagleBone Blue Motor Connections)
+    \item DC Motor
+    \item ECE department laptop
+    \item ECE department lab router
+\end{itemize}
 
 \section{Timeline and Milestones} \label{sec:timeline}
+During the first semester, Fall 2020, work will be done to further polish the WeMo Switch functionality like updating the status and obtaining the power usage. In order to further set up the platform, support for the Cassandra database will be added to store power usage and other device status information. Each entry in the database will be associated with a specific device and timestamp containing the current time and date. To visualize the data, a Matplotlib plot will be generated by reading data from a CSV file generated from the device status information. This plot will be displayed in the UI. DC motor support will be built through Beaglebone Blue connectivity over the TCP/IP bulding network. User login and management will be added to give users a more personalized experience in the platform. In the second semester, Spring 2021, algorithms will be developed to simulate and control both a microgrid and HVAC system along with integration in the platform. Lastly, as a final touch weather service support will be added along with notifications if time allows.
 
 \begin{sidewaysfigure}
 \begin{ganttchart}[hgrid,vgrid,x unit=.8cm, y unit title=.5cm,y unit chart=.8cm,milestone label font=\tiny,bar label font=\tiny, group label font=\small,bar/.append style={fill=green},bar incomplete/.append style={fill=red}]{1}{16}
-\gantttitle{2016}{16}\\
+\gantttitle{Fall 2020}{16}\\
 \gantttitle{Sep}{4}
 \gantttitle{Oct}{4}
 \gantttitle{Nov}{4}
 \gantttitle{Dec}{4}\\
-\ganttgroup[progress = 100,group progress label font = \tiny,progress label text={$\displaystyle#1\%$},group progress label anchor = east]{Research}{3}{5} \\
-\ganttbar[progress = 100,progress label text={$\displaystyle#1\%$},bar progress label font = \tiny,bar progress label anchor = east]{Research XBee functionality}{3}{5}\\
-\ganttbar[progress = 100,bar progress label font = \tiny,progress label text={$\displaystyle#1\%$},bar progress label anchor = east]{Research EKF-SLAM}{3}{5}\\
-\ganttgroup[progress = 100,group progress label font = \tiny,progress label text={$\displaystyle#1\%$},group progress label anchor = east]{Simulation}{6}{12}\\
-\ganttbar[progress = 100,bar progress label font = \tiny,progress label text={$\displaystyle#1\%$},bar progress label anchor = east]{Simulate using MATLAB}{6}{8}\\
-\ganttbar[progress = 100,bar progress label font = \tiny,progress label text={$\displaystyle#1\%$},bar progress label anchor = east]{Simulate using V-REP}{9}{12}\\
-\ganttgroup[progress = 100,group progress label font = \tiny,progress label text={$\displaystyle#1\%$},group progress label anchor = east]{XBee Communication}{6}{14}\\
-\ganttbar[progress = 100,bar progress label font = \tiny,progress label text={$\displaystyle#1\%$},bar progress label anchor = east]{Communication with X-CTU}{6}{7}\\
-\ganttbar[progress = 100,bar progress label font = \tiny,progress label text={$\displaystyle#1\%$},bar progress label anchor = east]{AT Commands}{8}{8}\\
-\ganttbar[progress = 100,bar progress label font = \tiny,progress label text={$\displaystyle#1\%$},bar progress label anchor = east]{Remote AT Commands}{9}{10}\\
-\ganttbar[progress = 100,bar progress label font = \tiny,progress label text={$\displaystyle#1\%$},bar progress label anchor = east]{XBee Library}{11}{12}\\
-\ganttbar[progress = 100,bar progress label font = \tiny,progress label text={$\displaystyle#1\%$},bar progress label anchor = east]{Get XBee RSSI data from multiple beacons}{13}{14}
+\ganttgroup[progress = 100,group progress label font = \tiny,progress label text={$\displaystyle#1\%$},group progress label anchor = east]{WeMo Functionality}{3}{5} \\
+\ganttbar[progress = 100,progress label text={$\displaystyle#1\%$},bar progress label font = \tiny,bar progress label anchor = east]{Refresh Status on Web Server}{3}{5}\\
+\ganttbar[progress = 100,bar progress label font = \tiny,progress label text={$\displaystyle#1\%$},bar progress label anchor = east]{Record Power Usage}{3}{5}\\
+\ganttgroup[progress = 67,group progress label font = \tiny,progress label text={$\displaystyle#1\%$},group progress label anchor = east]{Data Logging Feature}{5}{10}\\
+\ganttbar[progress = 80,bar progress label font = \tiny,progress label text={$\displaystyle#1\%$},bar progress label anchor = east]{Support for Cassandra database}{5}{9}\\
+\ganttbar[progress = 0,bar progress label font = \tiny,progress label text={$\displaystyle#1\%$},bar progress label anchor = east]{Matplotlib Plot in UI}{10}{10}\\
+
+\ganttgroup[progress = 55,group progress label font = \tiny,progress label text={$\displaystyle#1\%$},group progress label anchor = east]{BeagleBone Functionality}{7}{14}\\
+\ganttbar[progress = 90,bar progress label font = \tiny,progress label text={$\displaystyle#1\%$},bar progress label anchor = east]{Communication with BEMS}{7}{11}\\
+\ganttbar[progress = 0,bar progress label font = \tiny,progress label text={$\displaystyle#1\%$},bar progress label anchor = east]{PWM Motor Control}{12}{13}\\
+\ganttbar[progress = 0,bar progress label font = \tiny,progress label text={$\displaystyle#1\%$},bar progress label anchor = east]{Record Power Usage}{14}{14}\\
 \end{ganttchart}
-\caption{Gantt chart for Fall 2016}
+\caption{Gantt chart for Fall 2020}
 \label{gantt1}
 \end{sidewaysfigure}
 
@@ -176,41 +244,30 @@ There are several patents that outline designs that are comparable to our projec
 %\begin{figure}
 %\centering
 \begin{ganttchart}[hgrid,vgrid,x unit=.8cm, y unit title=.5cm,y unit chart=.8cm,milestone label font=\tiny,bar label font=\tiny, group label font=\small,bar/.append style={fill=green},bar incomplete/.append style={fill=red}]{1}{18}
-\gantttitle{2017}{18}\\
+\gantttitle{Spring 2021}{18}\\
 \gantttitle{Jan}{4}
 \gantttitle{Feb}{4}
 \gantttitle{Mar}{4}
 \gantttitle{Apr}{4}
 \gantttitle{May}{2}\\
-\ganttgroup[progress = 100,group progress label font = \tiny,progress label text={$\displaystyle#1\%$}, group progress label anchor = east]{XBee Communication}{3}{4}\\
-\ganttbar[progress = 100,bar progress label font = \tiny,progress label text={$\displaystyle#1\%$},group progress label anchor = east]{Get XBee RSSI data from multiple beacons}{3}{4}\\
-\ganttgroup[progress = 0,group progress label font = \tiny,progress label text={$\displaystyle#1\%$},group progress label anchor = east]{Angle Estimation}{3}{5} \\
-\ganttbar[progress = 0,bar progress label font = \tiny,progress label text={$\displaystyle#1\%$},bar progress label anchor = east]{Build Reflector}{3}{3} \\
-\ganttbar[progress = 0,bar progress label font = \tiny,progress label text={$\displaystyle#1\%$},bar progress label anchor = east]{Testing and Debugging}{4}{5} \\
+\ganttgroup[progress = 0,group progress label font = \tiny,progress label text={$\displaystyle#1\%$}, group progress label anchor = east]{Simscape Microgrid}{3}{8}\\
+\ganttbar[progress = 0,bar progress label font = \tiny,progress label text={$\displaystyle#1\%$},group progress label anchor = east]{Setup Simscape Microgrid}{3}{5}\\
+\ganttbar[progress = 0,bar progress label font = \tiny,progress label text={$\displaystyle#1\%$},group progress label anchor = east]{Get Power Meter Data}{6}{8}\\
+\ganttgroup[progress = 0,group progress label font = \tiny,progress label text={$\displaystyle#1\%$},group progress label anchor = east]{HVAC Control}{9}{14} \\
+\ganttbar[progress = 0,bar progress label font = \tiny,progress label text={$\displaystyle#1\%$},bar progress label anchor = east]{Create HVAC system in Simscape}{9}{11} \\
+\ganttbar[progress = 0,bar progress label font = \tiny,progress label text={$\displaystyle#1\%$},bar progress label anchor = east]{Implement LQR Algorithm for HVAC Control}{12}{14} \\
 %\ganttmilestone[progress = 0,milestone progress label font = \tiny,milestone progress label anchor = east]{Finalize Functionality}{5} \ganttnewline
-\ganttgroup[progress = 0,group progress label font = \tiny,progress label text={$\displaystyle#1\%$},group progress label anchor = east]{Subsystem Preparation}{5}{8} \\
-\ganttbar[progress = 0,bar progress label font = \tiny,progress label text={$\displaystyle#1\%$},bar progress label anchor = east]{Install ROS for Control of Pioneer 3-DX}{5}{6} \\
-\ganttbar[progress = 0,bar progress label font = \tiny,progress label text={$\displaystyle#1\%$},bar progress label anchor = east]{Create ROS Node for Estimator Subsytem}{7}{8} \\
-%\ganttmilestone[progress = 0,milestone progress label font = \tiny,milestone progress label anchor = east]{Finalize Functionality}{8} \ganttnewline
-\ganttgroup[progress = 0,group progress label font = \tiny,progress label text={$\displaystyle#1\%$},group progress label anchor = east]{Integration and Test}{8}{16} \\
-\ganttbar[progress = 0,bar progress label font = \tiny,progress label text={$\displaystyle#1\%$},bar progress label anchor = east]{Integrate subsystems}{8}{9} \\
-\ganttbar[progress = 0,bar progress label font = \tiny,progress label text={$\displaystyle#1\%$},bar progress label anchor = east]{Test and Debug System}{10}{13} \\
-%\ganttmilestone[progress = 0,milestone progress label font = \tiny,milestone progress label anchor = east]{Finalize Functionality}{13} \ganttnewline
-\ganttbar[progress = 0,bar progress label font = \tiny,progress label text={$\displaystyle#1\%$},bar progress label anchor = east]{Project Completion Work}{14}{16}
+\ganttgroup[progress = 0,group progress label font = \tiny,progress label text={$\displaystyle#1\%$},group progress label anchor = east]{Weather Service Update}{15}{16}\\
+\ganttbar[progress = 0,bar progress label font = \tiny,progress label text={$\displaystyle#1\%$},group progress label anchor = east]{Receive Weather Data}{15}{15}\\
+\ganttbar[progress = 0,bar progress label font = \tiny,progress label text={$\displaystyle#1\%$},group progress label anchor = east]{Display Notification}{16}{16}
 \end{ganttchart}
-\caption{Gantt Chart for Spring 2017}
+\caption{Gantt Chart for Spring 2021}
 \label{fig:gantt2}
 %\end{figure}
 \end{sidewaysfigure}
 %\end{landscape}
 
-The Gantt chart in~\autoref{fig:gantt2} shows our planned schedule to complete this project. Each month is split into 4 pieces represented by the dotted grid to approximate weekly schedule. The first milestone is to complete the necessary work for our angle estimation technique. This includes building an antenna reflector, then testing the reflector to obtain optimal results. The expected functionality is taking several RSSI samples while rotating the reflector a maximum of $\SI{180}{\degree}$ and using the RSSI sample data to determine an estimated angle. The next milestone is to have full functionality of the mobile robot controller using ROS running on a BeagleBone Black. Controlling the Pioneer 3-DX with MATLAB will simplify testing and control, but our end goal is to have the system self-contained on the mobile robot platform. The last milestone is to integrate the subsystems into one fully functioning system. This will require that each subsystem has met its specifications and is ready to implemented. We expect that testing the system will require debugging and tuning, thus we have set aside a large amount of time dedicated to testing. We have also set time for completing documentation and any other work necessary to complete our project.\\
-
-%\section{Conclusion}
-%\label{sec:conclusion}
-%In this paper, we presented a neighboring optimal control law for a mobile robot to track a pre--defined trajectory with its range--limited sensory capabilities. The robot receives signal strength measurement of RF sensors placed on 2-D environment and estimates its states based on the noise sensory model. The robot’s states are partially observed simply because it estimates its position and orientation based on signal strength measurements coming from RF sensors. The proposed controller is the direct consequence of our previously published article but this paper shows how a mobile robot tracks a pre-defined trajectory when RF sensors are placed on 2-D positions and robot receives only signal strength measurements from a subset of RF sensors due its range--limited capabilities.
-
-
+\clearpage
 \bibliographystyle{IEEEtran}
 \bibliography{bib/references.bib}
 
