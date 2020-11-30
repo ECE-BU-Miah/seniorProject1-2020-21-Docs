@@ -155,7 +155,7 @@ Advisor: Dr. Suruz Miah}
     \begin{itemize}
         \item BEMS Core will interface with as many devices as it has support for 
         \begin{itemize}
-            \item Wemo and Beaglebone will be fully functional by end of semester
+            \item Wemo and Embedded Computer will be fully functional by end of semester
             \item User will be able to control these devices directly from the Web Server
         \end{itemize}
         \item In the Spring, we hope to simulate a microgrid with MATLAB Simscape and an HVAC System with Simulink
@@ -201,7 +201,7 @@ Advisor: Dr. Suruz Miah}
 
 \begin{frame}{Functional Requirements}{}
     \begin{itemize}
-        \item The minimum viable product will be to connect to a Wemo Insight Smart Plug and a BeagleBone Blue
+        \item The minimum viable product will be to connect to a Wemo Insight Smart Plug and a Embedded Computer (BeagleBone Blue)
         \begin{itemize}
             \item The WeMo Plug will simply be turned on and off from the Web Server. The BEMS Core will also record its power usage
             \item The only functionality needed on the BeagleBone Blue will be PWM input to the motor drivers
@@ -231,7 +231,7 @@ Advisor: Dr. Suruz Miah}
         \item Smart power meters will be able to connect the platform and give real-time updates of the building's overall power usage
         \item Connected Devices
             \begin{itemize}
-                \item The Wemo Switch and BeagleBone Blue will have master-slave relationship with the BEMS Core
+                \item The Wemo Switch and Embedded Computer will have master-slave relationship with the BEMS Core
                 \item The BEMS Core will send commands through the router to download power data
             \end{itemize}
         \item The BEMS Core regularly receives weather updates from a weather service
@@ -324,7 +324,7 @@ Advisor: Dr. Suruz Miah}
     \begin{itemize}
         \item setState - Setter for Wemo Insight Switch and motor controllers on Embedded Computer
         \item getState - Returns power usage and on/off status for Wemo Insight Switch and PWM setting for Embedded Computer
-        \item findDevices - Returns URL of supported devices on the network
+        \item findDevices - Returns IP address of supported devices on the network
         \item findMetadata - Returns manufacturer, name, and MAC address of supported devices
         \item For Wemo Insight Switch, IP multicasting and Universal Plug and Play are used to send messages
         \item We are using a Beaglebone Blue for an embedded computer and so far have only used IP multicasting for communication
@@ -403,7 +403,7 @@ hgrid,vgrid,x unit=.55cm, y unit title=.6cm,y unit chart=.4cm,milestone label fo
 \ganttgroup[progress = 0,group progress label font = \tiny, group progress label anchor = east]{User Login}{11}{14}\\
 \ganttbar[progress = 0,bar progress label font = \tiny,bar progress label anchor = east]{Login Page}{11}{12}\\
 \ganttbar[progress = 0,bar progress label font = \tiny,bar progress label anchor = east]{Session Management}{13}{14}\\
-\ganttgroup[progress = 55,group progress label font = \tiny,group progress label anchor = east]{BeagleBone Functionality}{7}{14}\\
+\ganttgroup[progress = 55,group progress label font = \tiny,group progress label anchor = east]{Embedded Computer Functionality}{7}{14}\\
 \ganttbar[progress = 90,bar progress label font = \tiny,bar progress label anchor = east]{Communication with BEMS}{7}{11}\\
 \ganttbar[progress = 0,bar progress label font = \tiny,bar progress label anchor = east]{PWM Motor Control}{12}{13}\\
 \ganttbar[progress = 0,bar progress label font = \tiny,bar progress label anchor = east]{Record Power Usage}{14}{14}
@@ -424,6 +424,7 @@ hgrid,vgrid,x unit=.45cm, y unit title=.6cm,y unit chart=.4cm,milestone label fo
 \ganttgroup[progress = 0,group progress label font = \tiny,group progress label anchor = east]{HVAC Control}{9}{14} \\
 \ganttbar[progress = 0,bar progress label font = \tiny,bar progress label anchor = east]{Create HVAC system in Simscape}{9}{11} \\
 \ganttbar[progress = 0,bar progress label font = \tiny,bar progress label anchor = east]{Implement LQR Algorithm for HVAC Control}{12}{14} \\
+\ganttgroup[progress=0,group progress label font=\tiny,group progress label anchor = east]{Auto Discovery}{15}{16}\\
 \ganttgroup[progress = 0,group progress label font = \tiny,group progress label anchor = east]{Weather Service Update}{15}{16}\\
 \ganttbar[progress = 0,bar progress label font = \tiny,group progress label anchor = east]{Receive Weather Data}{15}{15}\\
 \ganttbar[progress = 0,bar progress label font = \tiny,group progress label anchor = east]{Display Notification}{16}{16}
