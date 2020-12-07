@@ -62,7 +62,7 @@ Caterpillar College of Engineering and Technology\\
 \href{http://www.bradley.edu/}{Bradley University}\\
 
 \vspace*{6.0cm}
-\copyright~B.~Lauer~and~E.~Watkins, Peoria, IL, USA, 2016\\
+\copyright~B.~Lauer~and~E.~Watkins, Peoria, IL, USA, 2020\\
 
 \end{center}
 \thispagestyle{empty}
@@ -77,7 +77,9 @@ Caterpillar College of Engineering and Technology\\
 \newpage
 
 \section{Introduction} %introduction (basically what was in the abstract before)
+The Internet of Things is a large network of embedded devices like sensors, wearables, and appliances capable of receiving control commands and reporting data over the Internet. Many industries take advantage of this infrastructure to improve process flow and efficiency. One of these industries is the commercial and industrial sector which often employ building automation or management systems to help better manage processes or devices in a building like air conditioning systems, lights or industrial machines. Technological advancements have allowed devices to become connected to a building network through communication protocols like WiFi, Ethernet, Modbus, or BACnet which enables them to be more easily controlled from a central system. Even further, an intelligent BEMS is able to perform further actions other than simply responding to requests from users or requesting device information through the use of machine learning algorithms to help reduce power usage in real time.
 
+Our overall goal will be to create a platform in which users can login and access devices connected to a building's energy supply. This will allow the user to closely monitor energy usage throughout a commercial or residential building. Additionally, the user will be able to control devices connected to the platform, allowing precise control over the building's energy use.
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.35]{figs/highLevelArchitecture.pdf}
@@ -85,10 +87,13 @@ Caterpillar College of Engineering and Technology\\
     \label{fig:highLevelArchitecture}
 \end{figure}
 
-The BEMS Core will interface with as many devices as it has support for. By the end of this semester, we plan to have support for the Wemo Insight Switch and the BeagleBone Blue. The user will be able to control these devices directly from the Web Server. Additionally, we will try to simulate a microgrid with MATLAB Simscape. Another feature we would like to add (if time allows) is a weather notification. The BEMS core will ping an online weather service routinely and notify the user of any storms likely to cause power outage in the forecast. To simulate a building HVAC system, a Simulink model will be created, and the Linear Quadratic Regulator (LQR) based algorithm will be used to regulate the building temperature to optimize both user comfort and energy usage.
+The BEMS Core will interface with as many devices as it has support for. By the end of this semester, we plan to have support for the Wemo Insight Switch and the BeagleBone Blue. The user will be able to control these devices directly from the web server. Additionally, we will try to simulate a microgrid with MATLAB Simscape. Another feature we would like to add (if time allows) is a weather notification. The BEMS core will ping an online weather service routinely and notify the user of any storms likely to cause power outage in the forecast. To simulate a building HVAC system, a Simulink model will be created, and an optimization algorithm will be used to regulate the building temperature to optimize both user comfort and energy usage. 
 
+\newpage
 \section{Background Study} %review of literature and prior work
 %write more here (related works from subsystem level functional requirements?)
+Our BEMS is heavily derived from an existing Building Energy Management System titled Building Energy Management Open Source Software (BEMOSS)~\cite{BEMOSS}. Additionally, others have created a variety of implementations for building energy management. After thoroughly searching for related projects, we found the following resources that we believe will expedite our goals for this project.
+
 An existing BEMS described in~\cite{Mataloto2019} incorporates its own sensors for temperature, humidity, luminosity, air quality, and motion. The data from these sensors is then fed to the BEMS core where decisions are made for the HVAC system and lighting of a building. The sensor data is transferred to the BEMS though the IoT, like our own BEMS core. 
 
 One of the works in the literature discusses Model Predictive Control (MPC) which is a modern process control algorithm capable of taking into account current and previous time values to improve building automation~\cite{Mayer2017}. A multilevel hierarchy is presented to split control of a building into two levels: the energy supply level and user level. Example usage of this control scheme provided are temperature control of a building and its corresponding zones and interaction with a smart grid. Studies were performed on a commercial building with the building's energy supply system and hierarchy model predictive controller implemented in Matlab.
@@ -97,21 +102,24 @@ In~\cite{8246800}, the authors describe similar functional requirements to our o
 
 A control scheme in~\cite{Barchi2018} is presented to manage a photovoltaic array and battery energy storage system. Tests were conducted in a shopping mall with an electronic load to emulate the power consumption of the building. Potentially, a similar technique could be used to model the energy demand of a house in Simulink or Simscape model. Through their scheme, an intelligent BEMS is used to collect measurable data like power, voltage, and current and stored for offline analysis later. Their platform collects data every five minutes compared to the 20 second polling rate currently configured in our platform. A control algorithm was presented proving that grid energy is consumed more heavily during periods of low power demand rather than PV power.
 
-\section{Functional Requirements}
-The minimum viable product of this project will be to connect to a Wemo Insight Smart Plug and a BeagleBone Blue. The only functionality needed on the BeagleBone Blue will be PWM input to the motor drivers. Additionally, we will be implementing a database to track power usage on both devices. To simulate power usage of an entire house, we will use MATLAB simscape to develop a microgrid and power meter.
-
 \section{System Architecture}
-\subsection{Inputs}
-This project will include input from users, smart power meter, devices, and a weather service. Users will be able to adjust the operation of a device (turn up the temperature of an AC unit, for instance) or turn a device on or off completely. Smart power meters will be able to connect the platform and give real-time updates of the building's overall power usage. We would also like to look into meters for individual appliances like AC units and furnaces. The connected devices themselves will communicate to the web server their current status when needed. Finally, our platform will regularly receive weather updates from a weather service and warn the user about potential energy loss due to storms.
+Before deciding on what the inputs and outputs would be, we needed to define the functional requirements. We then figured out the exact inputs and outputs as well as the necessary composition of the BEMS core to achieve our goal.
+\medbreak\noindent
+The minimum viable product of this project will be to connect to a Wemo Insight Smart Plug and a BeagleBone Blue. The only functionality needed on the BeagleBone Blue will be PWM input to the motor drivers. Additionally, we will be implementing a database to track power usage on both devices. Another important feature is to collect power usage data for an entire house. To simulate power usage of an entire house, we will use MATLAB Simscape to develop a microgrid and power meter. Finally, simulink will be used to simulate an HVAC system with a self-regulating (intelligent) algorithm.
 
-\subsection{BEMS Core}
-A high level view of the operation of the software platform is shown in Figure \ref{fig:functionalBlockDiagram}. Incorporated into the platform will be a web server developed in Python with the Flask web framework. All external and internal HTTP (Hyper Text Transfer Protocol) requests will be processed through this web server in order to store device or user information in the SQLite database. An external request is defined as a request made by a user or device to, for example, update information in the database with a series of SQLite queries. Internal requests are made by other entities or processes running in parallel on the platform including software agents. Similar to BEMOSS, these agents will help to communicate with various devices supported by the platform like broadcasting a discovery service, sending control commands to devices, and regularly requesting data from devices. The platform will be developed and deployed on a Linux machine to encourage support for deployment on SBCs (Single Board Computers) like the Raspberry Pi or BeagleBone Blue to be conveniently stored in a secure location of a building or home like a server cabinet for instance.
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.4]{figs/functionalBlockDiagram}
     \caption{High-level Functional Block Diagram}
     \label{fig:functionalBlockDiagram}
 \end{figure}
+
+\subsection{Inputs}
+This project will include input from users, smart power meter, devices, and a weather service. Users will be able to adjust the operation of a device (turn up the temperature of an AC unit, for instance) or turn a device on or off completely. Smart power meters will be able to connect the platform and give real-time updates of the building's overall power usage. We would also like to look into meters for individual appliances like AC units and furnaces. The connected devices themselves will communicate to the web server their current status when needed. Finally, our platform will regularly receive weather updates from a weather service and warn the user about potential energy loss due to storms.
+
+\subsection{BEMS Core}
+A high level view of the operation of the software platform is shown in Figure \ref{fig:functionalBlockDiagram}. Incorporated into the platform will be a web server developed in Python with the Flask web framework. All external and internal HTTP (Hyper Text Transfer Protocol) requests will be processed through this web server in order to store device or user information in the SQLite database. An external request is defined as a request made by a user or device to, for example, update information in the database with a series of SQLite queries. Internal requests are made by other entities or processes running in parallel on the platform including software agents. Similar to BEMOSS, these agents will help to communicate with various devices supported by the platform like broadcasting a discovery service, sending control commands to devices, and regularly requesting data from devices. The platform will be developed and deployed on a Linux machine to encourage support for deployment on SBCs (Single Board Computers) like the Raspberry Pi or BeagleBone Blue to be conveniently stored in a secure location of a building or home like a server cabinet for instance.
+
 \medbreak\noindent
 The SQLite database will be designed to store device information like the device IP address, MAC address, manufacturer name, and device name. A feature will be implemented to allow for customizing the device name. For example, a WeMo Switch connected to the building or home LAN (Local Area Network) could be renamed to "Lamp" or "Light". Secondly, a feature will be added to specify the room or location of each device within the building or home. This will aid any users of the software in distinguishing devices from each other. 
 \medbreak\noindent
@@ -139,7 +147,7 @@ As part of the base requirements of the design, the platform incorporates multip
 A flow chart of the scheme the Discovery agent uses to initialize a device in the platform is shown in Figure \ref{fig:setdevicetoactive}. To ensure a new device is only stored once in the metadata database, a query is performed to ensure that only one device exists with the recently discovered device's name. Once a new table is created in the Cassandra database for the device which is unique for the specific device, the control agent is notified to start up a new thread to collect device data.
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.95]{figs/setDeviceToActiveFlow.pdf}
+    \includegraphics[scale=0.5]{figs/setDeviceToActiveFlow.pdf}
     \caption{Flow chart of the \texttt{setDeviceToActive} method}
     \label{fig:setdevicetoactive}
 \end{figure}
@@ -148,14 +156,14 @@ A second algorithm that the discovery agent uses to look for devices on the netw
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.75]{figs/searchForDevicesFlow.pdf}
+    \includegraphics[scale=0.45]{figs/searchForDevicesFlow.pdf}
     \caption{Flow chart of the \texttt{searchForDevices} method}
     \label{fig:searchfordevices}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.75]{figs/periodicQueryBehaviorFlow.pdf}
+    \includegraphics[scale=0.45]{figs/periodicQueryBehaviorFlow.pdf}
     \caption{\texttt{ControlAgent.periodicQueryBehavior()} flow chart}
     \label{fig:periodicQueryBehavior}
 \end{figure}
@@ -168,10 +176,21 @@ Common APIs are included for each supported device like \texttt{setState}, \text
 Support for the SQlite database has been successfully added while the Cassandra database support is still being implemented. Also, driver support is still being developed for the Beaglebone Blue and ultimately the DC motor.
 
 \subsection{Experimental Setup} \label{sec:expsetup}
+To test and validate the BEMS core, we set up a physical WeMo Insight Switch and embedded computer in the Senior Project Lab. This lab is also equipped with a router that we could use to connect to the devices. Figure 6 gives a visual explanation of our setup.
+
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.8]{figs/experimentalSetup.pdf}
+    \includegraphics[scale=0.55]{figs/experimentalSetup.pdf}
     \caption{Current lab setup for testing purposes}
+    \label{fig:expLabSetup}
+\end{figure}
+
+Figure 7 shows our actual setup. In the top left corner, the WeMo Insight Switch can be seen plugged into a power strip. In the lower left, we have a laptop with an Ubuntu distribution running the BEMS core. In between the 2 laptops, the embedded computer (BeagleBone Blue) is being powered by the laptop on the right.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.09]{figs/experimentalLabSetup.jpg}
+    \caption{Actual lab setup for testing WeMo Insight Switch and embedded computer}
     \label{fig:expLabSetup}
 \end{figure}
 
@@ -182,10 +201,10 @@ Up to this point, work has been completed on the web user interface which was de
     \centering
     \includegraphics[scale=0.4]{figs/activeDevicesWithEmbeddedPicture.png}
     \caption{Screenshot of Web Server (Active Devices Page)}
-    \label{fig:my_label}
+    \label{fig:activeDevicesPageScreenCap}
 \end{figure}
 
-Figure 8 shows a plot of the Wemo power usage using data we collected during lab hours.
+Figure~\ref{fig:powerPlotWeMoSwitch} shows a plot of the Wemo power usage using data we collected during lab hours.
 
 \begin{figure}[H]
     \centering
@@ -195,6 +214,8 @@ Figure 8 shows a plot of the Wemo power usage using data we collected during lab
 \end{figure}
 
 \section{Parts List}
+This project is mostly code-based, but we are physically implementing the WeMo Insight Switch and BeagleBone Blue embedded computer as well as some extra hardware. The following list is rather short, but comprehensive for our purposes.
+
 \begin{itemize}
     \item WeMo Insight Smart Plug
     \item BeagleBone Blue
@@ -211,6 +232,20 @@ Figure 8 shows a plot of the Wemo power usage using data we collected during lab
     \item ECE department laptop
     \item ECE department lab router
 \end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.09]{figs/wemo.jpg}
+    \caption{Photo of WeMo Insight Switch used in the lab}
+    \label{fig:expLabSetup}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.09]{figs/beagleBone.jpg}
+    \caption{Photo of embedded computer (BeagleBone Blue) used in the lab}
+    \label{fig:expLabSetup}
+\end{figure}
 
 \section{Timeline and Milestones} \label{sec:timeline}
 During the first semester, Fall 2020, work will be done to further polish the WeMo Switch functionality like updating the status and obtaining the power usage. In order to further set up the platform, support for the Cassandra database will be added to store power usage and other device status information. Each entry in the database will be associated with a specific device and timestamp containing the current time and date. To visualize the data, a Matplotlib plot will be generated by reading data from a CSV file generated from the device status information. This plot will be displayed in the UI. DC motor support will be built through Beaglebone Blue connectivity over the TCP/IP bulding network. User login and management will be added to give users a more personalized experience in the platform. In the second semester, Spring 2021, algorithms will be developed to simulate and control both a microgrid and HVAC system along with integration in the platform. Lastly, as a final touch weather service support will be added along with notifications if time allows.
