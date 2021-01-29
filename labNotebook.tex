@@ -744,7 +744,7 @@ Minutes:
 \item The user login feature can use either a person's email for username or a custom username
 \item We will use a speed control algorithm. There are existing simulink files on the Google Drive that we will use for control algorithms. The input will be the user-defined duty cycle and the algorithm will maintain a constant speed. An encoder will be used to measure the speed and send this information back to the algorithm. A variable can be simulated with Simscape. 
 \item We will meet sporadically and unofficially over Winter Break. Dr. Miah will primarily be focused on his research project. 
-
+\end{itemize}
 
 \labday{Thursday, January 14, 2021}
 \experiment{Meeting minutes}
@@ -773,9 +773,10 @@ Minutes:
 \begin{itemize}
 \item Brian's suggestion worked. I had some trouble installing rcpy because their instructions for installing a couple of dependencies were outdated. However, I managed to find a way to install all the necessary software to run rcpy. My next step is to write a python file with several functions for running the motors and LEDs.
 \item Brian needs to write a function to separate the columns in the power data (date, time, power usage) and also find all entries for a specific date. 
+\end{itemize}
 
 At this point, we have 1 week left before classes begin again. Without homework it is possible to finish our current tasks, but we need to stay focused.
-
+\end{itemize}
 \labday{Saturday, January 23, 2021}
 \experiment{Meeting minutes}
 EW\\
@@ -790,9 +791,36 @@ Minutes:
 \item I re-imaged the beaglebone and reinstalled rcpy with all its dependencies. It is now possible to start and stop the motors very easily without the beaglebone crashing (had some trouble with that earlier). I also updated README.md with instructions on how to install rcpy on a beaglebone.
 \item Brian has implemented the plot feature almost entirely. There is one last glitch that needs to be worked out. When hovering the cursor over the graph, the title of the graph changes, which is not desirable.
 \item We started working on creating a new button for inputting the PWM for the beaglebone motor drivers. This will have to be finished up Monday and Tuesday before school resumes on Wednesday.
-
-
 \end{itemize}
+
+\labday{Thursday, January 28, 2021}
+\experiment{Meeting minutes}
+\begin{itemize}
+\item Weekly meeting time - Thursday 3:00 pm - 3:30 pm
+\item Brian went over his progress
+\item On power plots - find a way to get the plot to update automatically
+\item We need to add scheduling - duty cycle for motor, power on or off for switch
+\item Elliot went over his progress
+\item Power meter device 
+\end{itemize}
+Plan:
+\begin{itemize}
+\item Work on polishing these two devices (Switch and motor) for now
+\item Dr. Miah will work on the more research heavy side of the project
+\item Microgrid and HVAC with MATLAB and Simscape with simulation only
+\item Digital thermometer as a potential option later after the two devices
+\end{itemize}
+
+\experiment{Lab work}
+BL\\
+The problem I need to solve is how to compute the total energy consumption of the device plugged into the WeMo switch over a given day given:
+\[
+E = \int_0^{t_f} p(t)dt
+\]
+In discrete form:
+\[
+
+\]
 \end{document} 
 
 
