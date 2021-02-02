@@ -819,8 +819,18 @@ E = \int_0^{t_f} p(t)dt
 \]
 In discrete form:
 \[
-
+E = \sum_{t = 0}^{t_f} p(t)\Delta t
 \]
+
+\labday{Tuesday, February 2, 2021}
+\experiment{Lab work}
+BL\\
+I decided to take a break from working on the energy display to work on fixing a bug regarding how the Moment.js objects are constructed to allow proper display of the dates in the power plots of each device \footnote{\url{https://momentjs.com/docs/}}. When hovering over the plot values in the chart js plot the dates are incorrect as shown as the current date selected is February 2, 2021 and the date selected in the plot is January 28, 2021:
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{figs/img/badDate.jpg}
+\end{figure}   
+We solved the issue of the dates being incorrect by updating the javscript code. Next, we are working on calculating the total energy usage over a given day using trapezoidal rule for integration and displaying this value on the webpage. We succesfully developed the algorithm to sum up and calculate the total energy for a given day.
 \end{document} 
 
 
