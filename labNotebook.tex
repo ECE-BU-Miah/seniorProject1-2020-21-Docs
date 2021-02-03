@@ -831,6 +831,52 @@ I decided to take a break from working on the energy display to work on fixing a
 \includegraphics[scale=0.4]{figs/img/badDate.jpg}
 \end{figure}   
 We solved the issue of the dates being incorrect by updating the javscript code. Next, we are working on calculating the total energy usage over a given day using trapezoidal rule for integration and displaying this value on the webpage. We succesfully developed the algorithm to sum up and calculate the total energy for a given day.
+
+\labday{Thursday, February 4, 2021}
+\experiment{Meeting minutes}
+Agenda:
+\begin{itemize}
+\item Code review of method for calculating total power
+\begin{Verbatim}[tabsize=4]
+from cassandra.cluster import Cluster
+import datetime
+import global_settings
+import pandas as pd
+
+def totalEnergy(date,deviceID):
+    cluster = Cluster()
+    session = cluster.connect()
+    energySum = 0
+    query = ("SELECT time, power FROM " + 
+            global_settings.TS_KEYSPACE + "." + 
+            "device" + str(deviceID) + 
+            " WHERE date = " + "\'" + date + 
+            "\'" + " ALLOW FILTERING;")
+    result = session.execute(query)
+    rows = result.all()
+    resultDict = {}
+    resultDict['power'] = []
+    resultDict['time'] = []
+    for row in rows:
+        resultDict['power'].append(row.power)
+        resultDict['time'].append(
+        datetime.datetime.strptime(row.time[:8],"%H:%M:%S"))
+    df = pd.DataFrame(data=resultDict)
+    df = df.sort_values(by='time')
+    resultDict = df.to_dict('list')
+    for i in range(len(resultDict['time']) - 1):
+        energySum += trapArea(resultDict['time'][i],resultDict['time'][i + 1],
+        resultDict['power'][i],resultDict['power'][i+1])
+    return energySum
+
+# Trapezoidal rule integration
+def trapArea(t1,t2,p1,p2):
+    # t1 and t2 are both date time objects 
+    dObj = t2 - t1
+    return 0.5 * (p1 + p1) * dObj.seconds
+\end{Verbatim}
+\item 
+\end{itemize}
 \end{document} 
 
 
