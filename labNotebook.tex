@@ -836,7 +836,7 @@ We solved the issue of the dates being incorrect by updating the javscript code.
 \experiment{Meeting minutes}
 Agenda:
 \begin{itemize}
-\item Code review of method for calculating total power
+\item Code review of method for calculating total energy
 \begin{Verbatim}[tabsize=4]
 from cassandra.cluster import Cluster
 import datetime
@@ -873,9 +873,10 @@ def totalEnergy(date,deviceID):
 def trapArea(t1,t2,p1,p2):
     # t1 and t2 are both date time objects 
     dObj = t2 - t1
-    return 0.5 * (p1 + p1) * dObj.seconds
+    return 0.5 * (p1 + p2) * dObj.seconds
 \end{Verbatim}
-\item 
+\item Should we prioritize the login feature or the weather service feature?
+\item What to include in the poster for the student scholarship expo
 \end{itemize}
 \end{document} 
 
