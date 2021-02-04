@@ -744,7 +744,7 @@ Minutes:
 \item The user login feature can use either a person's email for username or a custom username
 \item We will use a speed control algorithm. There are existing simulink files on the Google Drive that we will use for control algorithms. The input will be the user-defined duty cycle and the algorithm will maintain a constant speed. An encoder will be used to measure the speed and send this information back to the algorithm. A variable can be simulated with Simscape. 
 \item We will meet sporadically and unofficially over Winter Break. Dr. Miah will primarily be focused on his research project. 
-
+\end{itemize}
 
 \labday{Thursday, January 14, 2021}
 \experiment{Meeting minutes}
@@ -773,9 +773,10 @@ Minutes:
 \begin{itemize}
 \item Brian's suggestion worked. I had some trouble installing rcpy because their instructions for installing a couple of dependencies were outdated. However, I managed to find a way to install all the necessary software to run rcpy. My next step is to write a python file with several functions for running the motors and LEDs.
 \item Brian needs to write a function to separate the columns in the power data (date, time, power usage) and also find all entries for a specific date. 
+\end{itemize}
 
 At this point, we have 1 week left before classes begin again. Without homework it is possible to finish our current tasks, but we need to stay focused.
-
+\end{itemize}
 \labday{Saturday, January 23, 2021}
 \experiment{Meeting minutes}
 EW\\
@@ -790,8 +791,92 @@ Minutes:
 \item I re-imaged the beaglebone and reinstalled rcpy with all its dependencies. It is now possible to start and stop the motors very easily without the beaglebone crashing (had some trouble with that earlier). I also updated README.md with instructions on how to install rcpy on a beaglebone.
 \item Brian has implemented the plot feature almost entirely. There is one last glitch that needs to be worked out. When hovering the cursor over the graph, the title of the graph changes, which is not desirable.
 \item We started working on creating a new button for inputting the PWM for the beaglebone motor drivers. This will have to be finished up Monday and Tuesday before school resumes on Wednesday.
+\end{itemize}
 
+\labday{Thursday, January 28, 2021}
+\experiment{Meeting minutes}
+\begin{itemize}
+\item Weekly meeting time - Thursday 3:00 pm - 3:30 pm
+\item Brian went over his progress
+\item On power plots - find a way to get the plot to update automatically
+\item We need to add scheduling - duty cycle for motor, power on or off for switch
+\item Elliot went over his progress
+\item Power meter device 
+\end{itemize}
+Plan:
+\begin{itemize}
+\item Work on polishing these two devices (Switch and motor) for now
+\item Dr. Miah will work on the more research heavy side of the project
+\item Microgrid and HVAC with MATLAB and Simscape with simulation only
+\item Digital thermometer as a potential option later after the two devices
+\end{itemize}
 
+\experiment{Lab work}
+BL\\
+The problem I need to solve is how to compute the total energy consumption of the device plugged into the WeMo switch over a given day given:
+\[
+E = \int_0^{t_f} p(t)dt
+\]
+In discrete form:
+\[
+E = \sum_{t = 0}^{t_f} p(t)\Delta t
+\]
+
+\labday{Tuesday, February 2, 2021}
+\experiment{Lab work}
+BL\\
+I decided to take a break from working on the energy display to work on fixing a bug regarding how the Moment.js objects are constructed to allow proper display of the dates in the power plots of each device \footnote{\url{https://momentjs.com/docs/}}. When hovering over the plot values in the chart js plot the dates are incorrect as shown as the current date selected is February 2, 2021 and the date selected in the plot is January 28, 2021:
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{figs/img/badDate.jpg}
+\end{figure}   
+We solved the issue of the dates being incorrect by updating the javscript code. Next, we are working on calculating the total energy usage over a given day using trapezoidal rule for integration and displaying this value on the webpage. We succesfully developed the algorithm to sum up and calculate the total energy for a given day.
+
+\labday{Thursday, February 4, 2021}
+\experiment{Meeting minutes}
+Agenda:
+\begin{itemize}
+\item Code review of method for calculating total energy
+\begin{Verbatim}[tabsize=4]
+from cassandra.cluster import Cluster
+import datetime
+import global_settings
+import pandas as pd
+
+def totalEnergy(date,deviceID):
+    cluster = Cluster()
+    session = cluster.connect()
+    energySum = 0
+    query = ("SELECT time, power FROM " + 
+            global_settings.TS_KEYSPACE + "." + 
+            "device" + str(deviceID) + 
+            " WHERE date = " + "\'" + date + 
+            "\'" + " ALLOW FILTERING;")
+    result = session.execute(query)
+    rows = result.all()
+    resultDict = {}
+    resultDict['power'] = []
+    resultDict['time'] = []
+    for row in rows:
+        resultDict['power'].append(row.power)
+        resultDict['time'].append(
+        datetime.datetime.strptime(row.time[:8],"%H:%M:%S"))
+    df = pd.DataFrame(data=resultDict)
+    df = df.sort_values(by='time')
+    resultDict = df.to_dict('list')
+    for i in range(len(resultDict['time']) - 1):
+        energySum += trapArea(resultDict['time'][i],resultDict['time'][i + 1],
+        resultDict['power'][i],resultDict['power'][i+1])
+    return energySum
+
+# Trapezoidal rule integration
+def trapArea(t1,t2,p1,p2):
+    # t1 and t2 are both date time objects 
+    dObj = t2 - t1
+    return 0.5 * (p1 + p2) * dObj.seconds
+\end{Verbatim}
+\item Should we prioritize the login feature or the weather service feature?
+\item What to include in the poster for the student scholarship expo
 \end{itemize}
 \end{document} 
 
