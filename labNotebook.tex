@@ -902,6 +902,27 @@ Minutes
 \item Progress from last week: The motors are working now and Brian has a good start on the scheduling UI.
 \end{itemize}
 
+\labday{Thursday, February 18, 2021}
+\experiment{Meeting minutes}
+Agenda
+\begin{itemize}
+\item Scheduling feature progress
+\begin{itemize}
+\item Best way to constantly check for when the status of the device should be updated
+\item How to import a python module from a directory one up from the current directory
+\item Should we have single agent dedicated for scheduling or all the scheduling functionality implemented in the control agent? 
+\item the scheduling agent should be able to send commands to the control agent
+\end{itemize}
+\item Go over monitoring power usage on the Beaglebone
+\begin{itemize}
+\item \texttt{rc\_battery\_monitor} command on beaglebone records only voltage of the battery
+\item how to calculate the power from this voltage
+\item If power isn't possible, could we display percentage of the max voltage of the batteries
+\end{itemize}
+\end{itemize}
+We ended up canceling the meeting this week due to scheduling conflicts.
+\medbreak\noindent
+I (Brian) ended up testing some of the methods of the new SchedulingAgent to ensure they work. One of the problems I am running into is the issue that I don't know how to delete all rows in a device schedule table in CQL that all have the same day. I was able to get the agent to work for Thursday but soon realized that a table is needed for each device and day. Doing this will require quite a bit of refactoring but at the same time will eliminate hopefully make removing the old schedule a little bit easier. Elliot worked on looking at \texttt{rc\_battery\_monitor} and how to read the voltage from the batteries of the Beaglebone Blue. The issue he is trying to solve is how to read the output from the command into a string and parse it in Python.
 \end{document} 
 
 
