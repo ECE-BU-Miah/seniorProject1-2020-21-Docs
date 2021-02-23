@@ -923,6 +923,12 @@ Agenda
 We ended up canceling the meeting this week due to scheduling conflicts.
 \medbreak\noindent
 I (Brian) ended up testing some of the methods of the new SchedulingAgent to ensure they work. One of the problems I am running into is the issue that I don't know how to delete all rows in a device schedule table in CQL that all have the same day. I was able to get the agent to work for Thursday but soon realized that a table is needed for each device and day. Doing this will require quite a bit of refactoring but at the same time will eliminate hopefully make removing the old schedule a little bit easier. Elliot worked on looking at \texttt{rc\_battery\_monitor} and how to read the voltage from the batteries of the Beaglebone Blue. The issue he is trying to solve is how to read the output from the command into a string and parse it in Python.
+
+\labday{Tuesday, February 23, 2021}
+\experiment{Lab work}
+BL\\
+\smallbreak\noindent
+We ended up finishing the scheduling feature for the WeMo, and started work on building support for the BB scheduling. Dr. Miah wants this done by Thursday. We are still trying to figure out how to measure power usage from the beaglebone. One potential option is a USB power meter \footnote{\url{https://www.amazon.com/3-7-30V-Voltage-Multimeter-Current-Voltmeter/dp/B07PWC7YMT}}. However, this USB power meter does not use micro USB.
 \end{document} 
 
 
