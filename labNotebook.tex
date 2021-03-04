@@ -965,6 +965,36 @@ Agenda
 \end{itemize}
 \item I (Brian) have not completed the holiday scheduling feature yet, should we focus on this for the WeMo or rather get the weekly scheduling working with the BB?
 \end{itemize}
+\experiment{Lab work}
+Current values from Beaglebone measured in the lab while motors are running
+\begin{itemize}
+\item 0.1 duty cycle - roughly 45 mA
+\item 0.2 duty cycle - roughly 52 mA
+\item 0.3 duty cycle - roughly 59 mA
+\item 0.4 duty cycle - roughly 67 mA
+\item 0.5 duty cycle - roughly 74 mA
+\item 0.6 duty cycle - roughly 80 mA
+\item 0.7 duty cycle - roughly 86 mA
+\item 0.8 duty cycle - roughly 91 mA
+\item 0.9 duty cycle - roughly 95 mA
+\item 1.0 duty cycle - roughly 101 mA
+\end{itemize}
+We merged the Scheduling branch into the master and were able to get the Beaglebone to be controlled through the master branch. Elliot came up with an idea to shut all devices off without a schedule defined for the current time period. So here are the two tasks we want to work on tomorrow:
+\begin{itemize}
+\item Shut device off if schedule not defined for the current time period
+\item Update device tables when loading the applications page
+\end{itemize}
+
+\labday{Thursday, March 4, 2021}
+\experiment{Meeting minutes}
+Agenda
+\begin{itemize}
+\item What is the minimum amount we need to complete on this project in order for it to be considered finished?
+\item How to shutdown the Beaglebone from Python using "sudo shutdown now" from the \texttt{os.system} function or some function defined in the \texttt{subprocess} module
+\item Best way to update scheduling data on the applications page when it loads
+\item Does it make sense to add buttons to the settings page to alter the sampling rate of the Control Agent and polling rate of the Scheduling Agent?
+\item Should we remove links to pages on the site that do not contain any content yet?
+\end{itemize}
 \end{document} 
 
 
