@@ -995,6 +995,7 @@ Agenda
 \item Does it make sense to add buttons to the settings page to alter the sampling rate of the Control Agent and polling rate of the Scheduling Agent?
 \item Should we remove links to pages on the site that do not contain any content yet?
 \end{itemize}
+
 Minutes
 \begin{itemize}
 \item Before we graduate, Mr. Matthus will be installing an extra drive in a PC in the senior lab. Ubuntu will be installed on this drive so that the BEMS core can be run from that senior lab PC.
@@ -1002,6 +1003,21 @@ Minutes
 \item We are planning to take a video on Thursday the 11th of all functionality we have on the project so far.
 \end{itemize}
 
+Lab Work
+\begin{itemize}
+\item We found that running this command once will allow any user to shutdown the beaglebone with the command "shutdown now" as opposed to "sudo shutdown now" which required a password. An alternative is the following script:
+from subprocess import Popen, PIPE
+
+ sudo_password = 'temppwd'
+ command = 'shutdown -h now'.split()
+
+ p = Popen(['sudo', '-S'] + command, stdin=PIPE, stderr=PIPE,
+              universal_newlines=True)
+sudo_prompt = p.communicate(sudo_password + '\n')[1]
+
+With this problem solved, the shutdown feature is now complete.
+\item Next we got started on displaying the battery voltage from the beaglebone. Getting this voltage is easy enough since existing functions in both C and python exist to retrieve this data. Now it is a matter of sending the voltage reading to the BEMS core.
+\end{itemize}
 \end{document} 
 
 
