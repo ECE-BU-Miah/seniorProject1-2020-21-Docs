@@ -1006,17 +1006,30 @@ Minutes
 Lab Work
 \begin{itemize}
 \item We found that running this command once will allow any user to shutdown the beaglebone with the command "shutdown now" as opposed to "sudo shutdown now" which required a password. An alternative is the following script:
+
+\begin{Verbatim}
 from subprocess import Popen, PIPE
 
- sudo_password = 'temppwd'
- command = 'shutdown -h now'.split()
+sudo_password = 'temppwd'
+command = 'shutdown -h now'.split()
 
- p = Popen(['sudo', '-S'] + command, stdin=PIPE, stderr=PIPE,
-              universal_newlines=True)
+p = Popen(['sudo', '-S'] + command, stdin=PIPE, stderr=PIPE, 
+		universal_newlines=True)
 sudo_prompt = p.communicate(sudo_password + '\n')[1]
+\end{Verbatim}
 
 With this problem solved, the shutdown feature is now complete.
 \item Next we got started on displaying the battery voltage from the beaglebone. Getting this voltage is easy enough since existing functions in both C and python exist to retrieve this data. Now it is a matter of sending the voltage reading to the BEMS core.
+\end{itemize}
+
+\labday{Thursday, March 18, 2021}
+Agenda
+\experiment{Meeting Minutes}
+\begin{itemize}
+\item Abstract for scholarship expo
+\item How should the weather data be displayed
+\item When do you want the weather feature done by?
+\item When do all the bugs need to be fixed?
 \end{itemize}
 \end{document} 
 
