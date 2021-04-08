@@ -1106,6 +1106,17 @@ with R1 = R2 = R3 = R4. However, we are not getting the desired result of V2 - V
 
 \item What else we need to add before the end of the semester
 \end{itemize}
+Some of the takeaways from the meeting were:
+\begin{itemize}
+\item Change Power Plots to "Power Usage for" rather than "Power for"
+\item Update the vertical and horizontal axis to "Power [W]" and "Time" respectively
+\item Change the navbar item to "Device Scheduling" instead of "Applications"
+\item Starting and stopping should be smooth as the platform is now to be run from a desktop icon rather than a terminal, so there's no way to shut it down from a terminal directly by pressing CTRL+C
+\end{itemize}
+BL\\
+Because Dr. Miah and Elliot agreed that we should have a button on the web page to shutdown the server, we decided we also need an authentication system. This is to prevent any user to shutdown the platform. 
+\medbreak\noindent
+I started working on a user login system that will allow any user with an account in the SQLite database to login. Only certain users will have admin rights like me and Elliot. With these admin rights we can control access to certain parts of the system.
 \end{document} 
 
 
