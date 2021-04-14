@@ -1117,6 +1117,17 @@ BL\\
 Because Dr. Miah and Elliot agreed that we should have a button on the web page to shutdown the server, we decided we also need an authentication system. This is to prevent any user to shutdown the platform. 
 \medbreak\noindent
 I started working on a user login system that will allow any user with an account in the SQLite database to login. Only certain users will have admin rights like me and Elliot. With these admin rights we can control access to certain parts of the system.
+
+EW\\
+I managed to successfully implement the voltage subtraction circuit. It also works on the mobile robot when I use the voltage from the motor driver as the input for Vcc. However, this voltage is not enough to activate the op amp until the duty cycle is equal to or greater than 0.3. Although this is a slight set back, I did find that the maximum voltage difference is only 0.65 V or so. That means I will not have to implement another circuit to truncate the voltage difference to 1.8 V.
+Now that the circuit is working at least most of the time, I need to implement code on the BBB to report power usage rather than just voltage. To do this, I will be using the equation (V^2)/R where V is the voltage difference found from the subtraction circuit and R = 10.224 ohms.
+
+\labday{Tuesday, April 13, 2021}
+\experiment{Lab work}
+EW\\
+Today, Brian and I finished implementing the power plot feature for the BBB. It now works exactly like the WeMo power plot feature. Also, thanks to the voltage subtraction circuit, we are indeed reading power usage from the BBB.
+\medbreak\noindent
+Additionally, we started working on creating a desktop GUI to start and stop the Web server. This will fix the issue we experienced last week by providing a way to stop all the processes like the agents when starting and stopping iBEMS.
 \end{document} 
 
 
