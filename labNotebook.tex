@@ -1120,7 +1120,7 @@ I started working on a user login system that will allow any user with an accoun
 
 EW\\
 I managed to successfully implement the voltage subtraction circuit. It also works on the mobile robot when I use the voltage from the motor driver as the input for Vcc. However, this voltage is not enough to activate the op amp until the duty cycle is equal to or greater than 0.3. Although this is a slight set back, I did find that the maximum voltage difference is only 0.65 V or so. That means I will not have to implement another circuit to truncate the voltage difference to 1.8 V.
-Now that the circuit is working at least most of the time, I need to implement code on the BBB to report power usage rather than just voltage. To do this, I will be using the equation (V^2)/R where V is the voltage difference found from the subtraction circuit and R = 10.224 ohms.
+Now that the circuit is working at least most of the time, I need to implement code on the BBB to report power usage rather than just voltage. To do this, I will be using the equation $(V^2)/R$ where $V$ is the voltage difference found from the subtraction circuit and R = 10.224 ohms.
 
 \labday{Tuesday, April 13, 2021}
 \experiment{Lab work}
@@ -1128,6 +1128,18 @@ EW\\
 Today, Brian and I finished implementing the power plot feature for the BBB. It now works exactly like the WeMo power plot feature. Also, thanks to the voltage subtraction circuit, we are indeed reading power usage from the BBB.
 \medbreak\noindent
 Additionally, we started working on creating a desktop GUI to start and stop the Web server. This will fix the issue we experienced last week by providing a way to stop all the processes like the agents when starting and stopping iBEMS.
+
+\labday{Thursday, April 15, 2021}
+\experiment{Lab work}
+BL\\
+One thing I forgot to mention is the fact that I finished the basic functionality of the user login feature of the weekend. A user will be directed to a login page which includes a form field with username and password inputs. When username and password is entered and either the enterkey is pressed or the submit is pressed, the form will be submitted to the server. \experiment{Meeting minutes}
+Agenda:
+\begin{itemize}
+\item Go over report
+\item Go over presentation
+\item Implementation of desktop GUI: adding a feature to tell the user the platform will shutdown if the 'x' button is pressed
+\item Elliot will talk about his implementation of a circuit to measure voltage for the whole range of duty cycles
+\end{itemize}
 \end{document} 
 
 
