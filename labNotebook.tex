@@ -1141,6 +1141,19 @@ Agenda:
 \item Elliot will talk about his implementation of a circuit to measure voltage for the whole range of duty cycles
 \end{itemize}
 While demonstrating the project to Dr. Miah, the Firefox web browser we were using started glitching out. However, our platform still ran smoothly without any issues besides a small bug on the Beaglebone that Elliot fixed rather quickly. Thus, we decided to switch to Chromium, an open-source version of Google Chrome. Elliot tried measuring the voltages from two motor drivers added together, but he determined that it was not possible to do because of how the drivers are wired together. We got the start server button started on which launches the platform in another terminal.
+
+\labday{Tuesday, April 20, 2021}
+\experiment{Lab work}
+EW\\
+Here is a summary of my attempt to read power from the BBB. I am still using this circuit:
+\medbreak\noindent
+\includegraphics[scale=0.6]{figs/voltageSubtractor.png}
+where R1 = R2 = R3 = R4 = 22k ohms making it a voltage subtractor circuit.
+\medbreak\noindent
+V2 in this case is the voltage from the motor driver and V1 is that same voltage after going through a 10.224 ohm resistor. Therefore, the circuit implement abover will output the voltage across the resistor. With this voltage, I can calculate the current as I = V/R where V = motor driver voltage (battery voltage * duty cycle) and R = 10.224 ohms. With this current, I can calculate the power being consumed by one motor. Total power consumed will then be that power times 4 since there are 4 motors running with the same duty cycle.
+\medbreak\noindent
+This implementation is not entirely accurate, and I want to do more research to suggest another method and include that in the final document and presentation.
+
 \end{document} 
 
 
