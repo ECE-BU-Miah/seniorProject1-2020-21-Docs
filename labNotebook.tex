@@ -269,7 +269,7 @@ BL\\
 Elliot and I met over Zoom to work on getting a new Github repo setup for the senior project code specifically. Although Dr. Miah mentioned in the meeting that the code should be on Github, we simply will periodically upload the zipped Github project to the Drive to the implementation/ folder. I copied over the files from the research to the new Github repo cloned locally on my Linux laptop. After running the \texttt{install.sh} script, the installation failed as the Linux laptop I am using is running Python3.5 rather than Python3.6 which is required for f-string support. An example of a line that failed is shown in the figure below:
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.6]{figs/img/installSyntaxError}
+\includegraphics[scale=0.6]{figs/img/installSyntaxError.png}
 \caption{f string error in \texttt{utils.py}}
 \end{figure}
 A simple solution to this problem was simply using string concatenation:
@@ -1028,13 +1028,183 @@ With this problem solved, the shutdown feature is now complete.
 \end{itemize}
 
 \labday{Thursday, March 18, 2021}
-Agenda
 \experiment{Meeting Minutes}
+Agenda
 \begin{itemize}
 \item Abstract for scholarship expo
 \item How should the weather data be displayed
 \item When do you want the weather feature done by?
 \item When do all the bugs need to be fixed?
+\end{itemize}
+
+Minutes
+\begin{itemize}
+\item We will need to add the weather feature before the expo on April 6th:
+    \begin{itemize}
+    \item Place all data on the home page
+    \item Temperature
+    \item Humidity
+    \item Wind (mph and direction)
+    \end{itemize}
+\item Put installation steps for BEMS core on the README.md document
+\item We need to send LinkedIn requests to Dr. Miah
+\item The front end (web pages) need to be prominant (not simple layout)
+\item The back end should be reliable (nothing should crash)
+\item We sent an email to Mr. Mattus about setting up a PC for our project in the senior lab
+\end{itemize}
+
+\labday{Tuesday, March 23, 2021}
+\experiment{Lab work}
+At the start of the lab, Elliot and I ended up writing a summary for the paper on rEMPy that Dr. Miah found for us. 
+\medbreak\noindent
+BL\\
+At first, I tried installing the rEMpy software on my Windows 10 laptop. However, I wasn't exactly sure how to install everything and some of the dependencies were out of date like Django. Therefore, I wasn't able to get things working. I could try this outside of lab later to get a better idea of what a good project looks like. The next task I worked on was getting a nice page together for the weather data. Most of the web page was built out with a list view showing different quantities like fahrenheit temperature, celcius temperature, wind speed, humidity, and clouds. I went back to installing the software on my Windows laptop to try and get a better idea of how a professional piece of software is made. The software was able to be succesfully run and I created a microgrid. For the last 20 minutes we worked on creating a navbar and restructuring the html files by having a single base.html that the other html files inherit from. We got a basic start on this but need to recolor the navbar.
+
+\labday{Tuesday, March 29, 2021}
+\experiment{Meeting Minutes}
+Agenda
+\begin{itemize}
+\item Format for expo presentation slides
+\item Migrating from Flask to Django
+\begin{itemize}
+\item User authentication comes out of the box
+\item Support for forms
+\end{itemize}
+\item rEMPy paper - what to take from it
+\begin{itemize}
+\item Explanation of algorithms in the paper
+\end{itemize}
+\item Signal conditioning circuit for Beaglebone Blue
+\begin{itemize}
+\item Is this too risky?
+\end{itemize}
+\end{itemize}
+
+\labday{Thursday, April 2, 2021}
+\experiment{Meeting Minutes}
+\begin{itemize}
+\item Add image to Why iBEMS? slide to denote usefull applications of our software
+\item Change slide form Embedded Computer to Embedded/Robotics Computer
+\item Don't leave any slide with text only or any slide with just a picture
+\item Add conclusion page where we say what did we do (developed a new Building Energy Management) framework, advantages, challenges, future students can work on this project, add logo to conclusion slide
+\item 10 minutes presentation with an additional 10 minutes for questions from the email sent from the scholarship people
+\item We should email him about what time of day we will present which will we be revealed this Sunday
+\end{itemize}
+
+\labday{Tuesday, April 6, 2021}
+Elliot and I presented at the Student Scholarship Expo. Afterward, we worked on the final report draft to send to Dr. Miah and abstract to send to Professor Shastry.
+
+\labday{Thursday, April 8, 2021}
+\experiment{Meeting Minutes}
+Agenda:
+\begin{itemize}
+\item Review of abstract
+\item Sections to add to final paper
+\item Sections to add to final presentation
+\item Work on power measurement circuit
+
+We are trying to use this circuit:
+
+\includegraphics[scale=0.6]{figs/voltageSubtractor.png}
+
+with R1 = R2 = R3 = R4. However, we are not getting the desired result of V2 - V1.
+
+\item What else we need to add before the end of the semester
+\end{itemize}
+Some of the takeaways from the meeting were:
+\begin{itemize}
+\item Change Power Plots to "Power Usage for" rather than "Power for"
+\item Update the vertical and horizontal axis to "Power [W]" and "Time" respectively
+\item Change the navbar item to "Device Scheduling" instead of "Applications"
+\item Starting and stopping should be smooth as the platform is now to be run from a desktop icon rather than a terminal, so there's no way to shut it down from a terminal directly by pressing CTRL+C
+\end{itemize}
+BL\\
+Because Dr. Miah and Elliot agreed that we should have a button on the web page to shutdown the server, we decided we also need an authentication system. This is to prevent any user to shutdown the platform. 
+\medbreak\noindent
+I started working on a user login system that will allow any user with an account in the SQLite database to login. Only certain users will have admin rights like me and Elliot. With these admin rights we can control access to certain parts of the system.
+
+EW\\
+I managed to successfully implement the voltage subtraction circuit. It also works on the mobile robot when I use the voltage from the motor driver as the input for Vcc. However, this voltage is not enough to activate the op amp until the duty cycle is equal to or greater than 0.3. Although this is a slight set back, I did find that the maximum voltage difference is only 0.65 V or so. That means I will not have to implement another circuit to truncate the voltage difference to 1.8 V.
+Now that the circuit is working at least most of the time, I need to implement code on the BBB to report power usage rather than just voltage. To do this, I will be using the equation $(V^2)/R$ where $V$ is the voltage difference found from the subtraction circuit and R = 10.224 ohms.
+
+\labday{Tuesday, April 13, 2021}
+\experiment{Lab work}
+EW\\
+Today, Brian and I finished implementing the power plot feature for the BBB. It now works exactly like the WeMo power plot feature. Also, thanks to the voltage subtraction circuit, we are indeed reading power usage from the BBB.
+\medbreak\noindent
+Additionally, we started working on creating a desktop GUI to start and stop the Web server. This will fix the issue we experienced last week by providing a way to stop all the processes like the agents when starting and stopping iBEMS.
+
+\labday{Thursday, April 15, 2021}
+\experiment{Lab work}
+BL\\
+One thing I forgot to mention is the fact that I finished the basic functionality of the user login feature of the weekend. A user will be directed to a login page which includes a form field with username and password inputs. When username and password is entered and either the enterkey is pressed or the submit is pressed, the form will be submitted to the server. \experiment{Meeting minutes}
+Agenda:
+\begin{itemize}
+\item Go over report
+\item Go over presentation
+\item Implementation of desktop GUI: adding a feature to tell the user the platform will shutdown if the 'x' button is pressed
+\item Elliot will talk about his implementation of a circuit to measure voltage for the whole range of duty cycles
+\end{itemize}
+While demonstrating the project to Dr. Miah, the Firefox web browser we were using started glitching out. However, our platform still ran smoothly without any issues besides a small bug on the Beaglebone that Elliot fixed rather quickly. Thus, we decided to switch to Chromium, an open-source version of Google Chrome. Elliot tried measuring the voltages from two motor drivers added together, but he determined that it was not possible to do because of how the drivers are wired together. We got the start server button started on which launches the platform in another terminal.
+
+\labday{Tuesday, April 20, 2021}
+\experiment{Lab work}
+EW\\
+Today, I spoke to Dr. Gutschlag who recommended a different approach for finding power on the BBB. Here is the circuit:
+\medbreak\noindent
+\includegraphics[scale=1]{figs/power_BBB.png}
+\\
+where the circle with the "M" is the motor driver from the BBB. This will be connected to a 1 ohm resistor (or multiple 1 ohm resistors in parallel to produce 1/2 ohm or even 1/4 ohm) and a capacitor in parallel. The output to the right will go to channel 0 of the ADC on the BBB and the GND on the ADC to read voltage across the resistor (I will thoroughly test before actually connecting to the BBB). Tomorrow's work will involve experimenting with different resistances and capacitances to see what gives the most consistent and accurate results. Finally, I will have a way to measure current (current will be equal to the voltage across the resistor divided by the resistance) and this will work for the entire range of duty cycles.
+\medbreak\noindent
+The GUI is now functional. We added to the GUI script so that clicking "Stop iBEMS" will call a fuction to find all PIDs associated with iBEMS and kill them. The only remaining issue with the GUI is that we were unable to find a way to start the iBEMS web server without opening a terminal for it. We tried a few different ways to do this in the code and it only works properly when a terminal opens. It is our hope that we can find a solution to this tomorrow, but we may have to let this go and simply warn the user about it in the GUI.
+\medbreak\noindent
+\\
+Tomorrow we have the following objectives:
+\begin{itemize}
+	\item Finish the login feature so that there are NO bugs 		(Brian will work primarily on this)
+	\item Implement the new circuit that Dr. Gutschlag 				suggested and test thoroughly (I, Elliot, will work 			primarily on this)
+\end{itemize}
+With these 2 issues done, we will be ready to shoot the required video on Thursday.
+
+\labday{Wednesday, April 21, 2021}
+\experiment{Lab work}
+BL\\
+I corrected the problem with the Users table not getting added to the database upon startup. This was caused by a syntax error in the \texttt{initialization.sql} file which contains the statement 
+\begin{Verbatim}
+CREATE TABLE IF NOT EXISTS Users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  username TEXT,
+  password TEXT,
+  hasAdmin INTEGER
+);
+\end{Verbatim}
+However, I placed a comma after the hasAdmin column specification which is improper syntax in the context of SQLite. Secondly, I added a user icon to the navbar of the platform which is connected to a dropdown menu when pressed. The dropdown menu contains items that display the current user's username and a link to "/logout" which logs out the user and clears the session. To further automate the process of user login I added the line
+\begin{Verbatim}
+python3 createUsers.py
+\end{Verbatim}
+to run the script to add users to the database with appropriate usernames, passwords, and admin priviliges. Ideally this should be placed in the \texttt{initialization.sql} file directly. However, I am unsure of how to create a hash of the password with SHA256 in SQL. For now I will continue to use
+\begin{Verbatim}
+werkzeug.security.generate_password_hash
+\end{Verbatim}
+to create the hash and
+\begin{Verbatim}
+werkzeug.security.check_password_hash
+\end{Verbatim}
+to check a supplied plain-text password against its encrypted counterpart.
+\medbreak\noindent
+EW\\
+I started experimenting with the circuit that Dr. Gutschlag suggested yesterday. I used a 10 micro Farad capacitor in parallel with 4 (1) ohm resistors that were also in parallel. These resistors combined to create about 0.33 ohms of resistance (due to error, they should actually create 0.25 ohms). However, as we experimented, we noticed that the components were getting almost uncomfortably warm at a duty cycle of 0.4. This was cause for concern since we do not want to burn up any more resistors. Therefore, I will consult Dr. Gutschlag again tomorrow to get his opinion on the matter. Also, I plan on bringing some electrical tape tomorrow to make better connections to the resistors.
+
+\labday{Thursday, April 22, 2021}
+\experiment{Meeting minutes}
+Agenda:
+\begin{itemize}
+\item Talk about presentation draft (if read)
+\item Talk about report draft (if read)
+\item Do we need to continue to add more features after the presentation or will we simply work on the final report?
+\item Should we include BEMOSS in our IAB video?
+\item Elliot talk about his power measurement circuit
+\item 
 \end{itemize}
 \end{document} 
 
