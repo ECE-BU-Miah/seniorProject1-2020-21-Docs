@@ -4,8 +4,8 @@
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>585</x>
-      <y>216</y>
+      <x>549</x>
+      <y>207</y>
       <w>90</w>
       <h>90</h>
     </coordinates>
@@ -17,8 +17,8 @@ Data ==
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>297</x>
-      <y>81</y>
+      <x>261</x>
+      <y>72</y>
       <w>207</w>
       <h>513</h>
     </coordinates>
@@ -29,8 +29,8 @@ Function: connect_to_BEMS</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>324</x>
-      <y>108</y>
+      <x>288</x>
+      <y>99</y>
       <w>171</w>
       <h>36</h>
     </coordinates>
@@ -41,8 +41,8 @@ it is not connected</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>333</x>
-      <y>162</y>
+      <x>297</x>
+      <y>153</y>
       <w>144</w>
       <h>36</h>
     </coordinates>
@@ -53,8 +53,8 @@ multicast IP 224.3.29.71</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>324</x>
-      <y>216</y>
+      <x>288</x>
+      <y>207</y>
       <w>171</w>
       <h>36</h>
     </coordinates>
@@ -65,8 +65,8 @@ to initiate connection</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>342</x>
-      <y>432</y>
+      <x>306</x>
+      <y>423</y>
       <w>126</w>
       <h>36</h>
     </coordinates>
@@ -77,8 +77,8 @@ message to server</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>333</x>
-      <y>486</y>
+      <x>297</x>
+      <y>477</y>
       <w>144</w>
       <h>36</h>
     </coordinates>
@@ -89,8 +89,8 @@ indicate it is connected</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>360</x>
-      <y>270</y>
+      <x>324</x>
+      <y>261</y>
       <w>90</w>
       <h>90</h>
     </coordinates>
@@ -102,8 +102,8 @@ Is it
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>297</x>
-      <y>225</y>
+      <x>261</x>
+      <y>216</y>
       <w>81</w>
       <h>108</h>
     </coordinates>
@@ -113,8 +113,8 @@ Is it
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>396</x>
-      <y>243</y>
+      <x>360</x>
+      <y>234</y>
       <w>27</w>
       <h>45</h>
     </coordinates>
@@ -124,8 +124,8 @@ Is it
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>324</x>
-      <y>288</y>
+      <x>288</x>
+      <y>279</y>
       <w>27</w>
       <h>18</h>
     </coordinates>
@@ -137,8 +137,8 @@ No</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>414</x>
-      <y>351</y>
+      <x>378</x>
+      <y>342</y>
       <w>27</w>
       <h>18</h>
     </coordinates>
@@ -150,8 +150,8 @@ Yes</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>396</x>
-      <y>405</y>
+      <x>360</x>
+      <y>396</y>
       <w>27</w>
       <h>45</h>
     </coordinates>
@@ -161,8 +161,8 @@ Yes</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>396</x>
-      <y>459</y>
+      <x>360</x>
+      <y>450</y>
       <w>27</w>
       <h>45</h>
     </coordinates>
@@ -172,8 +172,8 @@ Yes</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>396</x>
-      <y>54</y>
+      <x>360</x>
+      <y>45</y>
       <w>27</w>
       <h>45</h>
     </coordinates>
@@ -183,8 +183,8 @@ Yes</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>396</x>
-      <y>135</y>
+      <x>360</x>
+      <y>126</y>
       <w>27</w>
       <h>45</h>
     </coordinates>
@@ -194,8 +194,8 @@ Yes</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>396</x>
-      <y>189</y>
+      <x>360</x>
+      <y>180</y>
       <w>27</w>
       <h>45</h>
     </coordinates>
@@ -205,8 +205,8 @@ Yes</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>369</x>
-      <y>27</y>
+      <x>333</x>
+      <y>18</y>
       <w>72</w>
       <h>36</h>
     </coordinates>
@@ -216,8 +216,8 @@ Yes</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>333</x>
-      <y>378</y>
+      <x>297</x>
+      <y>369</y>
       <w>144</w>
       <h>36</h>
     </coordinates>
@@ -227,8 +227,8 @@ Yes</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>396</x>
-      <y>351</y>
+      <x>360</x>
+      <y>342</y>
       <w>27</w>
       <h>45</h>
     </coordinates>
@@ -238,8 +238,8 @@ Yes</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>360</x>
-      <y>540</y>
+      <x>324</x>
+      <y>531</y>
       <w>90</w>
       <h>36</h>
     </coordinates>
@@ -249,8 +249,8 @@ Yes</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>396</x>
-      <y>513</y>
+      <x>360</x>
+      <y>504</y>
       <w>27</w>
       <h>45</h>
     </coordinates>
@@ -260,20 +260,20 @@ Yes</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>522</x>
-      <y>81</y>
+      <x>486</x>
+      <y>72</y>
       <w>351</w>
       <h>522</h>
     </coordinates>
     <panel_attributes>valign=top
-Function: connect_to_BEMS</panel_attributes>
+Function: communicate_with_BEMS</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>396</x>
-      <y>54</y>
+      <x>360</x>
+      <y>45</y>
       <w>315</w>
       <h>567</h>
     </coordinates>
@@ -283,8 +283,8 @@ Function: connect_to_BEMS</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>531</x>
-      <y>108</y>
+      <x>495</x>
+      <y>99</y>
       <w>198</w>
       <h>36</h>
     </coordinates>
@@ -295,8 +295,8 @@ Communication with BEMS Core</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>576</x>
-      <y>162</y>
+      <x>540</x>
+      <y>153</y>
       <w>108</w>
       <h>36</h>
     </coordinates>
@@ -307,8 +307,8 @@ from BEMS Core</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>693</x>
-      <y>342</y>
+      <x>657</x>
+      <y>333</y>
       <w>171</w>
       <h>54</h>
     </coordinates>
@@ -320,8 +320,8 @@ send to BEMS Core</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>585</x>
-      <y>324</y>
+      <x>549</x>
+      <y>315</y>
       <w>90</w>
       <h>90</h>
     </coordinates>
@@ -333,8 +333,8 @@ Data ==
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>585</x>
-      <y>432</y>
+      <x>549</x>
+      <y>423</y>
       <w>90</w>
       <h>90</h>
     </coordinates>
@@ -346,8 +346,8 @@ Data ==
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>621</x>
-      <y>135</y>
+      <x>585</x>
+      <y>126</y>
       <w>27</w>
       <h>45</h>
     </coordinates>
@@ -357,8 +357,8 @@ Data ==
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>621</x>
-      <y>189</y>
+      <x>585</x>
+      <y>180</y>
       <w>27</w>
       <h>45</h>
     </coordinates>
@@ -368,8 +368,8 @@ Data ==
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>693</x>
-      <y>243</y>
+      <x>657</x>
+      <y>234</y>
       <w>81</w>
       <h>36</h>
     </coordinates>
@@ -379,8 +379,8 @@ Data ==
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>666</x>
-      <y>252</y>
+      <x>630</x>
+      <y>243</y>
       <w>45</w>
       <h>27</h>
     </coordinates>
@@ -390,8 +390,8 @@ Data ==
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>666</x>
-      <y>225</y>
+      <x>630</x>
+      <y>216</y>
       <w>27</w>
       <h>18</h>
     </coordinates>
@@ -403,8 +403,8 @@ Yes</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>639</x>
-      <y>306</y>
+      <x>603</x>
+      <y>297</y>
       <w>27</w>
       <h>18</h>
     </coordinates>
@@ -416,8 +416,8 @@ No</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>621</x>
-      <y>297</y>
+      <x>585</x>
+      <y>288</y>
       <w>27</w>
       <h>45</h>
     </coordinates>
@@ -427,8 +427,8 @@ No</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>666</x>
-      <y>360</y>
+      <x>630</x>
+      <y>351</y>
       <w>45</w>
       <h>27</h>
     </coordinates>
@@ -438,8 +438,8 @@ No</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>666</x>
-      <y>333</y>
+      <x>630</x>
+      <y>324</y>
       <w>27</w>
       <h>18</h>
     </coordinates>
@@ -451,8 +451,8 @@ Yes</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>621</x>
-      <y>405</y>
+      <x>585</x>
+      <y>396</y>
       <w>27</w>
       <h>45</h>
     </coordinates>
@@ -462,8 +462,8 @@ Yes</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>675</x>
-      <y>450</y>
+      <x>639</x>
+      <y>441</y>
       <w>27</w>
       <h>18</h>
     </coordinates>
@@ -475,8 +475,8 @@ Yes</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>432</x>
-      <y>36</y>
+      <x>396</x>
+      <y>27</y>
       <w>468</w>
       <h>459</h>
     </coordinates>
@@ -486,8 +486,8 @@ Yes</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>639</x>
-      <y>522</y>
+      <x>603</x>
+      <y>513</y>
       <w>27</w>
       <h>18</h>
     </coordinates>
@@ -499,8 +499,8 @@ No</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>558</x>
-      <y>540</y>
+      <x>522</x>
+      <y>531</y>
       <w>144</w>
       <h>54</h>
     </coordinates>
@@ -512,8 +512,8 @@ and drive the motors</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>621</x>
-      <y>513</y>
+      <x>585</x>
+      <y>504</y>
       <w>27</w>
       <h>45</h>
     </coordinates>
@@ -523,8 +523,8 @@ and drive the motors</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>531</x>
-      <y>171</y>
+      <x>495</x>
+      <y>162</y>
       <w>63</w>
       <h>414</h>
     </coordinates>
@@ -534,8 +534,8 @@ and drive the motors</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>639</x>
-      <y>414</y>
+      <x>603</x>
+      <y>405</y>
       <w>27</w>
       <h>18</h>
     </coordinates>
