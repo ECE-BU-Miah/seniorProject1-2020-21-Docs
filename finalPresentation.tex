@@ -63,14 +63,31 @@
 \setbeamertemplate{bibliography item}{\insertbiblabel}  % insert bibliography numbers instead of symbol
 \setbeamertemplate{caption}[numbered] % adds the figure or table number to the caption.
 
+\usepackage{siunitx}
+\sisetup{unitsep=\cdot}
 
+\usepackage{tikz}
+% load libraries
+\usetikzlibrary{backgrounds,calc,patterns,decorations.pathmorphing,decorations.markings,shapes,arrows,snakes,tikzmark}
+\usepackage[siunitx,smartlabels]{circuitikzgit}
+\def\smgrid{0.5}
+% For compact drawing of resistors and capacitors 1
+\ctikzset{resistors/scale=0.5,
+  capacitors/scale=0.6,
+  sources/scale=0.9} 
+\ctikzset{
+  amplifiers/fill=cyan,
+  sources/fill=green!50,
+  diodes/fill=red,
+  resistors/fill=violet,
+}
 
-\title[Final Presentation]{Intelligent Building Energy Management System}
+\title[iBEMS]{Intelligent Building Energy Management System}
 
 % % A subtitle is optional and this may be deleted
 % \subtitle{Product Proposal}
 
-\author[B.~Lauer, E.~Watkins]{Brian~Lauer \and Elliot~Watkins \and
+\author[B.~Lauer, E.~Watkins]{Brian~Lauer \and Elliot~Watkins\\
 Advisor: Dr. Suruz Miah}
 % - Give the names in the same order as the appear in the paper.
 % - Use the \inst{?} command only if the authors have different
@@ -109,7 +126,7 @@ Advisor: Dr. Suruz Miah}
 
 % Delete this, if you do not want the table of contents to pop up at
 % the beginning of each subsection:
-\AtBeginSubsection[]
+\AtBeginSection[]
 {
   \begin{frame}<beamer>{Outline}
     \tableofcontents[currentsection,currentsubsection]
@@ -123,55 +140,60 @@ Advisor: Dr. Suruz Miah}
   \titlepage
 \end{frame}
 
-% \begin{frame}{Outline} %
-%   \tableofcontents%[pausesections]
-%   % You might wish to add the option [pausesections]
-% \end{frame}
+\begin{frame}{Outline} %
+  \tableofcontents%[pausesections]
+  % You might wish to add the option [pausesections]
+\end{frame}
 
 % Section and subsections will appear in the presentation overview
 % and table of contents.
 \section{Introduction}
-\section{Architecture}
-\section{Embedded/Robotics Computer}
-\section{WeMo Insight Switch}
-\section{Overall Setup}
-\section{Home Page}
-\section{Active Devices Page}
-\section{WeMo Power Plot}
-\section{Scheduling/Applications Page}
-\section{Conclusion}
 
 \begin{frame}{Introduction}{} % Elliot
     % Applications of Building Energy Management
-    \begin{multicols}{2}
-        \begin{small}
-            \begin{itemize}
-                \item Problems that iBEMS will address
-                    \begin{itemize}
-                        \item Can help save on energy costs
-                        \item Less impact on environment
-                    \end{itemize}
-                \item How can the IoT help?
-                    \begin{itemize}
-                        \item WiFi integrated into most buildings
-                        \item Our Web-based approach simplifies development and end-user experience
-                    \end{itemize}
-                \item Overall Goal
-                    \begin{itemize}
-                        \item Create a platform in which users can login and access 2 or 3 IoT devices connected to a building’s energy supply
-                        \item Allow the user to closely monitor energy usage for a residential building.
-                    \end{itemize}
-            \end{itemize}
-        \end{small}
-        \begin{figure}
-        \centering
-        \includegraphics[scale=0.4]{figs/BEMS_Image.jpg}
-        \caption{General BEMS}
-        \label{fig:high_level_arch}
+    % \begin{multicols}{2}
+      % \begin{block}{}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \begin{block}{}
+      \begin{small}
+        \begin{itemize}
+        \item Problems that iBEMS will address
+          \begin{itemize}
+          \item Can help save on energy costs
+          \item Less impact on environment
+          \end{itemize}
+        \item How can the IoT help?
+          \begin{itemize}
+          \item WiFi integrated into most buildings
+          \item Our Web-based approach simplifies development and end-user experience
+          \end{itemize}
+        \end{itemize}
+      \end{small}
+    \end{block}
+    \column{0.5\textwidth}
+    {\small
+      \begin{block}{Overall Goal}
+        Overall Goal:
+        \begin{itemize}
+        \item Create a platform in which users can login and access $2$ or $3$ IoT devices connected to a building's energy supply
+        \item Allow user to closely monitor energy usage for residential building
+        \end{itemize}
+      \end{block}
+      }
+    \begin{figure}
+      \centering
+      \includegraphics[scale=0.25]{figs/BEMS_Image.jpg}
+      \caption{General BEMS}
+      \label{fig:high_level_arch}
     \end{figure}
-    \end{multicols}
+  \end{columns}
+        
+      % \end{block}
+    % \end{multicols}
 \end{frame}
 
+\section{Architecture}
 \begin{frame}{Architecture}{} % Brian
     \begin{multicols}{2}
         \begin{figure}
@@ -268,6 +290,7 @@ Advisor: Dr. Suruz Miah}
     \end{itemize}
 \end{frame}
 
+\section{Embedded/Robotics Computer}
 \begin{frame}{Embedded Computer Receiver Program}{}
     \begin{figure}
         \centering
@@ -278,12 +301,31 @@ Advisor: Dr. Suruz Miah}
 \end{frame}
 
 \begin{frame}{Embedded Computer Circuit for Power Usage Data}{}
-    \begin{figure}
-        \centering
-        \includegraphics[scale=0.7]{figs/Beaglebone_Circuit.png}
-        \caption{Circuit to Measure Power Usage}
-        \label{fig:Beaglebone_Circuit}
-    \end{figure}
+    \begin{circuitikz}[american]
+      \tikzstyle{every node} = [font = \tiny]
+      % \usetikzlibrary{patterns}
+
+      \draw
+      (0,0) to[sqV,invert,l=PWM Signal from embedded computer] ++(0,4*\smgrid)
+      to[Telmech=M,n=motor,fill=red!20] ++(4*\smgrid,0)
+      to[C,l=$1~{[}\micro\farad{]}$,*-*] ++(0,-4*\smgrid) to[short]++(-4*\smgrid,0); 
+      \draw
+      (4*\smgrid,4*\smgrid) to[short,-*]++(3*\smgrid,0)
+      to[short,-o]++(2*\smgrid,0)node[right]{Embedded Computer ADC (Ch\#0)};
+      \draw
+      (7*\smgrid,4*\smgrid) to[R,l=$2~{[}\ohm{]}$,-*]++(0,-4*\smgrid)
+      to[short]++(-4*\smgrid,0);
+      \draw
+      (7*\smgrid,0) to[short,-o]++(2*\smgrid,0) node[right]{Embedded
+        Computer ADC (Ground)};
+    \end{circuitikz}    
+
+    % \begin{figure}
+    %     \centering
+    %     \includegraphics[scale=0.7]{figs/Beaglebone_Circuit.png}
+    %     \caption{Circuit to Measure Power Usage}
+    %     \label{fig:Beaglebone_Circuit}
+    % \end{figure}
     \begin{itemize}
         \item The embedded computer does not have the ability to measure power, but it does have ADC
         \item Here, the power from the motor driver is being run through a resistor. The ADC reads the voltage across the resistor and since resistance is known, current can be calculated for 1 motor
@@ -323,6 +365,7 @@ Advisor: Dr. Suruz Miah}
 %         \label{fig:my_label}
 %     \end{figure}
 % \end{frame}
+\section{WeMo Insight Switch}
 
 \begin{frame}{WeMo Insight Switch}{} % Elliot 
     \begin{multicols}{2}
@@ -341,7 +384,8 @@ Advisor: Dr. Suruz Miah}
     \end{multicols}
 \end{frame}
 
-\begin{frame}{Overall Setup}{} % Elliot 
+\section{Overall Experimental Setup}
+\begin{frame}{Overall Experimental Setup}{} % Elliot 
     \begin{figure}
         \centering
         \includegraphics[scale=0.04]{figs/overallView.jpg}
@@ -351,6 +395,7 @@ Advisor: Dr. Suruz Miah}
     Tested the WeMo Insight Switch with a bank of lights and the embedded computer with a robot chassis
 
 \end{frame}
+\section{Home Page}
 
 \begin{frame}{Startup Menu}
     \begin{multicols}{2}
@@ -451,33 +496,35 @@ Advisor: Dr. Suruz Miah}
     \end{multicols}
 \end{frame}
 
+\section{Conclusion}
 \begin{frame}{Conclusion}{} % Elliot
-    \begin{multicols}{2}
-        \begin{figure}
-            \centering
-            \includegraphics[scale=0.8]{figs/logo.pdf}
-            \label{fig:logo}
-        \end{figure}
-        \begin{small}
-            \begin{itemize}
-                \item Advantages: open source, simple interface, modular agent-based code base
-                \item Disadvantages: can only operate on a LAN, lacks features of a commercial BEMS system
-                \item Challenges: adapting the platform for an enterprise network in a commercial building, security features 
-            \end{itemize}
-        \end{small}
-    \end{multicols}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \begin{figure}
+      \centering
+      \includegraphics[scale=0.8]{figs/logo.pdf}
+      \label{fig:logo}
+    \end{figure}
+    \column{0.5\textwidth}
+    \begin{itemize}
+      \item Advantages: open source, simple interface, modular agent-based code base
+      \item Disadvantages: can only operate on a LAN, lacks features of a commercial BEMS system
+      \item Challenges: adapting the platform for an enterprise network in a commercial building, security features 
+    \end{itemize}
+  \end{columns}  
 \end{frame}
 
-\begin{frame}{Conclusion}{}
-    Future Improvements:
+\begin{frame}
+  \begin{block}{Further Improvements}
     \begin{itemize}
-        \item Refactor the user interface
-        \item Granular user access control
-        \item Refactor agent communication
-        \item Intelligent algorithms
-        \item Mobile app
-        \item Persistent device information storage
+    \item Refactor the user interface
+    \item Granular user access control
+    \item Refactor agent communication
+    \item Intelligent algorithms
+    \item Mobile app
+    \item Persistent device information storage
     \end{itemize}
+  \end{block}
 \end{frame}
 
 
