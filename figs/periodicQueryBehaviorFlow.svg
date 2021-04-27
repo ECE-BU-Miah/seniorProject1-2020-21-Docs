@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
@@ -14,7 +12,7 @@
    viewBox="0 0 100 180"
    version="1.1"
    id="svg6185"
-   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
    sodipodi:docname="periodicQueryBehaviorFlow.svg">
   <defs
      id="defs6179">
@@ -117,17 +115,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="-290.14408"
-     inkscape:cy="313.00374"
+     inkscape:zoom="0.9899495"
+     inkscape:cx="-231.63694"
+     inkscape:cy="300.05161"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1366"
-     inkscape:window-height="708"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="1" />
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:document-rotation="0" />
   <metadata
      id="metadata6182">
     <rdf:RDF>
@@ -146,7 +145,7 @@
      id="layer1"
      transform="translate(0,-117)">
     <rect
-       style="opacity:1;fill:none;stroke:#000000;stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="opacity:1;fill:#acdfe5;stroke:#000000;stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
        id="rect6768"
        width="61.232143"
        height="13.418155"
@@ -154,7 +153,7 @@
        y="124.17857" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:5.04472256px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:5.04472px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="35.020691"
        y="132.72398"
        id="text6772"><tspan
@@ -162,9 +161,9 @@
          id="tspan6770"
          x="35.020691"
          y="132.72398"
-         style="stroke-width:0.26458332">Start</tspan></text>
+         style="stroke-width:0.264583">Start</tspan></text>
     <rect
-       style="opacity:1;fill:none;stroke:#000000;stroke-width:0.30735266;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="opacity:1;fill:#acdfe5;stroke:#000000;stroke-width:0.30735266;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
        id="rect869"
        width="46.728401"
        height="46.728401"
@@ -173,7 +172,7 @@
        transform="rotate(45)" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:5.04472256px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:5.04472px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="27.778467"
        y="188.99229"
        id="text873"><tspan
@@ -181,14 +180,14 @@
          id="tspan871"
          x="27.778467"
          y="188.99229"
-         style="font-size:5.04472256px;stroke-width:0.26458332">while true</tspan></text>
+         style="font-size:5.04472px;stroke-width:0.264583">while true</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker1215)"
        d="m 40.343476,154.06965 c 0,-16.18944 0,-16.37843 0,-16.37843"
        id="path1197"
        inkscape:connector-curvature="0" />
     <rect
-       style="opacity:1;fill:none;stroke:#000000;stroke-width:0.41604051;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="opacity:1;fill:#acdfe5;stroke:#000000;stroke-width:0.41604051;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
        id="rect1383"
        width="75.837486"
        height="19.80201"
@@ -196,24 +195,24 @@
        y="234.35214" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:5.04472256px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:5.04472px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="41.838898"
        y="239.82793"
        id="text1387"><tspan
          sodipodi:role="line"
          x="41.838898"
          y="239.82793"
-         style="text-align:center;text-anchor:middle;stroke-width:0.26458332"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
          id="tspan1393">Add current device status</tspan><tspan
          sodipodi:role="line"
          x="41.838898"
          y="246.13383"
-         style="text-align:center;text-anchor:middle;stroke-width:0.26458332"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
          id="tspan1397">to Cassandra database</tspan><tspan
          sodipodi:role="line"
          x="41.838898"
          y="252.43973"
-         style="text-align:center;text-anchor:middle;stroke-width:0.26458332"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
          id="tspan1413">table</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Arrow1Lstart)"
@@ -221,7 +220,7 @@
        id="path1399"
        inkscape:connector-curvature="0" />
     <rect
-       style="opacity:1;fill:none;stroke:#000000;stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="opacity:1;fill:#acdfe5;stroke:#000000;stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
        id="rect1415"
        width="75.637276"
        height="16.570711"
@@ -229,7 +228,7 @@
        y="264.39313" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:5.04472256px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:5.04472px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="41.890495"
        y="270.91727"
        id="text1419"><tspan
@@ -237,11 +236,11 @@
          id="tspan1417"
          x="41.890495"
          y="270.91727"
-         style="text-align:center;text-anchor:middle;stroke-width:0.26458332">Sleep for user specified</tspan><tspan
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583">Sleep for user specified</tspan><tspan
          sodipodi:role="line"
          x="41.890495"
          y="277.22318"
-         style="text-align:center;text-anchor:middle;stroke-width:0.26458332"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
          id="tspan1421">delay</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.26499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker1433)"

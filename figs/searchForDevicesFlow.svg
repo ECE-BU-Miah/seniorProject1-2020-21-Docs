@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
@@ -14,7 +12,7 @@
    viewBox="0 0 185 220"
    version="1.1"
    id="svg8"
-   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
    sodipodi:docname="searchForDevicesFlow.svg">
   <defs
      id="defs2">
@@ -150,18 +148,19 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="131.46562"
-     inkscape:cy="434.69047"
+     inkscape:zoom="0.9899495"
+     inkscape:cx="222.98954"
+     inkscape:cy="374.93336"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1366"
-     inkscape:window-height="708"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:lockguides="false" />
+     inkscape:lockguides="false"
+     inkscape:document-rotation="0" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -180,7 +179,7 @@
      id="layer1"
      transform="translate(0,-77)">
     <rect
-       style="fill:none;stroke:#000000;stroke-width:0.34561485;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#d7bdae;stroke:#000000;stroke-width:0.34561485;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
        id="rect815"
        width="41.480404"
        height="41.480404"
@@ -189,7 +188,7 @@
        transform="rotate(-45)" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:2.0194478px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.18932322"
+       style="font-style:normal;font-weight:normal;font-size:2.01945px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.189323"
        x="88.883949"
        y="164.16727"
        id="text4522"><tspan
@@ -197,14 +196,14 @@
          id="tspan4520"
          x="88.883949"
          y="164.16727"
-         style="font-size:5.04861927px;text-align:center;text-anchor:middle;stroke-width:0.18932322">Has last API name</tspan><tspan
+         style="font-size:5.04862px;text-align:center;text-anchor:middle;stroke-width:0.189323">Has last API name</tspan><tspan
          sodipodi:role="line"
          x="88.883949"
          y="170.47804"
-         style="font-size:5.04861927px;text-align:center;text-anchor:middle;stroke-width:0.18932322"
+         style="font-size:5.04862px;text-align:center;text-anchor:middle;stroke-width:0.189323"
          id="tspan4524">been reached?</tspan></text>
     <rect
-       style="fill:none;stroke:#000000;stroke-width:0.18962136;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#d7bdae;stroke:#000000;stroke-width:0.18962136;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
        id="rect4526"
        width="61.124359"
        height="15.68678"
@@ -212,7 +211,7 @@
        y="104.95041" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:2.0194478px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.18932322"
+       style="font-style:normal;font-weight:normal;font-size:2.01945px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.189323"
        x="66.373726"
        y="114.67593"
        id="text4530"><tspan
@@ -220,14 +219,14 @@
          id="tspan4528"
          x="66.373726"
          y="114.67593"
-         style="font-size:5.04861927px;stroke-width:0.18932322">Load API names</tspan></text>
+         style="font-size:5.04862px;stroke-width:0.189323">Load API names</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.35777617;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Mend)"
        d="m 88.248906,120.55605 c -5e-6,15.64316 -5e-6,15.64316 -5e-6,15.64316"
        id="path4532"
        inkscape:connector-curvature="0" />
     <rect
-       style="fill:none;stroke:#000000;stroke-width:0.30146924;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#d7bdae;stroke:#000000;stroke-width:0.30146924;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
        id="rect4526-3"
        width="95.408348"
        height="25.402313"
@@ -235,24 +234,24 @@
        y="210.69307" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="87.793076"
        y="222.12195"
        id="text4973"><tspan
          sodipodi:role="line"
          x="88.594864"
          y="222.12195"
-         style="font-size:5.04472208px;text-align:center;text-anchor:middle;stroke-width:0.26458332"
+         style="font-size:5.04472px;text-align:center;text-anchor:middle;stroke-width:0.264583"
          id="tspan4975">Find devices on LAN according to </tspan><tspan
          sodipodi:role="line"
          x="87.793076"
          y="228.42786"
-         style="font-size:5.04472208px;text-align:center;text-anchor:middle;stroke-width:0.26458332"
+         style="font-size:5.04472px;text-align:center;text-anchor:middle;stroke-width:0.264583"
          id="tspan4979">the device API</tspan></text>
     <flowRoot
        xml:space="preserve"
        id="flowRoot4981"
-       style="font-style:normal;font-weight:normal;font-size:10.66666698px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       style="font-style:normal;font-weight:normal;font-size:10.6667px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        transform="scale(0.26458333)"><flowRegion
          id="flowRegion4983"><rect
            id="rect4985"
@@ -260,13 +259,14 @@
            height="169.70563"
            x="37.375645"
            y="388.13879" /></flowRegion><flowPara
-         id="flowPara4987"></flowPara></flowRoot>    <path
+         id="flowPara4987" /></flowRoot>
+    <path
        style="fill:none;stroke:#000000;stroke-width:0.35800001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker4999)"
        d="m 88.248903,195.04206 c 0,15.55638 0,15.55638 0,15.55638"
        id="path4989"
        inkscape:connector-curvature="0" />
     <rect
-       style="fill:none;stroke:#000000;stroke-width:0.19;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#d7bdae;stroke:#000000;stroke-width:0.19;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1;opacity:1"
        id="rect5199"
        width="60.112354"
        height="12.298367"
@@ -274,7 +274,7 @@
        y="82.132462" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="80.662231"
        y="90.117989"
        id="text5203"><tspan
@@ -282,14 +282,14 @@
          id="tspan5201"
          x="80.662231"
          y="90.117989"
-         style="font-size:5.04472208px;stroke-width:0.26458332">Start</tspan></text>
+         style="font-size:5.04472px;stroke-width:0.264583">Start</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.35800001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker5255)"
        d="m 88.336512,94.283815 c 0,10.423515 0,10.423515 0,10.423515"
        id="path5359"
        inkscape:connector-curvature="0" />
     <rect
-       style="opacity:1;fill:none;stroke:#000000;stroke-width:0.34538978;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="opacity:1;fill:#d7bdae;stroke:#000000;stroke-width:0.34538978;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
        id="rect5397"
        width="94.884636"
        height="23.825111"
@@ -298,7 +298,7 @@
     <flowRoot
        xml:space="preserve"
        id="flowRoot5399"
-       style="font-style:normal;font-weight:normal;font-size:10.66666698px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       style="font-style:normal;font-weight:normal;font-size:10.6667px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        transform="scale(0.26458333)"><flowRegion
          id="flowRegion5401"><rect
            id="rect5403"
@@ -306,9 +306,10 @@
            height="74.309532"
            x="101.40474"
            y="671.06732" /></flowRegion><flowPara
-         id="flowPara5405"></flowPara></flowRoot>    <text
+         id="flowPara5405" /></flowRoot>
+    <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="48.06097"
        y="266.56372"
        id="text5409"><tspan
@@ -316,7 +317,7 @@
          id="tspan5407"
          x="48.06097"
          y="266.56372"
-         style="font-size:5.04472208px;stroke-width:0.26458332">Set each found device to active</tspan></text>
+         style="font-size:5.04472px;stroke-width:0.264583">Set each found device to active</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.35800001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker5427)"
        d="m 87.662658,235.95684 c 0,16.25298 0,16.44197 0,16.44197"
@@ -329,7 +330,7 @@
        inkscape:connector-curvature="0" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="94.872017"
        y="201.75"
        id="text6049"><tspan
@@ -337,9 +338,9 @@
          id="tspan6047"
          x="94.872017"
          y="201.75"
-         style="font-size:5.04472208px;stroke-width:0.26458332">No</tspan></text>
+         style="font-size:5.04472px;stroke-width:0.264583">No</tspan></text>
     <rect
-       style="opacity:1;fill:none;stroke:#000000;stroke-width:0.32932675;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="opacity:1;fill:#d7bdae;stroke:#000000;stroke-width:0.32932675;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
        id="rect6051"
        width="59.095238"
        height="22.479315"
@@ -347,7 +348,7 @@
        y="183.00294" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="146.46654"
        y="196.12329"
        id="text6057"><tspan
@@ -355,7 +356,7 @@
          id="tspan6055"
          x="146.46654"
          y="196.12329"
-         style="font-size:5.04472208px;stroke-width:0.26458332">End</tspan></text>
+         style="font-size:5.04472px;stroke-width:0.264583">End</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.35800001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker6069)"
        d="m 117.57997,165.71098 h 34.63395 v 17.30632"
@@ -363,7 +364,7 @@
        inkscape:connector-curvature="0" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="128.15968"
        y="157.35942"
        id="text6139"><tspan
@@ -371,6 +372,6 @@
          id="tspan6137"
          x="128.15968"
          y="157.35942"
-         style="font-size:5.04472208px;stroke-width:0.26458332">Yes</tspan></text>
+         style="font-size:5.04472px;stroke-width:0.264583">Yes</tspan></text>
   </g>
 </svg>
