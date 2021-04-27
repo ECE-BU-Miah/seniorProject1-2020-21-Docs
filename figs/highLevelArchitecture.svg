@@ -49,8 +49,8 @@
      showgrid="false"
      inkscape:window-width="1366"
      inkscape:window-height="705"
-     inkscape:window-x="-8"
-     inkscape:window-y="150"
+     inkscape:window-x="1912"
+     inkscape:window-y="173"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata5">
@@ -72,28 +72,24 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Layer 2">
-    <g
-       id="g850"
-       transform="translate(-16.269285,-60.923819)">
-      <rect
-         style="fill:none;stroke:#000000;stroke-width:0.29;stroke-miterlimit:4;stroke-dasharray:none"
-         id="rect833"
-         width="48.590988"
-         height="13.095045"
-         x="74.129494"
-         y="124.17355" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:8.46667px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
-         x="75.217255"
-         y="133.4256"
-         id="text837"><tspan
-           sodipodi:role="line"
-           id="tspan835"
-           x="75.217255"
-           y="133.4256"
-           style="font-size:8.46667px;stroke-width:0.264583">BEMS Core</tspan></text>
-    </g>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.295398;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect833"
+       width="50.437672"
+       height="13.089646"
+       x="57.862911"
+       y="63.252434" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:8.46667px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="58.947971"
+       y="72.501778"
+       id="text837"><tspan
+         sodipodi:role="line"
+         id="tspan835"
+         x="58.947971"
+         y="72.501778"
+         style="font-size:8.46667px;stroke-width:0.264583">iBEMS Core</tspan></text>
     <g
        id="g1421">
       <circle
@@ -651,8 +647,8 @@
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0" />
     <path
-       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.208439px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 106.38353,69.324441 13.1871,7.93026"
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.193312px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 108.22813,69.324441 11.3425,7.93026"
        id="path3130"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0" />
