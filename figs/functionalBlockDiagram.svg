@@ -155,12 +155,12 @@
      inkscape:cx="342.31436"
      inkscape:cy="334.97226"
      inkscape:document-units="mm"
-     inkscape:current-layer="g3877"
+     inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
      showgrid="false"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
-     inkscape:window-x="1358"
+     inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1" />
   <metadata
@@ -183,129 +183,120 @@
        xml:space="preserve"
        id="text10"
        style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect12);fill:#000000;fill-opacity:1;stroke:none;" />
+    <rect
+       id="rect28"
+       width="83.282036"
+       height="26.458469"
+       x="-3.4826827"
+       y="11.03432"
+       style="fill:none;fill-opacity:1;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none" />
+    <rect
+       style="fill:#eccfd0;fill-opacity:1;stroke:#000000;stroke-width:0.218959;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2783"
+       width="129.27028"
+       height="42.251717"
+       x="1.2216262"
+       y="1.845701"
+       ry="9.6217031" />
     <g
-       id="g1053">
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
-         x="54.620235"
-         y="8.8202734"
-         id="text18"><tspan
-           sodipodi:role="line"
-           id="tspan16"
-           x="54.620235"
-           y="8.8202734"
-           style="font-size:7.05556px;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none">Inputs</tspan></text>
-      <rect
-         id="rect28"
-         width="83.282036"
-         height="26.458469"
-         x="-3.4826827"
-         y="11.03432"
-         style="fill:none;fill-opacity:1;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none" />
-      <rect
-         style="fill:none;stroke:#000000;stroke-width:0.218959;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="rect2783"
-         width="129.27028"
-         height="42.251717"
-         x="0.6870867"
-         y="1.3111622"
-         ry="9.6217031" />
+       id="g2802"
+       transform="matrix(0.99699877,0,0,1.0000052,-27.82801,-4.52116)"
+       style="stroke-width:0.30045;stroke-miterlimit:4;stroke-dasharray:none">
       <g
-         id="g2802"
-         transform="matrix(0.99699877,0,0,1.0000052,-27.82801,-4.52116)"
+         id="g2795"
          style="stroke-width:0.30045;stroke-miterlimit:4;stroke-dasharray:none">
         <g
-           id="g2795"
+           id="g2791"
            style="stroke-width:0.30045;stroke-miterlimit:4;stroke-dasharray:none">
-          <g
-             id="g2791"
-             style="stroke-width:0.30045;stroke-miterlimit:4;stroke-dasharray:none">
-            <text
-               xml:space="preserve"
-               id="text20"
-               style="font-style:normal;font-weight:normal;font-size:4.93889px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect22);fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.30045;stroke-miterlimit:4;stroke-dasharray:none;"
-               transform="translate(48.002976,-23.056548)"><tspan
-                 x="13.228516"
-                 y="47.836557"><tspan
-                   style="shape-inside:url(#rect22)">User Input
-</tspan></tspan></text>
-          </g>
-        </g>
-        <g
-           id="g2788"
-           transform="translate(0,-0.37797619)"
-           style="stroke-width:0.30045;stroke-miterlimit:4;stroke-dasharray:none">
-          <rect
-             style="fill:none;stroke:#000000;stroke-width:0.30045;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-             id="rect2785"
-             width="34.773811"
-             height="10.583333"
-             x="56.69643"
-             y="18.520832" />
-        </g>
-      </g>
-      <g
-         id="g1016">
-        <text
-           xml:space="preserve"
-           id="text2804"
-           style="font-style:normal;font-weight:normal;font-size:4.93889px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2806);fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.30045;stroke-miterlimit:4;stroke-dasharray:none;"
-           transform="matrix(0.99699877,0,0,1.0000052,-64.381655,-91.834122)"><tspan
-             x="69.925781"
-             y="126.07874"><tspan
-               style="shape-inside:url(#rect2806)">Device Status Updates</tspan></tspan></text>
-        <rect
-           style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           id="rect2812"
-           width="59.541"
-           height="12.473279"
-           x="3.8267159"
-           y="26.851011" />
-      </g>
-      <g
-         id="g1023">
-        <g
-           id="g2909"
-           transform="translate(-17.175965,-71.612184)"
-           style="stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none">
           <text
              xml:space="preserve"
-             id="text2831"
-             style="font-style:normal;font-weight:normal;font-size:4.93889px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2833);fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;"
-             transform="translate(45.357144,25.70238)"><tspan
-               x="44.978516"
-               y="79.965463"><tspan
-                 style="shape-inside:url(#rect2833)">Weather Updates</tspan></tspan></text>
-          <rect
-             style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-             id="rect2785-6"
-             width="50.867622"
-             height="10.528403"
-             x="85.88018"
-             y="99.057228" />
+             id="text20"
+             style="font-style:normal;font-weight:normal;font-size:4.93889px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect22);fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.30045;stroke-miterlimit:4;stroke-dasharray:none;"
+             transform="translate(48.002976,-23.056548)"><tspan
+               x="13.228516"
+               y="47.972696"><tspan
+                 style="shape-inside:url(#rect22)">User Input
+</tspan></tspan></text>
         </g>
       </g>
       <g
-         id="g2970"
-         transform="translate(1.052944,-101.98048)"
+         id="g2788"
+         transform="translate(0,-0.37797619)"
+         style="stroke-width:0.30045;stroke-miterlimit:4;stroke-dasharray:none">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.30045;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="rect2785"
+           width="34.773811"
+           height="10.583333"
+           x="56.69643"
+           y="18.520832" />
+      </g>
+    </g>
+    <g
+       id="g1016">
+      <text
+         xml:space="preserve"
+         id="text2804"
+         style="font-style:normal;font-weight:normal;font-size:4.93889px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2806);fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.30045;stroke-miterlimit:4;stroke-dasharray:none;"
+         transform="matrix(0.99699877,0,0,1.0000052,-64.381655,-91.834122)"><tspan
+           x="69.925781"
+           y="126.21488"><tspan
+             style="shape-inside:url(#rect2806)">Device Status Updates</tspan></tspan></text>
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect2812"
+         width="59.541"
+         height="12.473279"
+         x="3.8267159"
+         y="26.851011" />
+    </g>
+    <g
+       id="g1023">
+      <g
+         id="g2909"
+         transform="translate(-17.175965,-71.612184)"
          style="stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none">
         <text
            xml:space="preserve"
-           id="text2960"
-           style="font-style:normal;font-weight:normal;font-size:4.93889px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2962);fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;"
-           transform="translate(15.119048,45.735119)"><tspan
-             x="58.208984"
-             y="76.942026"><tspan
-               style="shape-inside:url(#rect2962)">Smart Power Meter</tspan></tspan></text>
+           id="text2831"
+           style="font-style:normal;font-weight:normal;font-size:4.93889px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2833);fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;"
+           transform="translate(45.357144,25.70238)"><tspan
+             x="44.978516"
+             y="80.101602"><tspan
+               style="shape-inside:url(#rect2833)">Weather Updates</tspan></tspan></text>
         <rect
            style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           id="rect2966"
-           width="58.599255"
-           height="10.596279"
-           x="67.651268"
-           y="115.65424" />
+           id="rect2785-6"
+           width="50.867622"
+           height="10.528403"
+           x="85.88018"
+           y="99.057228" />
       </g>
+    </g>
+    <g
+       id="g2970"
+       transform="translate(1.052944,-101.98048)"
+       style="stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none">
+      <text
+         xml:space="preserve"
+         id="text2960"
+         style="font-style:normal;font-weight:normal;font-size:4.93889px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2962);fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;"
+         transform="translate(15.119048,45.735119)"><tspan
+           x="58.208984"
+           y="77.078165"><tspan
+             style="shape-inside:url(#rect2962)">Smart Power </tspan></tspan><tspan
+           style="visibility:hidden"
+           x="58.208984"
+           y="82.746133"><tspan
+             dx="0 4.1623654 2.9421124 1.9461346 2.942112"
+             style="shape-inside:url(#rect2962)">Meter</tspan></tspan></text>
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect2966"
+         width="58.599255"
+         height="10.596279"
+         x="67.651268"
+         y="115.65424" />
     </g>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker3349)"
@@ -325,177 +316,183 @@
        xml:space="preserve"
        id="text3452"
        style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect3454);fill:#000000;fill-opacity:1;stroke:none;" />
+    <rect
+       style="fill:#ecf2c1;fill-opacity:1;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3691"
+       width="123.21125"
+       height="32.645287"
+       x="4.88202"
+       y="119.41764"
+       ry="7.2162771" />
+    <rect
+       style="fill:#96d9e3;fill-opacity:1;stroke:#000000;stroke-width:0.256;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3491"
+       width="78.835701"
+       height="48.367432"
+       x="26.408043"
+       y="57.17017"
+       ry="9.3544331" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="166.50891"
+       y="91.138901"
+       id="text1059"><tspan
+         sodipodi:role="line"
+         id="tspan1057"
+         x="166.50891"
+         y="91.138901"
+         style="stroke-width:0.264583"></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+       x="54.620235"
+       y="8.8202734"
+       id="text18"><tspan
+         sodipodi:role="line"
+         id="tspan16"
+         x="54.620235"
+         y="8.8202734"
+         style="font-size:7.05556px;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none">Inputs</tspan></text>
     <g
-       id="g3877"
-       transform="translate(-33.872055,-39.30743)"
+       id="g3450"
+       transform="translate(-7.005424,-64.168872)"
        style="stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none">
-      <g
-         id="g1083">
-        <g
-           id="g1067">
-          <g
-             id="g3862"
-             style="stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none">
-            <text
-               xml:space="preserve"
-               style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
-               x="84.724442"
-               y="166.50891"
-               id="text3665"><tspan
-                 sodipodi:role="line"
-                 id="tspan3663"
-                 x="84.724442"
-                 y="166.50891"
-                 style="font-size:7.05556px;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none">Outputs</tspan></text>
-            <g
-               id="g3783"
-               style="stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none">
-              <text
-                 xml:space="preserve"
-                 style="font-style:normal;font-weight:normal;font-size:4.93889px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
-                 x="70.599419"
-                 y="179.60512"
-                 id="text3509"><tspan
-                   sodipodi:role="line"
-                   id="tspan3507"
-                   x="70.599419"
-                   y="179.60512"
-                   style="font-size:4.93889px;text-align:center;text-anchor:middle;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none">User Interface</tspan><tspan
-                   sodipodi:role="line"
-                   x="70.599419"
-                   y="185.77873"
-                   style="font-size:4.93889px;text-align:center;text-anchor:middle;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
-                   id="tspan3511">(Flask Web Server)</tspan></text>
-              <rect
-                 style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-                 id="rect3517"
-                 width="50.437374"
-                 height="15.157803"
-                 x="45.286743"
-                 y="173.62984" />
-            </g>
-            <g
-               id="g3849"
-               style="stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none">
-              <text
-                 xml:space="preserve"
-                 style="font-style:normal;font-weight:normal;font-size:4.93889px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
-                 x="110.08817"
-                 y="183.07962"
-                 id="text3515"><tspan
-                   sodipodi:role="line"
-                   id="tspan3513"
-                   x="110.08817"
-                   y="183.07962"
-                   style="font-size:4.93889px;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none">Device Behavior</tspan></text>
-              <rect
-                 style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-                 id="rect3519"
-                 width="47.185558"
-                 height="10.302366"
-                 x="106.80788"
-                 y="175.79027" />
-            </g>
-          </g>
-        </g>
-        <rect
-           style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           id="rect3691"
-           width="123.21125"
-           height="32.645287"
-           x="39.021343"
-           y="158.72507"
-           ry="7.2162771" />
-      </g>
-    </g>
-    <g
-       id="g977">
-      <g
-         id="g3450"
-         transform="translate(-7.005424,-64.168873)"
-         style="stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none">
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:4.93889px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
-           x="51.583015"
-           y="144.59282"
-           id="text3443"><tspan
-             sodipodi:role="line"
-             id="tspan3441"
-             x="51.583015"
-             y="144.59282"
-             style="font-size:4.93889px;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none">Flask Web Server</tspan></text>
-        <rect
-           style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           id="rect3445"
-           width="49.177593"
-           height="11.492589"
-           x="48.108513"
-           y="137.10927" />
-      </g>
       <text
          xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+         style="font-style:normal;font-weight:normal;font-size:4.93889px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+         x="51.583015"
+         y="144.59282"
+         id="text3443"><tspan
+           sodipodi:role="line"
+           id="tspan3441"
+           x="51.583015"
+           y="144.59282"
+           style="font-size:4.93889px;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none">Flask Web Server</tspan></text>
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect3445"
+         width="49.177593"
+         height="11.492589"
+         x="48.108513"
+         y="137.10927" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+       x="46.197323"
+       y="68.118797"
+       id="text3489"><tspan
+         sodipodi:role="line"
+         id="tspan3487"
          x="46.197323"
          y="68.118797"
-         id="text3489"><tspan
+         style="font-size:7.05556px;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none">iBEMS Core</tspan></text>
+    <g
+       id="g3996"
+       transform="translate(46.747023,-62.195168)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:4.93889px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="13.630746"
+         y="158.49083"
+         id="text3989"><tspan
            sodipodi:role="line"
-           id="tspan3487"
-           x="46.197323"
-           y="68.118797"
-           style="font-size:7.05556px;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none">BEMS Core</tspan></text>
-      <rect
-         style="fill:none;stroke:#000000;stroke-width:0.256;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="rect3491"
-         width="78.835701"
-         height="48.367432"
-         x="26.140774"
-         y="57.17017"
-         ry="9.3544331" />
-      <g
-         id="g3996"
-         transform="translate(46.747022,-62.195167)">
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:4.93889px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+           id="tspan3987"
            x="13.630746"
            y="158.49083"
-           id="text3989"><tspan
-             sodipodi:role="line"
-             id="tspan3987"
-             x="13.630746"
-             y="158.49083"
-             style="font-size:4.93889px;stroke-width:0.264583">Software Agents</tspan></text>
-        <rect
-           style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           id="rect3991"
-           width="43.56493"
-           height="8.5526247"
-           x="12.027128"
-           y="152.6109" />
-      </g>
-      <g
-         id="g1088"
-         transform="translate(-21.56691,-44.984561)">
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:4.93889px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+           style="font-size:4.93889px;stroke-width:0.264583">Software Agents</tspan></text>
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect3991"
+         width="43.56493"
+         height="8.5526247"
+         x="12.027128"
+         y="152.6109" />
+    </g>
+    <g
+       id="g1088"
+       transform="translate(-21.56691,-44.984562)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:4.93889px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="52.117561"
+         y="141.38557"
+         id="text1057"><tspan
+           sodipodi:role="line"
+           id="tspan1055"
            x="52.117561"
            y="141.38557"
-           id="text1057"><tspan
-             sodipodi:role="line"
-             id="tspan1055"
-             x="52.117561"
-             y="141.38557"
-             style="font-size:4.93889px;stroke-width:0.264583">Database</tspan></text>
-        <rect
-           style="fill:none;stroke:#000000;stroke-width:0.3"
-           id="rect1059"
-           width="26.726952"
-           height="6.9490075"
-           x="50.781212"
-           y="136.04019" />
-      </g>
+           style="font-size:4.93889px;stroke-width:0.264583">Database</tspan></text>
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:0.3"
+         id="rect1059"
+         width="26.726952"
+         height="6.9490075"
+         x="50.781212"
+         y="136.04019" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+       x="50.852386"
+       y="127.20148"
+       id="text3665"><tspan
+         sodipodi:role="line"
+         id="tspan3663"
+         x="50.852386"
+         y="127.20148"
+         style="font-size:7.05556px;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none">Outputs</tspan></text>
+    <g
+       id="g3783"
+       style="stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+       transform="translate(-33.872056,-39.307429)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:4.93889px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+         x="70.599419"
+         y="179.60512"
+         id="text3509"><tspan
+           sodipodi:role="line"
+           id="tspan3507"
+           x="70.599419"
+           y="179.60512"
+           style="font-size:4.93889px;text-align:center;text-anchor:middle;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none">User Interface</tspan><tspan
+           sodipodi:role="line"
+           x="70.599419"
+           y="185.77873"
+           style="font-size:4.93889px;text-align:center;text-anchor:middle;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+           id="tspan3511">(Flask Web Server)</tspan></text>
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect3517"
+         width="50.437374"
+         height="15.157803"
+         x="45.286743"
+         y="173.62984" />
+    </g>
+    <g
+       id="g3849"
+       style="stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+       transform="translate(-33.872056,-39.307429)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:4.93889px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+         x="110.08817"
+         y="183.07962"
+         id="text3515"><tspan
+           sodipodi:role="line"
+           id="tspan3513"
+           x="110.08817"
+           y="183.07962"
+           style="font-size:4.93889px;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none">Device Behavior</tspan></text>
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect3519"
+         width="47.185558"
+         height="10.302366"
+         x="106.80788"
+         y="175.79027" />
     </g>
   </g>
 </svg>
