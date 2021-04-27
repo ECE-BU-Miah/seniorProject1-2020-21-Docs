@@ -14,7 +14,8 @@ Mode 0
 --
 Startup Menu
 halign=center
-
+bg=green
+transparency=80
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -31,7 +32,8 @@ Mode 1
 --
 Login
 halign=center
-
+bg=blue
+transparency=80
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -48,8 +50,8 @@ Mode 2
 --
 Home
 halign=center
-
-</panel_attributes>
+bg=red
+transparency=80</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -65,8 +67,8 @@ Mode 3
 --
 Control Devices
 halign=center
-
-</panel_attributes>
+bg=red
+transparency=80</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -82,8 +84,8 @@ Mode 4
 --
 Schedule Devices
 halign=center
-
-</panel_attributes>
+bg=red
+transparency=80</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
