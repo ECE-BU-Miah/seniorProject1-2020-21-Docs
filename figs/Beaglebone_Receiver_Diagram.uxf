@@ -23,7 +23,7 @@ Data ==
       <h>477</h>
     </coordinates>
     <panel_attributes>valign=top
-Function: connect_to_BEMS
+Function: connect_to_iBEMS
 bg=red
 transparency=80</panel_attributes>
     <additional_attributes/>
@@ -58,7 +58,7 @@ transparency=80</panel_attributes>
       <w>288</w>
       <h>27</h>
     </coordinates>
-    <panel_attributes>Wait for server (BEMS Core) to initiate connection</panel_attributes>
+    <panel_attributes>Wait for server (iBEMS Core) to initiate connection</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -267,7 +267,7 @@ transparency=80</panel_attributes>
       <h>495</h>
     </coordinates>
     <panel_attributes>valign=top
-Function: communicate_with_BEMS
+Function: communicate_with_iBEMS
 bg=green
 transparency=80</panel_attributes>
     <additional_attributes/>
@@ -280,7 +280,7 @@ transparency=80</panel_attributes>
       <w>315</w>
       <h>27</h>
     </coordinates>
-    <panel_attributes>Open Socket for Communication with BEMS Core</panel_attributes>
+    <panel_attributes>Open Socket for Communication with iBEMS Core</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -291,7 +291,7 @@ transparency=80</panel_attributes>
       <w>189</w>
       <h>27</h>
     </coordinates>
-    <panel_attributes>Receive Data from BEMS Core</panel_attributes>
+    <panel_attributes>Receive Data from iBEMS Core</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -304,7 +304,7 @@ transparency=80</panel_attributes>
     </coordinates>
     <panel_attributes>Use ADC with circuit to 
 calculate power usage and 
-send to BEMS Core</panel_attributes>
+send to iBEMS Core</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
