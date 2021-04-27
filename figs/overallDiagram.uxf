@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>13</zoom_level>
+  <zoom_level>16</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>403</x>
-      <y>299</y>
-      <w>494</w>
-      <h>39</h>
+      <x>64</x>
+      <y>320</y>
+      <w>608</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>Web Server</panel_attributes>
     <additional_attributes/>
@@ -15,10 +15,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>364</x>
-      <y>416</y>
-      <w>130</w>
-      <h>39</h>
+      <x>16</x>
+      <y>464</y>
+      <w>160</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>ControlAgent</panel_attributes>
     <additional_attributes/>
@@ -26,10 +26,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>572</x>
-      <y>416</y>
-      <w>156</w>
-      <h>39</h>
+      <x>272</x>
+      <y>464</y>
+      <w>192</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>DiscoveryAgent</panel_attributes>
     <additional_attributes/>
@@ -37,54 +37,21 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>806</x>
-      <y>416</y>
-      <w>169</w>
-      <h>39</h>
+      <x>560</x>
+      <y>464</y>
+      <w>208</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>SchedulingAgent</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>416</x>
-      <y>325</y>
-      <w>117</w>
-      <h>117</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-&gt;&gt;&gt;</panel_attributes>
-    <additional_attributes>70.0;10.0;10.0;70.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>637</x>
-      <y>325</y>
-      <w>39</w>
-      <h>117</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-&gt;&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>793</x>
-      <y>325</y>
-      <w>130</w>
-      <h>117</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-&gt;&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;10.0;80.0;70.0</additional_attributes>
-  </element>
-  <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>429</x>
-      <y>520</y>
-      <w>208</w>
-      <h>39</h>
+      <x>96</x>
+      <y>592</y>
+      <w>256</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>WeMo Insight Switch</panel_attributes>
     <additional_attributes/>
@@ -92,10 +59,10 @@
   <element>
     <id>Text</id>
     <coordinates>
-      <x>429</x>
-      <y>104</y>
-      <w>130</w>
-      <h>104</h>
+      <x>96</x>
+      <y>80</y>
+      <w>160</w>
+      <h>128</h>
     </coordinates>
     <panel_attributes>customelement=
 // Text Elemnt
@@ -113,10 +80,10 @@ drawArc(0,height*3/5,width,height*2/5,180,180,true) fg=black bg=#222222 //Parame
   <element>
     <id>Text</id>
     <coordinates>
-      <x>754</x>
-      <y>104</y>
-      <w>130</w>
-      <h>104</h>
+      <x>496</x>
+      <y>80</y>
+      <w>160</w>
+      <h>128</h>
     </coordinates>
     <panel_attributes>customelement=
 // Text Elemnt
@@ -134,10 +101,10 @@ drawArc(0,height*3/5,width,height*2/5,180,180,true) fg=black bg=#222222 //Parame
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>702</x>
-      <y>520</y>
-      <w>221</w>
-      <h>39</h>
+      <x>432</x>
+      <y>592</y>
+      <w>272</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>Embedded Computer</panel_attributes>
     <additional_attributes/>
@@ -145,10 +112,10 @@ drawArc(0,height*3/5,width,height*2/5,180,180,true) fg=black bg=#222222 //Parame
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>507</x>
-      <y>442</y>
-      <w>169</w>
-      <h>104</h>
+      <x>192</x>
+      <y>496</y>
+      <w>208</w>
+      <h>128</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-&gt;&gt;&gt;</panel_attributes>
     <additional_attributes>10.0;60.0;110.0;10.0</additional_attributes>
@@ -156,10 +123,10 @@ drawArc(0,height*3/5,width,height*2/5,180,180,true) fg=black bg=#222222 //Parame
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>416</x>
-      <y>442</y>
-      <w>91</w>
-      <h>104</h>
+      <x>80</x>
+      <y>496</y>
+      <w>112</w>
+      <h>128</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-&gt;&gt;&gt;</panel_attributes>
     <additional_attributes>50.0;60.0;10.0;10.0</additional_attributes>
@@ -167,10 +134,10 @@ drawArc(0,height*3/5,width,height*2/5,180,180,true) fg=black bg=#222222 //Parame
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>559</x>
-      <y>442</y>
-      <w>364</w>
-      <h>104</h>
+      <x>256</x>
+      <y>496</y>
+      <w>448</w>
+      <h>128</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-&gt;&gt;&gt;</panel_attributes>
     <additional_attributes>10.0;60.0;260.0;10.0</additional_attributes>
@@ -178,10 +145,10 @@ drawArc(0,height*3/5,width,height*2/5,180,180,true) fg=black bg=#222222 //Parame
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>1092</x>
-      <y>260</y>
-      <w>91</w>
-      <h>143</h>
+      <x>896</x>
+      <y>272</y>
+      <w>112</w>
+      <h>176</h>
     </coordinates>
     <panel_attributes>Client</panel_attributes>
     <additional_attributes/>
@@ -189,21 +156,21 @@ drawArc(0,height*3/5,width,height*2/5,180,180,true) fg=black bg=#222222 //Parame
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>884</x>
-      <y>299</y>
-      <w>247</w>
-      <h>39</h>
+      <x>656</x>
+      <y>320</y>
+      <w>288</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-&gt;&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;10.0;170.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;160.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>403</x>
-      <y>52</y>
-      <w>182</w>
-      <h>65</h>
+      <x>64</x>
+      <y>16</y>
+      <w>224</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>Apache Cassandra 
 Database
@@ -214,10 +181,10 @@ halign=center</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>767</x>
-      <y>52</y>
-      <w>104</w>
-      <h>78</h>
+      <x>512</x>
+      <y>16</y>
+      <w>128</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>SQLite Database
 style=wordwrap
@@ -227,32 +194,10 @@ halign=center</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>481</x>
-      <y>195</y>
-      <w>195</w>
-      <h>130</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-&gt;&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;10.0;130.0;80.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>637</x>
-      <y>195</y>
-      <w>208</w>
-      <h>130</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-&gt;&gt;&gt;</panel_attributes>
-    <additional_attributes>140.0;10.0;10.0;80.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>442</x>
-      <y>442</y>
-      <w>351</w>
-      <h>104</h>
+      <x>112</x>
+      <y>496</y>
+      <w>432</w>
+      <h>128</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-&gt;&gt;&gt;</panel_attributes>
     <additional_attributes>10.0;10.0;250.0;60.0</additional_attributes>
@@ -260,10 +205,10 @@ halign=center</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>676</x>
-      <y>442</y>
-      <w>156</w>
-      <h>104</h>
+      <x>400</x>
+      <y>496</y>
+      <w>192</w>
+      <h>128</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-&gt;&gt;&gt;</panel_attributes>
     <additional_attributes>10.0;10.0;100.0;60.0</additional_attributes>
@@ -271,12 +216,67 @@ halign=center</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>845</x>
-      <y>442</y>
-      <w>117</w>
-      <h>104</h>
+      <x>608</x>
+      <y>496</y>
+      <w>144</w>
+      <h>128</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-&gt;&gt;&gt;</panel_attributes>
     <additional_attributes>70.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>16</x>
+      <y>192</y>
+      <w>192</w>
+      <h>304</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>50.0;170.0;50.0;140.0;10.0;140.0;10.0;40.0;100.0;40.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>160</x>
+      <y>192</y>
+      <w>448</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;40.0;260.0;40.0;260.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>352</x>
+      <y>400</y>
+      <w>48</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>80</x>
+      <y>400</y>
+      <w>608</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;360.0;10.0;360.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>16</x>
+      <y>320</y>
+      <w>80</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;30.0;10.0</additional_attributes>
   </element>
 </diagram>
