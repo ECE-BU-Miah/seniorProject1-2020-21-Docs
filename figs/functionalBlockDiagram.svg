@@ -153,13 +153,13 @@
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
      inkscape:cx="342.31436"
-     inkscape:cy="334.97226"
+     inkscape:cy="103.31061"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
      showgrid="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="1017"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1" />
@@ -214,7 +214,7 @@
              style="font-style:normal;font-weight:normal;font-size:4.93889px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect22);fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.30045;stroke-miterlimit:4;stroke-dasharray:none;"
              transform="translate(48.002976,-23.056548)"><tspan
                x="13.228516"
-               y="47.972696"><tspan
+               y="47.836557"><tspan
                  style="shape-inside:url(#rect22)">User Input
 </tspan></tspan></text>
         </g>
@@ -240,7 +240,7 @@
          style="font-style:normal;font-weight:normal;font-size:4.93889px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2806);fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.30045;stroke-miterlimit:4;stroke-dasharray:none;"
          transform="matrix(0.99699877,0,0,1.0000052,-64.381655,-91.834122)"><tspan
            x="69.925781"
-           y="126.21488"><tspan
+           y="126.07874"><tspan
              style="shape-inside:url(#rect2806)">Device Status Updates</tspan></tspan></text>
       <rect
          style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -262,7 +262,7 @@
            style="font-style:normal;font-weight:normal;font-size:4.93889px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2833);fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;"
            transform="translate(45.357144,25.70238)"><tspan
              x="44.978516"
-             y="80.101602"><tspan
+             y="79.965463"><tspan
                style="shape-inside:url(#rect2833)">Weather Updates</tspan></tspan></text>
         <rect
            style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -283,12 +283,8 @@
          style="font-style:normal;font-weight:normal;font-size:4.93889px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2962);fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;"
          transform="translate(15.119048,45.735119)"><tspan
            x="58.208984"
-           y="77.078165"><tspan
-             style="shape-inside:url(#rect2962)">Smart Power </tspan></tspan><tspan
-           style="visibility:hidden"
-           x="58.208984"
-           y="82.746133"><tspan
-             dx="0 4.1623654 2.9421124 1.9461346 2.942112"
+           y="76.942026"><tspan
+             style="shape-inside:url(#rect2962)">Smart Power </tspan><tspan
              style="shape-inside:url(#rect2962)">Meter</tspan></tspan></text>
       <rect
          style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -342,7 +338,7 @@
          id="tspan1057"
          x="166.50891"
          y="91.138901"
-         style="stroke-width:0.264583"></tspan></text>
+         style="stroke-width:0.264583" /></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
