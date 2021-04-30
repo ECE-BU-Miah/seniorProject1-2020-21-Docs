@@ -1,0 +1,15 @@
+\chapter{Conclusion}
+\label{ch: Chapter5}
+
+
+\section{Advantages}
+iBEMS is open source, easy-to-use, and was developed using a modular, agent-based code base. Being open source makes it freely available to anyone who has the supported devices and wants to begin managing their home energy usage. The simple interface is easy to figure out for less tech-savvy users and the modular code base makes this system relatively easy for others to continue development. 
+
+\section{Disadvantages}
+Despite its advantages, potential users should be aware of the rather obvious disadvantages at this point. A typical commercial building energy management system will include many more features like predicting future energy use and supporting more devices.
+
+\section{Challenges}
+The biggest challenges we foresee for future developers are adapting iBEMS to an enterprise network and adding the security necessary to do so. As mentioned before, iBEMS currently only works when all devices are connected through a single router. Scaling iBEMS up to an enterprise network with multiple access points will be an immensely complicated upgrade. Further more, security will be needed to make sure only select clients on an enterprise network will be able to login to iBEMS and have control over the connected devices. This will involve a much more robust login feature and possibly encrypting the messages being sent to and from the devices and iBEMS core.
+
+\section{Future Work}
+One of the main ways to improve the software is to refactor the user interface as the current interface is fairly primitive. Adding elements like collapsible drop down menus and a collapsible side bar would make the interface more professional and user-friendly. BEMOSS could be used as a reference in this process. Secondly, a better and more robust user login system could help decrease the risk of security breaches. Granular access control to different parts of the site could help ensure that only certain groups of individuals have access to certain features. An efficient way to implement this would be to use the add-on to Flask known as flask-login. To improve the overall reliability and speed of the software, a better agent communication protocol could be researched and implemented. Many problems are visible with the use of ZeroMQ as exceptions are thrown occasionally when device status updates are sent in quick succession to the control agent. Potentially, there exists a better solution than publish-subscribe. Intelligent algorithms device power usage over a long span of time. One of the major issues with the software is lack of device data persistence across system restarts. Developers in the future could help alleviate this problem by refactoring the device storage system in the Cassandra database.
