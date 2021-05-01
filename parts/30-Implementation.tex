@@ -4,15 +4,31 @@
 \section{Agent and Web Server Communication}
 
 % Talk about Zero MQ
-All three agents communicate with each other and the web server using the Zero MQ asynchronous messaging library [citation here]. Essentially, this library works as a way to implement inter process communication without a message broker. In other words, different processes are able to communicate with each other without any central bus. This is convenient as fewer processes are needed for the system to function. Lowering the number of overall processes lowers the RAM and CPU usage of the software. The library is ported to many different programming languages; however we are using the Python port titled Pyzmq to implement in our code base. 
-\begin{figure}[H]
+All three agents communicate with each other and the web server using the Zero
+MQ asynchronous messaging library\todo{citation here}. Essentially, this library
+works as a way to implement inter process communication without a message
+broker. In other words, different processes are able to communicate with each
+other without any central bus. This is convenient as fewer processes are needed
+for the system to function. Lowering the number of overall processes lowers the
+RAM and CPU usage of the software. The library is ported to many different
+programming languages; however we are using the Python port titled Pyzmq to
+implement in our code base.
+%
+\begin{figure}
     \centering
-    \includegraphics{figs/pubSubAgents.pdf}
+    \includegraphics[width=0.4\textwidth]{figs/pubSubAgents.pdf}
     \caption{Publish Subscribe Communication using ZeroMQ}
     \label{fig:pubSubAgents}
 \end{figure}
-More specifically, the publish subscribe model of communication is used where each agent communicates via a socket where each socket responds to a specific topic. The topics and port numbers are listed below along with their corresponding agents in Table~\ref{tab:pubsubspecs}.
-\begin{table}[H]
+%
+\todo[inline]{Figures are cited in the text}
+
+More specifically, the publish subscribe model of communication is used where
+each agent communicates via a socket where each socket responds to a specific
+topic. The topics and port numbers are listed below along with their
+corresponding agents in Table~\ref{tab:pubsubspecs}. %
+%
+\begin{table}
     \centering
     \begin{tabular}{|c|c|c|}
         \hline
@@ -26,26 +42,65 @@ More specifically, the publish subscribe model of communication is used where ea
     \caption{Publish/Subscribe Communication Specifications}
     \label{tab:pubsubspecs}
 \end{table}
-In order to send data between the different processes, the topic, method, and data are delimited in a particular way. This method is shown below as follows
+%
+In order to send data between the different processes, the topic, method, and
+data are delimited in a particular way. This method is shown below as follows: %
+%
 \begin{verbatim}
     topic method/args
 \end{verbatim}
-A space cannot be included between the method name and arguments as this interferes with the Python \texttt{split} method for extracting the fields. The \texttt{topic} is the string described previously, the \texttt{method} is the name of the desired method to be called on the agent object, and \texttt{args} is the arguments supplied to the desired method. In order to send a message to an agent, the \texttt{publish} method defined in the \texttt{pubsub} module should be called. An optional argument titled \texttt{cycleCount} is available which will allow the publish message to be sent multiple times. During testing, it was found that during the transmission of some messages, this was necessary due to the way ZeroMQ is implemented. 
+%
+A space cannot be included between the method name and arguments as this
+interferes with the Python \texttt{split} method for extracting the fields. The
+\texttt{topic} is the string described previously, the \texttt{method} is the
+name of the desired method to be called on the agent object, and \texttt{args}
+is the arguments supplied to the desired method. In order to send a message to
+an agent, the \texttt{publish} method defined in the \texttt{pubsub} module
+should be called. An optional argument titled \texttt{cycleCount} is available
+which will allow the publish message to be sent multiple times. During testing,
+it was found that during the transmission of some messages, this was necessary
+due to the way ZeroMQ is implemented.
 
 \section{Agent Functionality}
-The agents contained in the software are associated with a Python class of the same name. Each class is instantiated and run with specifications declared in Table~\ref{tab:pubsubspecs}. Some of the methods defined in each class will be described in the following subsections.
+The agents contained in the software are associated with a Python class of the
+same name. Each class is instantiated and run with specifications declared in
+Table~\ref{tab:pubsubspecs}. Some of the methods defined in each class will be
+described in the following subsections.
 
 \subsection{Control Agent Functionality}
-The flow chart of method \texttt{setDeviceStatus} is shown in Figure~\ref{fig:setDeviceStatus}. The purpose of this method is to set the status of the desired device. When the method is called, the data dictionary is obtained which contains the device ID. With this device ID, the API type can be determined using the SQLite database. Subsequently, the appropriate device API module can be imported. If the power state exists as a key in the device data dictionary, the power state of the WeMo Insight Switch will be set as ON or OFF. If the duty cycle key exists, the duty cycle of the single board computer motor drivers is set. If the shutdown key is set, the single board computer is shutdown. In order to reconnect to the single board computer, the board must be started and receiver program ran. If necessary, the device must be reconnected to the WiFi network.  
-\begin{figure}[H]
+The flow chart of method \texttt{setDeviceStatus} is shown in
+Figure~\ref{fig:setDeviceStatus}. The purpose of this method is to set the
+status of the desired device. When the method is called, the data dictionary is
+obtained which contains the device ID. With this device ID, the API type can be
+determined using the SQLite database. Subsequently, the appropriate device API
+module can be imported. If the power state exists as a key in the device data
+dictionary, the power state of the WeMo Insight Switch will be set as ON or OFF.
+If the duty cycle key exists, the duty cycle of the single board computer motor
+drivers is set. If the shutdown key is set, the single board computer is
+shutdown. In order to reconnect to the single board computer, the board must be
+started and receiver program ran. If necessary, the device must be reconnected
+to the WiFi network. %
+%
+\begin{figure}
     \centering
     \includegraphics[scale=0.5]{figs/setDeviceStatus.pdf}
     \caption{setDeviceStatus Flow Chart}
     \label{fig:setDeviceStatus}
 \end{figure}
-To obtain necessary data quantities from the device, the \texttt{getDeviceStatus} method is defined. Once the proper data parameters are obtained, the \texttt{getState} function defined in the devices API module can be called with the data parameters like power state and status. Once the agent has finished sending these to the device, a request is sent to the web server to inform the server that it completed searching for the required device data.
+%
+\todo[inline]{Figures are not cited in the text}
 
-\begin{figure}[H]
+
+To obtain necessary data quantities from the device, the
+\texttt{getDeviceStatus} method is defined. Once the proper data parameters are
+obtained, the \texttt{getState} function defined in the devices API module can
+be called with the data parameters \replace{like}{, such as} power state and
+status. Once the agent has finished sending these to the device, a request is
+sent to the web server to inform the server that it completed searching for the
+required device data. %
+
+%
+\begin{figure}
     \centering
     \includegraphics[scale=0.5]{figs/getDeviceStatus.pdf}
     \caption{getDeviceStatus Flow Chart}
@@ -117,3 +172,9 @@ The embedded computer needed some software to be able to connect to and communic
 The first of these functions is \texttt{connect\_to\_iBEMS}. This function first turns on the red LED on the embedded computer to indicate it is not yet connected. Then it creates a socket using a multicast IP address that the corresponding API in the iBEMS core will be looking for. Once the socket is created, the embedded computer will enter a loop and wait for the iBEMS core to make the initial connection. When that connection is made, it will exit the loop, save the IP address of the iBEMS core, send a confirmation message, then turn on the green LED before closing the multicast socket.
 \medbreak
 The second function, \texttt{communicate\_with\_iBEMS} will open another socket but with the IP address of the iBEMS core found in \texttt{connect\_to\_iBEMS}. It will then enter a indefinite loop to continually receive data from the iBEMS core. There are 4 different messages that the iBEMS core sends to the embedded computer. First, it will check if the iBEMS core is telling it to shut down with the command "Shutdown." If so, the embedded computer will immediately shut down. Second, if the data sent by iBEMS is "status," the embedded computer will take a reading from the circuit described in Chapter~\ref{ch: Chapter2} section 3. In case the user decides to shut down the iBEMS core without turning off the embedded computer, another message "disconnect" will be sent in which case the embedded computer will exit \texttt{communicate\_with\_iBEMS} and start the entire program over again. Finally, if iBEMS is not sending any of the above options, it means that the user is sending a new duty cycle to drive the motors with. Since iBEMS only sends messages with the string data type, this has to be converted to a float in order to call the motor driver function. 
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../finalReport"
+%%% End:
