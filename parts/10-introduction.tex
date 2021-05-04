@@ -4,9 +4,7 @@
 %======================================================================
 
 \section{Project Description}
-The Internet of Things is a large network of embedded devices
-\replace{like}{, such as} sensors,
-wearables, and appliances capable of receiving control commands and reporting
+The Internet of Things is a large network of embedded devices such as sensors, wearables, and appliances capable of receiving control commands and reporting
 data over the Internet. Many industries take advantage of this infrastructure to
 improve process flow and efficiency. One of these industries is the commercial
 and industrial sector which often employ building automation or management
@@ -29,17 +27,15 @@ platform and control them.
 The previous senior project group worked on creating a remote motor control system with a Raspberry Pi and XBee module. To supply power directly to the motor and XBee with a single power supply, they used a buck-boost converter capable of stepping down power supply voltage to 3.3 V. They implemented a Python script that uses the Linux command \texttt{nmap} to search for the Raspberry Pi on the network. The Raspberry Pi connects to the transmitter XBee via a serial connection to transmit commands to the receiver XBee mounted to the motor. They were able to simply toggle the motor on and off and partially implemented this functionality in BEMOSS (Building Energy Management Open Source Software). A second portion of their project was implementing an HVAC control algorithm capable of controlling the temperature of a home with the Linear Quadratic Regulator control algorithm.
 
 During a research project led by Miah \textit{et al.,} the DC motor interface was successfully
-implemented into the BEMOSS platform which required adding a great deal of
-\add{source} code
+implemented into the BEMOSS platform which required adding a great deal of source code
 to the platform to fully implement the device as BEMOSS does not support adding
 new devices currently. The research also consisted of adding a new
-\add{features, such as } logo to the
+features such a logo to the
 platform for the motor. A possible improvement our platform will make is helping
 developers on the project to add new devices more easily.
 
-One of the improvements our project makes over the previous is the use of UDP
-\add{(user datagram protocol)} multicasting which does not require any superuser privileges to locate an
-embedded computer (Beaglebone Blue\add{, for example}). This implementation is also more convenient
+One of the improvements our project makes over the previous is the use of UDP (user datagram protocol) multicasting which does not require any superuser privileges to locate an
+embedded computer (Beaglebone Blue, for example). This implementation is also more convenient
 because it does not require installing any packages as multicasting is natively
 supported by most embedded Linux systems. If in the future, multiple embedded
 computers are needed to be discovered, the multicasting system works elegantly
@@ -53,14 +49,14 @@ One such platform is the BEMOSS from the Virginia Polytechnic Institute and Stat
 University Advanced Research Institute. BEMOSS features include being
 open-source, allowing for multiple communication technologies, and supporting
 many common IoT devices. This system allows for monitoring and controlling a
-variety of devices securely\todo[inline]{Need citation here}.
+variety of devices securely~\cite{BEMOSS}.
 
 Another open-source platform is rEMpy or residential Energy Management in
 Python. The main focus of this platform developed by a team of researchers at
 Universit\`{a} Politecnica delle Marche in Ancona, Italy was to simulate the
 energy flow of a residential home. With the data collected from simulations, it
 was possible for them to use forecasting and prediction algorithms to predict
-various quantities \replace{like}{, such as} energy usage and power consumption over a given time period. Their energy management system consists of a well-defined structure with components like a user interface, database, and optimal scheduler that communicates with modules like a prediction and thermal model. In terms of software technologies, it uses the Django web framework which provides a lot of built-in functionality for web development like a user-authentication system and object-relational mapping. Adapting the project to this framework could be a great way to help improve security and optimize database queries~\cite{fagiani2017}.
+various quantities such as energy usage and power consumption over a given time period. Their energy management system consists of a well-defined structure with components like a user interface, database, and optimal scheduler that communicates with modules like a prediction and thermal model. In terms of software technologies, it uses the Django web framework which provides a lot of built-in functionality for web development like a user-authentication system and object-relational mapping. Adapting the project to this framework could be a great way to help improve security and optimize database queries~\cite{fagiani2017}.
 
 One of the works in the literature discusses Model Predictive Control (MPC)
 which is a modern process control algorithm capable of taking into account
@@ -72,11 +68,11 @@ building and its corresponding zones and interaction with a smart grid. Studies
 were performed on a commercial building with the building's energy supply system
 and hierarchy model predictive controller implemented in Matlab.
 
-In~\cite{8246800}, \remove{the }authors describe similar functional requirements to our
+In~\cite{8246800}, authors describe similar functional requirements to our
 own BEMS Core. They periodically gather power consumption and device status data
 and send that data to a database. We are doing exactly what they describe using
-the Apache Cassandra database. The authors also use an "analytics [sic] engine
-to process [the data] and generate reports, graphs, and charts." Our system only
+the Apache Cassandra database. The authors also use an \say{analytics [sic] engine
+to process [the data] and generate reports, graphs, and charts.} Our system only
 generates a power consumption plot for a given day, but we are still meeting
 this same requirement - just on a smaller scale. The communication with devices
 and power consumption reports are to be accessible through a web-based
@@ -93,7 +89,7 @@ array and battery energy storage system. Tests were conducted in a shopping mall
 with an electronic load to emulate the power consumption of the building.
 Potentially, a similar technique could be used to model the energy demand of a
 house in Simulink or Simscape model. Through their scheme, an intelligent BEMS
-is used to collect measurable data \replace{like}{, such as} power, voltage, and current and stored for offline analysis later. Their platform collects data every five minutes compared to the 20 second polling rate currently configured in our platform. A control algorithm was presented proving that grid energy is consumed more heavily during periods of low power demand rather than PV power.
+is used to collect measurable data such as power, voltage, and current and stored for offline analysis later. Their platform collects data every five minutes compared to the 20 second polling rate currently configured in our platform. A control algorithm was presented proving that grid energy is consumed more heavily during periods of low power demand rather than PV power.
 
 % \section{Problem Statement}
 % Despite several open-source building energy management platforms, such as BEMOSS, available in the market, the need for an effective and efficient open-source building energy management platform that takes into account the planning and technical challenges in integrating different load controllers
@@ -113,8 +109,7 @@ This report is organised into 5 chapters.  Chapter \ref{ch: Chapter1} discusses
 what this project hopes to accomplish and what similar projects have completed.
 Chapter \ref{ch: Chapter2} explains the architecture. Chapter \ref{ch: Chapter3}
 provides a brief explanation of the control algorithms and architectures used.
-Chapter \ref{ch: Chapter4} contains the results from \replace{our simulations}{a
-few experiments}. Chapter \ref{ch: Chapter5} concludes the \replace{paper}{report} and provides insight into future directions.
+Chapter \ref{ch: Chapter4} contains the results from a few experiments. Chapter \ref{ch: Chapter5} concludes the report and provides insight into future directions.
 
 %%% Local Variables:
 %%% mode: latex

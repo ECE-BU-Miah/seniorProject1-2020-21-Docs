@@ -5,9 +5,9 @@
 
 % Talk about Zero MQ
 All three agents communicate with each other and the web server using the Zero
-MQ asynchronous messaging library\todo{citation here}. Essentially, this library
+MQ asynchronous messaging library. Essentially, this library
 works as a way to implement inter process communication without a message
-broker. In other words, different processes are able to communicate with each
+broker~\cite{zeromq}. In other words, different processes are able to communicate with each
 other without any central bus. This is convenient as fewer processes are needed
 for the system to function. Lowering the number of overall processes lowers the
 RAM and CPU usage of the software. The library is ported to many different
@@ -20,8 +20,6 @@ implement in our code base.
     \caption{Publish Subscribe Communication using ZeroMQ}
     \label{fig:pubSubAgents}
 \end{figure}
-%
-\todo[inline]{Figures are cited in the text}
 
 More specifically, the publish subscribe model of communication is used where
 each agent communicates via a socket where each socket responds to a specific
@@ -87,14 +85,11 @@ to the WiFi network. %
     \caption{setDeviceStatus Flow Chart}
     \label{fig:setDeviceStatus}
 \end{figure}
-%
-\todo[inline]{Figures are not cited in the text}
-
 
 To obtain necessary data quantities from the device, the
-\texttt{getDeviceStatus} method is defined. Once the proper data parameters are
+\texttt{getDeviceStatus} method, defined in Figure~\ref{fig:getDeviceStatus}, is called. Once the proper data parameters are
 obtained, the \texttt{getState} function defined in the devices API module can
-be called with the data parameters \replace{like}{, such as} power state and
+be called with the data parameters such as power state and
 status. Once the agent has finished sending these to the device, a request is
 sent to the web server to inform the server that it completed searching for the
 required device data. %
@@ -134,14 +129,14 @@ The \texttt{setDeviceToActive} shown in Figure~\ref{fig:setDeviceToActive} will 
 \end{figure}
 
 \subsection{Scheduling Agent Functionality}
-The scheduling agent is able to update the device status of each device dependent on whether a schedule is set for the specific time period and day. One of the methods that is called, \texttt{updateScheduleFromServer} is invoked when the user presses the "Update Schedule" button from the UI on the scheduling page. A flow chart of this method is shown in Figure~\ref{fig:updateScheduleFromServer}. When this method is called the desired schedule is loaded in as a dictionary and parsed to extract the necessary periods and given day. First the times are stored in military time in the database for more convenient storage and parsing later on. Then, a table is created in the Apache Cassandra database for the device for the provided data and the device ID is embedded. The table's data is destroyed to ensure there are no errors regarding overlapping schedules. Lastly, all the scheduling periods extracted from the dictionary are stored as rows in the table. 
+The scheduling agent is able to update the device status of each device dependent on whether a schedule is set for the specific time period and day. One of the methods that is called, \texttt{updateScheduleFromServer} is invoked when the user presses the \say{Update Schedule} button from the UI on the scheduling page. A flow chart of this method is shown in Figure~\ref{fig:updateScheduleFromServer}. When this method is called the desired schedule is loaded in as a dictionary and parsed to extract the necessary periods and given day. First the times are stored in military time in the database for more convenient storage and parsing later on. Then, a table is created in the Apache Cassandra database for the device for the provided data and the device ID is embedded. The table's data is destroyed to ensure there are no errors regarding overlapping schedules. Lastly, all the scheduling periods extracted from the dictionary are stored as rows in the table. 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{figs/updateScheduleFromServer.pdf}
     \caption{updateScheduleFromServer Flow Chart}
     \label{fig:updateScheduleFromServer}
 \end{figure}
-A second method that is run inside each device thread is \texttt{periodicDeviceUpdateMethod} which is started when the discovery agent sets the discovered device to active. By first loading the device's API name, the scheduling agent can begin checking for scheduling periods inside an infinite loop. The status dictionary is queried from the Cassandra database and loaded into a dictionary. All these scheduling periods are looped over for the current day while constantly checking whether the current time in seconds is within the starting and ending time. A conversion of both starting and ending time to seconds is necessary as it is challenging to work with these quantities in standard and military time when comparing times. If the current time does lie inside the scheduling period, the device's state is set dependent on the API. 
+A second method that is run inside each device thread is \texttt{periodicDeviceUpdateMethod}, defined in Figure~\ref{fig:periodicDeviceUpdateMethod}, is started when the discovery agent sets the discovered device to active. By first loading the device's API name, the scheduling agent can begin checking for scheduling periods inside an infinite loop. The status dictionary is queried from the Cassandra database and loaded into a dictionary. All these scheduling periods are looped over for the current day while constantly checking whether the current time in seconds is within the starting and ending time. A conversion of both starting and ending time to seconds is necessary as it is challenging to work with these quantities in standard and military time when comparing times. If the current time does lie inside the scheduling period, the device's state is set dependent on the API. 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{figs/periodicDeviceUpdateMethod.pdf}
@@ -150,7 +145,7 @@ A second method that is run inside each device thread is \texttt{periodicDeviceU
 \end{figure}
 
 \section{Desktop GUI Functionality}
-The functionality of the desktop GUI launched when the user runs the Python script titled \texttt{GUI.py} is shown in Figure~\ref{fig:desktopgui}. Packages used to construct the GUI include tkinter which is a Python interface for the Tcl/Tk GUI toolkit. When the GUI is started up, the title, buttons, and labels are created along with ties to the callback functions \texttt{startCallback} and \texttt{stopCallback}. The \texttt{startCallback} function is called when the user presses the "Start iBEMS" button. This function first checks whether iBEMS is already running by checking for processes already running on the machine including the web server itself and the three agents. This is performed using the command \texttt{ps -aux}. After this has been completed, an error popup is shown preventing another instance of the software from running. This prevents errors associated with copies of agents and web servers running simultaneously. To properly stop the software, the "Stop iBEMS" button will shutdown the software by first finding the process ID's associated with the agents and web server. To perform this, it will place the output of \texttt{ps -aux | grep [process]} into a text file where "process" is the name of the target process. A file descriptor of the process status output text file is instantiated and all the lines are read in to be parsed. Each process output is split by spaces and the second element in the list is denoted as the process id. Then, using the \texttt{kill} command, these processes are killed. 
+The functionality of the desktop GUI launched when the user runs the Python script titled \texttt{GUI.py} is shown in Figure~\ref{fig:desktopgui}. Packages used to construct the GUI include tkinter which is a Python interface for the Tcl/Tk GUI toolkit. When the GUI is started up, the title, buttons, and labels are created along with ties to the callback functions \texttt{startCallback} and \texttt{stopCallback}. The \texttt{startCallback} function is called when the user presses the \say{Start iBEMS} button. This function first checks whether iBEMS is already running by checking for processes already running on the machine including the web server itself and the three agents. This is performed using the command \texttt{ps -aux}. After this has been completed, an error popup is shown preventing another instance of the software from running. This prevents errors associated with copies of agents and web servers running simultaneously. To properly stop the software, the \say{Stop iBEMS} button will shutdown the software by first finding the process ID's associated with the agents and web server. To perform this, it will place the output of \texttt{ps -aux | grep [process]} into a text file where \say{process} is the name of the target process. A file descriptor of the process status output text file is instantiated and all the lines are read in to be parsed. Each process output is split by spaces and the second element in the list is denoted as the process id. Then, using the \texttt{kill} command, these processes are killed. 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.6]{figs/GUI_Diagram.pdf}
@@ -171,7 +166,7 @@ The embedded computer needed some software to be able to connect to and communic
 \medbreak
 The first of these functions is \texttt{connect\_to\_iBEMS}. This function first turns on the red LED on the embedded computer to indicate it is not yet connected. Then it creates a socket using a multicast IP address that the corresponding API in the iBEMS core will be looking for. Once the socket is created, the embedded computer will enter a loop and wait for the iBEMS core to make the initial connection. When that connection is made, it will exit the loop, save the IP address of the iBEMS core, send a confirmation message, then turn on the green LED before closing the multicast socket.
 \medbreak
-The second function, \texttt{communicate\_with\_iBEMS} will open another socket but with the IP address of the iBEMS core found in \texttt{connect\_to\_iBEMS}. It will then enter a indefinite loop to continually receive data from the iBEMS core. There are 4 different messages that the iBEMS core sends to the embedded computer. First, it will check if the iBEMS core is telling it to shut down with the command "Shutdown." If so, the embedded computer will immediately shut down. Second, if the data sent by iBEMS is "status," the embedded computer will take a reading from the circuit described in Chapter~\ref{ch: Chapter2} section 3. In case the user decides to shut down the iBEMS core without turning off the embedded computer, another message "disconnect" will be sent in which case the embedded computer will exit \texttt{communicate\_with\_iBEMS} and start the entire program over again. Finally, if iBEMS is not sending any of the above options, it means that the user is sending a new duty cycle to drive the motors with. Since iBEMS only sends messages with the string data type, this has to be converted to a float in order to call the motor driver function. 
+The second function, \texttt{communicate\_with\_iBEMS} will open another socket but with the IP address of the iBEMS core found in \texttt{connect\_to\_iBEMS}. It will then enter a indefinite loop to continually receive data from the iBEMS core. There are 4 different messages that the iBEMS core sends to the embedded computer. First, it will check if the iBEMS core is telling it to shut down with the command \say{Shutdown}. If so, the embedded computer will immediately shut down. Second, if the data sent by iBEMS is \say{status}, the embedded computer will take a reading from the circuit described in Chapter~\ref{ch: Chapter2} section 3. In case the user decides to shut down the iBEMS core without turning off the embedded computer, another message \say{disconnect} will be sent in which case the embedded computer will exit \texttt{communicate\_with\_iBEMS} and start the entire program over again. Finally, if iBEMS is not sending any of the above options, it means that the user is sending a new duty cycle to drive the motors with. Since iBEMS only sends messages with the string data type, this has to be converted to a float in order to call the motor driver function. 
 
 
 %%% Local Variables:
