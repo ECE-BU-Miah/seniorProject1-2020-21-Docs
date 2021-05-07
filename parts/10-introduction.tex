@@ -29,10 +29,10 @@ The previous senior project group worked on creating a remote motor control syst
 During a research project led by Miah \textit{et al.,} the DC motor interface was successfully
 implemented into the BEMOSS platform which required adding a great deal of source code
 to the platform to fully implement the device as BEMOSS does not support adding
-new devices currently. The research also consisted of adding a new
-features such a logo to the
+new devices currently. The research also consisted of adding new
+features such as a logo to the
 platform for the motor. A possible improvement our platform will make is helping
-developers on the project to add new devices more easily.
+developers on the project add new devices more easily.
 
 One of the improvements our project makes over the previous is the use of UDP (user datagram protocol) multicasting which does not require any superuser privileges to locate an
 embedded computer (Beaglebone Blue, for example). This implementation is also more convenient
@@ -45,7 +45,7 @@ an IP address and port number.
 \section{Background Study}
 A great deal of research has been conducted in the field of building energy management. Multiple different platforms have been developed that demonstrate the vast amount of features and possibilities that exist in developing these types of software.
 
-One such platform is the BEMOSS from the Virginia Polytechnic Institute and State
+One such platform is BEMOSS from the Virginia Polytechnic Institute and State
 University Advanced Research Institute. BEMOSS features include being
 open-source, allowing for multiple communication technologies, and supporting
 many common IoT devices. This system allows for monitoring and controlling a
@@ -56,7 +56,7 @@ Python. The main focus of this platform developed by a team of researchers at
 Universit\`{a} Politecnica delle Marche in Ancona, Italy was to simulate the
 energy flow of a residential home. With the data collected from simulations, it
 was possible for them to use forecasting and prediction algorithms to predict
-various quantities such as energy usage and power consumption over a given time period. Their energy management system consists of a well-defined structure with components like a user interface, database, and optimal scheduler that communicates with modules like a prediction and thermal model. In terms of software technologies, it uses the Django web framework which provides a lot of built-in functionality for web development like a user-authentication system and object-relational mapping. Adapting the project to this framework could be a great way to help improve security and optimize database queries~\cite{fagiani2017}.
+various quantities such as energy usage and power consumption over a given time period. Their energy management system consists of a well-defined structure with components like a user interface, database, and optimal scheduler that communicate with modules like a prediction and thermal model. In terms of software technologies, it uses the Django web framework which provides a lot of built-in functionality for web development like a user-authentication system and object-relational mapping. Adapting the project to this framework could be a great way to help improve security and optimize database queries~\cite{fagiani2017}.
 
 One of the works in the literature discusses Model Predictive Control (MPC)
 which is a modern process control algorithm capable of taking into account
@@ -79,10 +79,7 @@ and power consumption reports are to be accessible through a web-based
 application that is easy to use. Again, our implementation is simple and very
 intuitive for the end-user. Finally, these authors mention a user-login feature.
 They explain that their system would include multiple levels of accessibility
-based on the user privileges. Although our system does not currently have a
-user-login feature, it simply uses a router to access devices that are also
-connected to the router. Since this is a closed system, users need only protect
-their router with a secure password.
+based on the user privileges. 
 
 A control scheme in~\cite{Barchi2018} is presented to manage a photovoltaic
 array and battery energy storage system. Tests were conducted in a shopping mall

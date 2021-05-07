@@ -49,7 +49,7 @@ is capable of being accessed only on the server computer running Ubuntu Linux.
 In the future, support could be added to allow any user on the LAN to access the
 web server. Other web frameworks use object relational mapping directly to
 access the relevant databases. However, our system uses direct queries with both
-SQLite and the Cassandra query language to query the database. \medbreak We used
+SQLite and the Cassandra query language to query the databases. \medbreak We used
 2 different databases to store information on. The Apache Cassandra database was
 better suited for the time series data such as device status and power usage.
 This database was therefore utilized a lot by the Control and Scheduling Agents.
@@ -65,7 +65,7 @@ available devices are connected, the Control agent is used to change the status
 of each device and collect power usage data in real time. Finally, the
 scheduling will take input from the user and place the corresponding scheduling
 periods in the Apache Cassandra database. Then, a thread is created to poll the
-current device status at regular intervals and updates the status if it does not
+current device status at regular intervals and update the status if it does not
 match the defined status in the Apache Cassandra database.
 
 
@@ -91,13 +91,13 @@ The Apache Cassandra database and SQLite database are accessible from the web se
   \label{fig:operationalModes}
 \end{figure}
 
-There are 5 general modes of operation in iBEMS as shown in Figure~\ref{fig:operationalModes}. In Mode 0, before iBEMS is even launched, the user must open the Startup Menu, which is a desktop graphical user interface (GUI). This is a simple GUI with only 2 buttons for starting and stopping iBEMS. Upon clicking \say{Start iBEMS}, the login page will load where the user can enter a valid username and password to use iBEMS. Once a valid username and password is entered, the home screen will be shown which displays the weather data being downloaded from the OpenWeatherMap API. This information include temperature in Fahrenheit and Celsius, wind speed in MPH, humidity, and cloud coverage. At this point, a navigation bar is available to view \say{Active Devices} page and the \say{Scheduling} page. \say{Active Devices} corresponds to Mode 3 for controlling devices in real time. The user will also be able to view power plots in this mode as well. Lastly, the \say{Scheduling} page is Mode 4 for creating schedules for all connected devices.
+There are 5 general modes of operation in iBEMS as shown in Figure~\ref{fig:operationalModes}. In Mode 0, before iBEMS is even launched, the user must open the Startup Menu, which is a desktop graphical user interface (GUI). This is a simple GUI with only 2 buttons for starting and stopping iBEMS. Upon clicking \say{Start iBEMS}, the login page will load where the user can enter a valid username and password to use iBEMS. Once a valid username and password is entered, the home screen will be shown which displays the weather data being downloaded from the OpenWeatherMap API. This information includes temperature in Fahrenheit and Celsius, wind speed in MPH, humidity, and cloud coverage. At this point, a navigation bar is available to view the \say{Active Devices} page and the \say{Scheduling} page. \say{Active Devices} corresponds to Mode 3 for controlling devices in real time. The user will also be able to view power plots in this mode as well. Lastly, the \say{Scheduling} page is Mode 4 for creating schedules for all connected devices.
 
 \section{Hardware}
 
 A large feature of this project was being able to record power usage from the
 connected IoT devices. The embedded computer does not have a built-in capability
-to measure its own power usage, so this circuit was needed to make that
+to measure its own power usage, so a circuit was needed to make that
 possible. Essentially, this circuit will measure the current being used to drive
 one of the motors on the robot chassis. The on-board Analog-to-Digital-Converter
 (ADC) can be used to read the voltage across the resistor and since the
@@ -106,8 +106,8 @@ voltage from the H-Bridge to drive the motors on the embedded computer is known
 so the power consumed by 1 motor is $Motor Drive Voltage * I$. For the specific
 robot chassis used in this project, there are 4 motors, so multiplying the power
 found from this circuit by 4 will give an approximation of the total power used
-by the robot. For other robots with different power sources besides a Lipo
-battery. See Figure~\ref{fig:motorInterfaceCircuit} for details of the interface
+by the robot. \add{For other robots with different power sources besides a Lipo
+battery.} See Figure~\ref{fig:motorInterfaceCircuit} for details of the interface
 circuit for computer power usage by the DC motor. 
 
 \begin{figure}
@@ -159,7 +159,7 @@ Figure~\ref{fig:not_connected_bb} shows the embedded computer mounted on the rob
     \label{fig:wemo}
 \end{figure}
 
-The other supported device is the WeMo Insight Switch as seen in Figure~\ref{fig:wemo}. This device was easy to develop support for as it is meant for building energy management. It simply plugs into a 120 volt 3-prong outlet and any typical household appliance running on 120 volts can be plugged into it. Internal circuitry allows the WeMo to be controlled remotely (turn On/Off) and to record power usage of whatever is plugged into.
+The other supported device is the WeMo Insight Switch as seen in Figure~\ref{fig:wemo}. This device was easy to develop support for as it is meant for building energy management. It simply plugs into a 120 volt 3-prong outlet and any typical household appliance running on 120 volts can be plugged into it. Internal circuitry allows the WeMo to be controlled remotely (turn On/Off) and to record power usage of whatever it is plugged into.
 
 \begin{figure}[H]
     \centering
