@@ -1105,7 +1105,7 @@ Agenda:
 
 We are trying to use this circuit:
 
-\includegraphics[scale=0.6]{figs/voltageSubtractor.png}
+\includegraphics[scale=0.6]{figs/beaglebone/voltageSubtractor.png}
 
 with R1 = R2 = R3 = R4. However, we are not getting the desired result of V2 - V1.
 
@@ -1152,7 +1152,7 @@ While demonstrating the project to Dr. Miah, the Firefox web browser we were usi
 EW\\
 Today, I spoke to Dr. Gutschlag who recommended a different approach for finding power on the BBB. Here is the circuit:
 \medbreak\noindent
-\includegraphics[scale=1]{figs/power_BBB.png}
+\includegraphics[scale=1]{figs/beaglebone/power_BBB.png}
 \\
 where the circle with the "M" is the motor driver from the BBB. This will be connected to a 1 ohm resistor (or multiple 1 ohm resistors in parallel to produce 1/2 ohm or even 1/4 ohm) and a capacitor in parallel. The output to the right will go to channel 0 of the ADC on the BBB and the GND on the ADC to read voltage across the resistor (I will thoroughly test before actually connecting to the BBB). Tomorrow's work will involve experimenting with different resistances and capacitances to see what gives the most consistent and accurate results. Finally, I will have a way to measure current (current will be equal to the voltage across the resistor divided by the resistance) and this will work for the entire range of duty cycles.
 \medbreak\noindent

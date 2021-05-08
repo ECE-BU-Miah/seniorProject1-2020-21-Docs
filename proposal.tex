@@ -147,7 +147,7 @@ As part of the base requirements of the design, the platform incorporates multip
 A flow chart of the scheme the Discovery agent uses to initialize a device in the platform is shown in Figure \ref{fig:setdevicetoactive}. To ensure a new device is only stored once in the metadata database, a query is performed to ensure that only one device exists with the recently discovered device's name. Once a new table is created in the Cassandra database for the device which is unique for the specific device, the control agent is notified to start up a new thread to collect device data.
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{figs/setDeviceToActiveFlow.pdf}
+    \includegraphics[scale=0.5]{figs/agents/setDeviceToActiveFlow.pdf}
     \caption{Flow chart of the \texttt{setDeviceToActive} method}
     \label{fig:setdevicetoactive}
 \end{figure}
@@ -156,14 +156,14 @@ A second algorithm that the discovery agent uses to look for devices on the netw
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.45]{figs/searchForDevicesFlow.pdf}
+    \includegraphics[scale=0.45]{figs/agents/searchForDevicesFlow.pdf}
     \caption{Flow chart of the \texttt{searchForDevices} method}
     \label{fig:searchfordevices}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.45]{figs/periodicQueryBehaviorFlow.pdf}
+    \includegraphics[scale=0.45]{figs/agents/periodicQueryBehaviorFlow.pdf}
     \caption{\texttt{ControlAgent.periodicQueryBehavior()} flow chart}
     \label{fig:periodicQueryBehavior}
 \end{figure}
@@ -199,7 +199,7 @@ Up to this point, work has been completed on the web user interface which was de
 
 \begin{figure}
     \centering
-    \includegraphics[scale=0.4]{figs/activeDevicesWithEmbeddedPicture.png}
+    \includegraphics[scale=0.4]{figs/webServer/activeDevicesWithEmbeddedPicture.png}
     \caption{Screenshot of Web Server (Active Devices Page)}
     \label{fig:activeDevicesPageScreenCap}
 \end{figure}
@@ -235,14 +235,14 @@ This project is mostly code-based, but we are physically implementing the WeMo I
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.09]{figs/wemo.jpg}
+    \includegraphics[scale=0.09]{figs/wemo/wemo.jpg}
     \caption{Photo of WeMo Insight Switch used in the lab}
     \label{fig:expLabSetup}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.09]{figs/beagleBone.jpg}
+    \includegraphics[scale=0.09]{figs/beaglebone/beagleBone.jpg}
     \caption{Photo of embedded computer (BeagleBone Blue) used in the lab}
     \label{fig:expLabSetup}
 \end{figure}
