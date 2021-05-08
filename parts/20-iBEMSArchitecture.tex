@@ -106,11 +106,10 @@ voltage from the H-Bridge to drive the motors on the embedded computer is known
 so the power consumed by 1 motor is $Motor Drive Voltage * I$. For the specific
 robot chassis used in this project, there are 4 motors, so multiplying the power
 found from this circuit by 4 will give an approximation of the total power used
-by the robot. \add{For other robots with different power sources besides a Lipo
-battery.} See Figure~\ref{fig:motorInterfaceCircuit} for details of the interface
-circuit for computer power usage by the DC motor. 
+by the robot. See Figure~\ref{fig:motorInterfaceCircuit} for details of the interface
+circuit for computer power usage by the DC motor. Also see Figure~\ref{fig:bb_connections} for how the circuit is connected to the embedded computer and robot chassis.
 
-\begin{figure}
+\begin{figure}[H]
   \centering
   \begin{circuitikz}[american]
     \tikzstyle{every node} = [font = \tiny]
@@ -134,11 +133,17 @@ circuit for computer power usage by the DC motor.
   \label{fig:motorInterfaceCircuit}
 \end{figure}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{figs/beaglebone/connections.pdf}
+    \caption{Connections between Embedded Computer, circuit, and robot chassis}
+    \label{fig:bb_connections}
+\end{figure}
 
 % \pagebreak
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.1]{figs/beaglebone/notConnectedSBC.jpg}
+    \includegraphics[scale=0.07]{figs/beaglebone/notConnectedSBC.jpg}
     \caption{Embedded Computer Not Connected}
     \label{fig:not_connected_bb}
 \end{figure}
@@ -147,14 +152,14 @@ Figure~\ref{fig:not_connected_bb} shows the embedded computer mounted on the rob
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.1]{figs/beaglebone/connectedSBC.jpg}
+    \includegraphics[scale=0.07]{figs/beaglebone/connectedSBC.jpg}
     \caption{Embedded Computer Connected}
     \label{fig:connected_bb}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.085]{figs/wemo/wemoView.jpg}
+    \includegraphics[scale=0.07]{figs/wemo/wemoView.jpg}
     \caption{WeMo Insight Smart Plug}
     \label{fig:wemo}
 \end{figure}
@@ -163,7 +168,7 @@ The other supported device is the WeMo Insight Switch as seen in Figure~\ref{fig
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.1]{figs/overallView.jpg}
+    \includegraphics[scale=0.07]{figs/overallView.jpg}
     \caption{Overall View}
     \label{fig:overallView}
 \end{figure}
