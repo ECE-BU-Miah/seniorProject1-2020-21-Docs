@@ -16,7 +16,7 @@ implement in our code base.
 %
 \begin{figure}
     \centering
-    \includegraphics[width=0.4\textwidth]{figs/pubSubAgents.pdf}
+    \includegraphics[width=0.4\textwidth]{figs/agents/pubSubAgents.pdf}
     \caption{Publish Subscribe Communication using ZeroMQ}
     \label{fig:pubSubAgents}
 \end{figure}
@@ -81,7 +81,7 @@ to the WiFi network. %
 %
 \begin{figure}
     \centering
-    \includegraphics[scale=0.5]{figs/setDeviceStatus.pdf}
+    \includegraphics[scale=0.5]{figs/agents/setDeviceStatus.pdf}
     \caption{setDeviceStatus Flow Chart}
     \label{fig:setDeviceStatus}
 \end{figure}
@@ -97,7 +97,7 @@ required device data. %
 %
 \begin{figure}
     \centering
-    \includegraphics[scale=0.5]{figs/getDeviceStatus.pdf}
+    \includegraphics[scale=0.5]{figs/agents/getDeviceStatus.pdf}
     \caption{getDeviceStatus Flow Chart}
     \label{fig:getDeviceStatus}
 \end{figure}
@@ -105,7 +105,7 @@ required device data. %
 Every device connected to iBEMS will have a thread associated with it started from the control agent. This thread will run the \texttt{periodicQueryBehavior} method to periodically query for device data and store in the corresponding Cassandra database table. A user specified delay is placed in the class's module to prevent the thread from overwhelming the system.
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{figs/periodicQueryBehavior.pdf}
+    \includegraphics[scale=0.5]{figs/agents/periodicQueryBehavior.pdf}
     \caption{periodicQueryBehavior Flow Chart}
     \label{fig:periodicQueryBehavior}
 \end{figure}
@@ -116,14 +116,14 @@ The purpose of the discovery agent is to search for devices that respond to the 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{figs/searchForDevices.pdf}
+    \includegraphics[scale=0.5]{figs/agents/searchForDevices.pdf}
     \caption{searchForDevices Flow Chart}
     \label{fig:searchForDevices}
 \end{figure}
 The \texttt{setDeviceToActive} method shown in Figure~\ref{fig:setDeviceToActive} will first check to make sure the device is not already in the active devices table. Then, it will add the device to the active devices table, create a table in the Cassandra database for storing time-series data, send a message to the scheduling agent to check for schedule updates, and send a message to the control agent to start collecting data.
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{figs/setDeviceToActive.pdf}
+    \includegraphics[scale=0.5]{figs/agents/setDeviceToActive.pdf}
     \caption{setDeviceToActive Flow Chart}
     \label{fig:setDeviceToActive}
 \end{figure}
@@ -132,14 +132,14 @@ The \texttt{setDeviceToActive} method shown in Figure~\ref{fig:setDeviceToActive
 The scheduling agent is able to update the device status of each device dependent on whether a schedule is set for the specific time period and day. One of the methods that is called, \texttt{updateScheduleFromServer} is invoked when the user presses the \say{Update Schedule} button from the UI on the scheduling page. A flow chart of this method is shown in Figure~\ref{fig:updateScheduleFromServer}. When this method is called the desired schedule is loaded in as a dictionary and parsed to extract the necessary periods and given day. First the times are stored in military time in the database for more convenient storage and parsing later on. Then, a table is created in the Apache Cassandra database where the device ID and day are embedded in the name. The previous table's data is destroyed to ensure there are no errors regarding overlapping schedules. Lastly, all the scheduling periods extracted from the dictionary are stored as rows in the table. 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{figs/updateScheduleFromServer.pdf}
+    \includegraphics[scale=0.5]{figs/agents/updateScheduleFromServer.pdf}
     \caption{updateScheduleFromServer Flow Chart}
     \label{fig:updateScheduleFromServer}
 \end{figure}
 A second method that is run inside each device thread is \texttt{periodicDeviceUpdateMethod}, defined in Figure~\ref{fig:periodicDeviceUpdateMethod}, which is started when the discovery agent sets the discovered device to active. By first loading the device's API name, the scheduling agent can begin checking for scheduling periods inside an infinite loop. The status dictionary is queried from the Cassandra database and loaded into a dictionary. All these scheduling periods are looped over for the current day while constantly checking whether the current time in seconds is within the starting and ending time. A conversion of both starting and ending time to seconds is necessary as it is challenging to work with these quantities in standard and military time when comparing times. If the current time does lie inside the scheduling period, the device's state is set dependent on the API. 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{figs/periodicDeviceUpdateMethod.pdf}
+    \includegraphics[scale=0.5]{figs/agents/periodicDeviceUpdateMethod.pdf}
     \caption{periodicDeviceUpdateMethod Flow Chart}
     \label{fig:periodicDeviceUpdateMethod}
 \end{figure}
@@ -148,7 +148,7 @@ A second method that is run inside each device thread is \texttt{periodicDeviceU
 The functionality of the desktop GUI launched when the user runs the Python script titled \texttt{GUI.py} is shown in Figure~\ref{fig:desktopgui}. Packages used to construct the GUI include tkinter which is a Python interface for the Tcl/Tk GUI toolkit. When the GUI is started up, the title, buttons, and labels are created along with ties to the callback functions \texttt{startCallback} and \texttt{stopCallback}. The \texttt{startCallback} function is called when the user presses the \say{Start iBEMS} button. This function first checks whether iBEMS is already running by checking for processes already running on the machine including the web server itself and the three agents. This is performed using the command \texttt{ps -aux}. After this has been completed, an error popup is shown preventing another instance of the software from running. This prevents errors associated with copies of agents and web servers running simultaneously. To properly stop the software, the \say{Stop iBEMS} button will shutdown the software by first finding the process ID's associated with the agents and web server. To perform this, it will place the output of \texttt{ps -aux | grep [process]} into a text file where \say{process} is the name of the target process. A file descriptor of the process status output text file is instantiated and all the lines are read in to be parsed. Each process output is split by spaces and the second element in the list is denoted as the process id. Then, using the \texttt{kill} command, these processes are killed. 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.6]{figs/GUI_Diagram.pdf}
+    \includegraphics[scale=0.6]{figs/GUI/GUI_Diagram.pdf}
     \caption{Python desktop GUI Functionality}
     \label{fig:desktopgui}
 \end{figure}
@@ -157,7 +157,7 @@ The functionality of the desktop GUI launched when the user runs the Python scri
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{figs/Beaglebone_Receiver_Diagram.pdf}
+    \includegraphics[scale=0.5]{figs/beaglebone/Beaglebone_Receiver_Diagram.pdf}
     \caption{Receiver Running on Embedded Computer}
     \label{fig:Beaglebone_Receiver_Diagram}
 \end{figure}
