@@ -14,6 +14,7 @@
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage{siunitx}
 \usepackage{nohyperref}
+\usepackage{dirtytalk}
 
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
@@ -210,6 +211,188 @@ the components of the system interact with each other. %
 \end{figure}
 %
 The Apache Cassandra database and SQLite database are accessible from the web server, control agent, discovery agent, and scheduling agent. The web server queries the time series database and metadata database for vastly different purposes. Power plotting requires querying the Apache Cassandra database. To distinguish between the different devices on the front end, the metadata database is used. The agents utilize the Apache Cassandra database for storing and extracting time-series data. The agents use the metadata database to distinguish between different devices. 
+
+\section{Software Implementation}
+\label{sec:SoftwareImplementation}
+
+To provide the ability to recognize and control devices at any moment, three agents are used. All three agents communicate with each other and the web server using the Zero MQ asynchronous messaging library. Essentially, this library works as a way to implement inter process communication without a message
+broker~\cite{zeromq}. In other words, different processes are able to communicate with each
+other without any central bus. This is convenient as fewer processes are needed for the system to function. Lowering the number of overall processes lowers the
+RAM and CPU usage of the software. The library is ported to many different programming languages; however we are using the Python port titled Pyzmq to
+implement in our code base.
+%
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.4\textwidth]{figs/agents/pubSubAgents.pdf}
+    \caption{Publish Subscribe Communication using ZeroMQ}
+    \label{fig:pubSubAgents}
+\end{figure}
+
+More specifically, the publish subscribe model of communication is used where
+each agent communicates via a socket where each socket responds to a specific
+topic. The topics and port numbers are listed below along with their
+corresponding agents in Table~\ref{tab:pubsubspecs}. %
+%
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        Agent & Topic & Port Number\\
+        \hline
+        Discovery Agent & "discovery" & 5556\\
+        Scheduling Agent & "scheduling" & 5556\\
+        Control Agent & "control" & 5556\\
+        \hline
+    \end{tabular}
+    \caption{Publish/Subscribe Communication Specifications}
+    \label{tab:pubsubspecs}
+\end{table}
+The agents contained in the software are associated with a Python class of the
+same name. Each class is instantiated and run with specifications declared in
+Table~\ref{tab:pubsubspecs}. 
+
+The flow chart of method \texttt{setDeviceStatus} defined in the \texttt{ControlAgent} class is shown in
+Figure~\ref{fig:setDeviceStatus}. The purpose of this method is to set the
+status of the desired device. When the method is called, the data dictionary is
+obtained which contains the device ID. With this device ID, the API type can be
+determined using the SQLite database. Subsequently, the appropriate device API
+module can be imported. If the power state exists as a key in the device data
+dictionary, the power state of the WeMo Insight Switch will be set as ON or OFF.
+If the duty cycle key exists, the duty cycle of the single board computer motor
+drivers is set. If the shutdown key is set, the single board computer is
+shutdown. In order to reconnect to the single board computer, the board must be
+started and receiver program ran. If necessary, the device must be reconnected
+to the WiFi network. %
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.3]{figs/agents/setDeviceStatus.pdf}
+    \caption{setDeviceStatus Flow Chart}
+    \label{fig:setDeviceStatus}
+\end{figure}
+
+To obtain necessary data quantities from the device, the
+\texttt{getDeviceStatus} method defined in \texttt{ControlAgent}, defined in Figure~\ref{fig:getDeviceStatus}, is called. Once the proper data parameters are
+obtained, the \texttt{getState} function defined in the devices API module can
+be called with the data parameters such as power state and
+status. Once the agent has finished sending these to the device, a request is
+sent to the web server to inform the server that it completed searching for the
+required device data. %
+%
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.4]{figs/agents/getDeviceStatus.pdf}
+    \caption{getDeviceStatus Flow Chart}
+    \label{fig:getDeviceStatus}
+\end{figure}
+
+Every device connected to iBEMS will have a thread associated with it started from the control agent. This thread will run the \texttt{periodicQueryBehavior} method defined in \texttt{ControlAgent} to periodically query for device data and store in the corresponding Cassandra database table. A user specified delay is placed in the class's module to prevent the thread from overwhelming the system.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.4]{figs/agents/periodicQueryBehavior.pdf}
+    \caption{periodicQueryBehavior Flow Chart}
+    \label{fig:periodicQueryBehavior}
+\end{figure}
+
+To reduce latency, the device status is retrieved directly from the API module in the \texttt{periodicQueryBehavior} method defined in \texttt{ControlAgent} rather than calling \texttt{getDeviceStatus} as this prevents the API from being imported unnecessarily.
+
+The scheduling agent is able to update the device status of each device dependent on whether a schedule is set for the specific time period and day. One of the methods that is called, \texttt{updateScheduleFromServer} is invoked when the user presses the \say{Update Schedule} button from the UI on the scheduling page. A flow chart of this method is shown in Figure~\ref{fig:updateScheduleFromServer}. When this method is called the desired schedule is loaded in as a dictionary and parsed to extract the necessary periods and given day. First the times are stored in military time in the database for more convenient storage and parsing later on. Then, a table is created in the Apache Cassandra database where the device ID and day are embedded in the name. The previous table's data is destroyed to ensure there are no errors regarding overlapping schedules. Lastly, all the scheduling periods extracted from the dictionary are stored as rows in the table. 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.3]{figs/agents/updateScheduleFromServer.pdf}
+    \caption{updateScheduleFromServer Flow Chart}
+    \label{fig:updateScheduleFromServer}
+\end{figure}
+A second method that is run inside each device thread is \texttt{periodicDeviceUpdateMethod}, defined in Figure~\ref{fig:periodicDeviceUpdateMethod}, which is started when the discovery agent sets the discovered device to active. By first loading the device's API name, the scheduling agent can begin checking for scheduling periods inside an infinite loop. The status dictionary is queried from the Cassandra database and loaded into a dictionary. All these scheduling periods are looped over for the current day while constantly checking whether the current time in seconds is within the starting and ending time. A conversion of both starting and ending time to seconds is necessary as it is challenging to work with these quantities in standard and military time when comparing times. If the current time does lie inside the scheduling period, the device's state is set dependent on the API. 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.3]{figs/agents/periodicDeviceUpdateMethod.pdf}
+    \caption{periodicDeviceUpdateMethod Flow Chart}
+    \label{fig:periodicDeviceUpdateMethod}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.25]{figs/beaglebone/Beaglebone_Receiver_Diagram.pdf}
+    \caption{Receiver Running on Embedded Computer}
+    \label{fig:Beaglebone_Receiver_Diagram}
+\end{figure}
+
+The embedded computer needed some software to be able to connect to and communicate with the iBEMS Core. To achieve this, a program consisting of 2 functions for connecting and communicating is used.
+\medbreak
+The first of these functions is \texttt{connect\_to\_iBEMS}. This function first turns on the red LED on the embedded computer to indicate it is not yet connected. Then it creates a socket using a multicast IP address that the corresponding API in the iBEMS core will be looking for. Once the socket is created, the embedded computer will enter a loop and wait for the iBEMS core to make the initial connection. When that connection is made, it will exit the loop, save the IP address of the iBEMS core, send a confirmation message, then turn on the green LED before closing the multicast socket.
+\medbreak
+The second function, \texttt{communicate\_with\_iBEMS} will open another socket but with the IP address of the iBEMS core found in \texttt{connect\_to\_iBEMS}. It will then enter an indefinite loop to continually receive data from the iBEMS core. There are 4 different messages that the iBEMS core sends to the embedded computer. First, it will check if the iBEMS core is telling it to shut down with the command \say{Shutdown}. If so, the embedded computer will immediately shut down. Second, if the data sent by iBEMS is \say{status}, the embedded computer will take a reading from the power measurement circuit. In case the user decides to shut down the iBEMS core without turning off the embedded computer, another message \say{disconnect} will be sent in which case the embedded computer will exit \texttt{communicate\_with\_iBEMS} and start the entire program over again. Finally, if iBEMS is not sending any of the above options, it means that the user is sending a new duty cycle to drive the motors with. Since iBEMS only sends messages with the string data type, this has to be converted to a float in order to call the motor driver function. 
+
+\section{Experimental Results}
+The system was tested with a working prototype, in which the first mode is the startup menu:
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.2]{figs/GUI/BEMS_GUI_Linux.png}
+    \caption{Desktop GUI}
+    \label{fig:desktopgui}
+\end{figure}
+
+\noindent
+Here, the user will simply click the \say{Start iBEMS} button to launch the web server and agents. When the user is finished, all agents and the web server can be shut down by clicking \say{Stop iBEMS}. In case the user accidentally clicks the \say{Start iBEMS} button while iBEMS is already running, then the following error message will appear:
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.5]{figs/GUI/BEMS_GUI_Linux_Warning.png}
+    \caption{Popup Error}
+    \label{fig:popuperror}
+\end{figure}
+
+\noindent
+After launching iBEMS, the web browser will open and the user will be presented with the login page:
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.3]{figs/webServer/Login.png}
+    \caption{Login Page}
+    \label{fig:Home_screen}
+\end{figure}
+
+\noindent
+where the user can enter in their username and password. Currently, iBEMS does not have a robust user login. It actually just has 1 username and password that is defined in the code. When the user enters the valid username and password, the home page will load automatically, where the weather data can be seen:
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.2]{figs/webServer/Home_screen.png}
+    \caption{Home Page}
+    \label{fig:Home_screen}
+\end{figure}
+
+The home screen (mode 2) does not have any interactive functionality other than to load another page by selecting one on the navigation bar.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.2]{figs/webServer/ActiveDevices_screen.png}
+    \caption{Active Devices Page}
+    \label{fig:active_devices}
+\end{figure}
+
+Figure~\ref{fig:active_devices} shows the active devices page (mode 3) which is loaded upon clicking \say{Active Devices} in the navigation bar. Here, all the connected devices are shown in order of when they connected to iBEMS. As mentioned previously, control of the WeMo Insight Switch is limited to turning it on and off while the embedded computer's motor speed can be controlled by submitting different duty cycles. Additionally, the embedded computer can be completely turned off by clicking the \say{Shutdown} button. Both supported devices also log their power usage at regular intervals. A plot of these power usage data points can be viewed by clicking \say{View Status Plots}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.2]{figs/webServer/ActiveDevices_plot.png}
+    \caption{Active Devices Plot}
+    \label{fig:active_devices_plot}
+\end{figure}
+
+After clicking \say{View Status Plots}, a modal will pop up for the user to further interact with. By default, power usage data points for the current day are loaded at first, but another day can be selected by clicking on the calendar icon in the lower right corner. The plot is then updated by clicking \say{Update Plots}. This is done by collecting data from the Apache Cassandra database and simply plotting all the points found for the specified day. Underneath the plot, the total energy consumed for the specified day is displayed. That total energy is found using the trapezoid method for integration on the plot.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.2]{figs/webServer/Applications_screen.png}
+    \caption{Scheduling Page}
+    \label{fig:schedulingl}
+\end{figure}
+
+Mode 4, or the scheduling page, can be loaded by clicking the \say{Device Scheduling} button in the navigation bar. Much like the active devices page, each connected device is listed in order of when they connected to iBEMS. Instead of directly controlling the devices, the user can enter in time periods when they want each device to maintain a specified status. For example, the WeMo Insight Switch can be scheduled to be on from 5 to 8 P.M. on Fridays. Likewise, the embedded computer can be scheduled to maintain a duty cycle of 0.5 for the same time period every Friday. Scheduled times can be added with the \say{Add new Period} and deleted by clicking the red \say{X} by the corresponding time period.
 
 
 
