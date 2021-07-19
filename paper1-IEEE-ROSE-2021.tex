@@ -216,7 +216,7 @@ The Apache Cassandra database and SQLite database are accessible from the web se
 \label{sec:SoftwareImplementation}
 
 To provide the ability to recognize and control devices at any moment, three agents are used. All three agents communicate with each other and the web server using the Zero MQ asynchronous messaging library. Essentially, this library works as a way to implement inter process communication without a message
-broker~\cite{zeromq}. In other words, different processes are able to communicate with each
+broker\footnote{\href{https://zeromq.org/}{https://zeromq.org/}}. In other words, different processes are able to communicate with each
 other without any central bus. This is convenient as fewer processes are needed for the system to function. Lowering the number of overall processes lowers the
 RAM and CPU usage of the software. The library is ported to many different programming languages; however we are using the Python port titled Pyzmq to
 implement in our code base.
@@ -395,102 +395,6 @@ After clicking \say{View Status Plots}, a modal will pop up for the user to furt
 Mode 4, or the scheduling page, can be loaded by clicking the \say{Device Scheduling} button in the navigation bar. Much like the active devices page, each connected device is listed in order of when they connected to iBEMS. Instead of directly controlling the devices, the user can enter in time periods when they want each device to maintain a specified status. For example, the WeMo Insight Switch can be scheduled to be on from 5 to 8 P.M. on Fridays. Likewise, the embedded computer can be scheduled to maintain a duty cycle of 0.5 for the same time period every Friday. Scheduled times can be added with the \say{Add new Period} and deleted by clicking the red \say{X} by the corresponding time period.
 
 
-
-
-% There are five general modes of operation in iBEMS shown in Fig.~\ref{fig:operationalModes}. In Mode 0, before iBEMS is even launched, the user must open the Startup Menu, which is a desktop graphical user interface (GUI). This is a simple GUI with only 2 buttons for starting and stopping iBEMS. Upon clicking \say{Start iBEMS}, the login page will load where the user can enter a valid username and password to use iBEMS. Once a valid username and password is entered, the home screen will be shown which displays the weather data being downloaded from the OpenWeatherMap API. This information includes temperature in Fahrenheit and Celsius, wind speed in MPH, humidity, and cloud coverage. At this point, a navigation bar is available to view the \say{Active Devices} page and the \say{Scheduling} page. \say{Active Devices} corresponds to Mode 3 for controlling devices in real time. The user will also be able to view power plots in this mode as well. Lastly, the \say{Scheduling} page is Mode 4 for creating schedules for all connected devices.
-
-
-
-% \begin{figure}
-%   \centering
-%   \includegraphics[scale=0.4]{figs/operationalModes.pdf}
-%   \caption{Operation Modes Interaction}
-%   \label{fig:operationalModes}
-% \end{figure}
-
-% \section{Hardware}
-
-% A large feature of this project was being able to record power usage from the
-% connected IoT devices. The embedded computer does not have a built-in capability
-% to measure its own power usage, so a circuit was needed to make that
-% possible. Essentially, this circuit will measure the current being used to drive
-% one of the motors on the robot chassis. The on-board Analog-to-Digital-Converter
-% (ADC) can be used to read the voltage across the resistor and since the
-% resistance is known, the current can be calculated as $I = V/R$. Also, the
-% voltage from the H-Bridge to drive the motors on the embedded computer is known
-% so the power consumed by 1 motor is $Motor Drive Voltage * I$. For the specific
-% robot chassis used in this project, there are 4 motors, so multiplying the power
-% found from this circuit by 4 will give an approximation of the total power used
-% by the robot. See Figure~\ref{fig:motorInterfaceCircuit} for details of the interface
-% circuit for computer power usage by the DC motor. Also see Figure~\ref{fig:bb_connections} for how the circuit is connected to the embedded computer and robot chassis.
-
-% \begin{figure}[H]
-%   \centering
-%   \begin{circuitikz}[american]
-%     \tikzstyle{every node} = [font = \tiny]
-%     % \usetikzlibrary{patterns}
-%     \draw
-%     (0,0) to[sqV,invert,l=Motor Drive Voltage from H-Bridge] ++(0,4*\smgrid)
-%     to[Telmech=M,n=motor,fill=red!20] ++(4*\smgrid,0)
-%     to[C,l=$1~{[}\mu F{]}$,*-*] ++(0,-4*\smgrid) to[short]++(-4*\smgrid,0); 
-%     \draw
-%     (4*\smgrid,4*\smgrid) to[short,-*]++(3*\smgrid,0)
-%     to[short,-o]++(2*\smgrid,0)node[right]{Embedded Computer ADC (Ch\#0)};
-%     \draw
-%     (7*\smgrid,4*\smgrid) to[R,l=$2~{[}\Omega{]}$,-*]++(0,-4*\smgrid)
-%     to[short]++(-4*\smgrid,0);
-%     \draw
-%     (7*\smgrid,0) to[short,-o]++(2*\smgrid,0) node[right]{Embedded
-%       Computer ADC (Ground)};
-%   \end{circuitikz}
-%   \caption{Interface circuit to calculate power consumption of a DC motor
-%     running from the embedded computer copmuter.}
-%   \label{fig:motorInterfaceCircuit}
-% \end{figure}
-
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[scale=0.6]{figs/beaglebone/connections.pdf}
-%     \caption{Connections between Embedded Computer, circuit, and robot chassis}
-%     \label{fig:bb_connections}
-% \end{figure}
-
-% % \pagebreak
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[scale=0.07]{figs/beaglebone/notConnectedSBC.jpg}
-%     \caption{Embedded Computer Not Connected}
-%     \label{fig:not_connected_bb}
-% \end{figure}
-
-% Figure~\ref{fig:not_connected_bb} shows the embedded computer mounted on the robot chassis with the circuit shown on page 9. It can also be seen that the embedded computer lights up the on-board red LED when disconnected. Figure~\ref{fig:connected_bb} shows that the embedded computer lights up the green LED when it is connected as an extra indication of its connection status.
-
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[scale=0.07]{figs/beaglebone/connectedSBC.jpg}
-%     \caption{Embedded Computer Connected}
-%     \label{fig:connected_bb}
-% \end{figure}
-
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[scale=0.07]{figs/wemo/wemoView.jpg}
-%     \caption{WeMo Insight Smart Plug}
-%     \label{fig:wemo}
-% \end{figure}
-
-% The other supported device is the WeMo Insight Switch as seen in Figure~\ref{fig:wemo}. This device was easy to develop support for as it is meant for building energy management. It simply plugs into a 120 volt 3-prong outlet and any typical household appliance running on 120 volts can be plugged into it. Internal circuitry allows the WeMo to be controlled remotely (turn On/Off) and to record power usage of whatever it is plugged into.
-
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[scale=0.07]{figs/overallView.jpg}
-%     \caption{Overall View}
-%     \label{fig:overallView}
-% \end{figure}
-
-% In order to test these devices, we plugged a bank of 6 light bulbs into the WeMo
-% Insight Switch as seen in Figure~\ref{fig:overallView}. The embedded computer's
-% functionality was tested with the circuit and robot chassis described earlier.
 
 
 \bibliographystyle{IEEEtran}
