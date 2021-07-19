@@ -169,7 +169,7 @@ architecture. %
 %
 \begin{figure}[htbp]
   \centering
-  \includegraphics[scale=0.15]{figs/functionalBlockDiagram.pdf}
+  \includegraphics[scale=0.2]{figs/functionalBlockDiagram.pdf}
   \caption{Functional Block Diagram}
   \label{fig:functional_bd}
 \end{figure}
@@ -213,7 +213,7 @@ the components of the system interact with each other. %
 %
 \begin{figure}
   \centering
-  \includegraphics[scale=0.15]{figs/overallDiagram.pdf}
+  \includegraphics[scale=0.3]{figs/overallDiagram.pdf}
   \caption{Interconnection between system components}
   \label{fig:systemComponentInterconnection}
 \end{figure}
@@ -308,7 +308,7 @@ To reduce latency, the device status is retrieved directly from the API module i
 The scheduling agent is able to update the device status of each device dependent on whether a schedule is set for the specific time period and day. One of the methods that is called, \texttt{updateScheduleFromServer} is invoked when the user presses the \say{Update Schedule} button from the UI on the scheduling page. A flow chart of this method is shown in Figure~\ref{fig:updateScheduleFromServer}. When this method is called the desired schedule is loaded in as a dictionary and parsed to extract the necessary periods and given day. First the times are stored in military time in the database for more convenient storage and parsing later on. Then, a table is created in the Apache Cassandra database where the device ID and day are embedded in the name. The previous table's data is destroyed to ensure there are no errors regarding overlapping schedules. Lastly, all the scheduling periods extracted from the dictionary are stored as rows in the table. 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[scale=0.2]{figs/agents/updateScheduleFromServer.pdf}
+    \includegraphics[scale=0.25]{figs/agents/updateScheduleFromServer.pdf}
     \caption{updateScheduleFromServer Flow Chart}
     \label{fig:updateScheduleFromServer}
 \end{figure}
