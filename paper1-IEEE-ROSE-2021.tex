@@ -326,6 +326,7 @@ The first of these functions is \texttt{connect\_to\_iBEMS}. This function first
 The second function, \texttt{communicate\_with\_iBEMS} will open another socket but with the IP address of the iBEMS core found in \texttt{connect\_to\_iBEMS}. It will then enter an indefinite loop to continually receive data from the iBEMS core. There are 4 different messages that the iBEMS core sends to the embedded computer. First, it will check if the iBEMS core is telling it to shut down with the command \say{Shutdown}. If so, the embedded computer will immediately shut down. Second, if the data sent by iBEMS is \say{status}, the embedded computer will take a reading from the power measurement circuit. In case the user decides to shut down the iBEMS core without turning off the embedded computer, another message \say{disconnect} will be sent in which case the embedded computer will exit \texttt{communicate\_with\_iBEMS} and start the entire program over again. Finally, if iBEMS is not sending any of the above options, it means that the user is sending a new duty cycle to drive the motors with. Since iBEMS only sends messages with the string data type, this has to be converted to a float in order to call the motor driver function. 
 
 \section{Experimental Results}
+\label{sec:iBEMS-Experimental Results}
 The system was tested with a working prototype, in which the first mode is the startup menu:
 
 \begin{figure}[htbp]
