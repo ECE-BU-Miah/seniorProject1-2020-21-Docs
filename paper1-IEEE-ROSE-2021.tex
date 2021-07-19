@@ -40,9 +40,17 @@ Peoria, Illinois, United States of America \\
   promising task due to global climate change issues. Such a task has received
   thorough attention for the advent of emerging Internet-of-Things (IoT)
   technology. Numerous building energy management systems are commercially
-  available in the market. Most of them lack modularity or are driven by an
+  available in the market. Among the major shortcomings of most of the existing building energy management systems are that, they either lack modularity or are driven by an
   overwhelming degree of manual configurations for performing building
-  automation. In this paper, we present the development of a modular IoT-based framework for an intelligent building energy management system (iBEMS). The proposed framework is open-source and leverages the features of decentralized multi-agent systems. The principal component of the framework is the BEMS core that implements building automation features, such as an optimal scheduler, displaying weather information, detecting new IoT devices, monitoring energy consumption, and remotely controlling operation of IoT devices.
+  automation.
+
+  In this paper, we present the development of a modular IoT-based
+  framework for an intelligent building energy management system (iBEMS). The
+  proposed framework is open-source and leverages the features of decentralized
+  multi-agent systems. The principal component of the framework is the BEMS core
+  that implements building automation features, such as an optimal scheduler,
+  displaying weather information, detecting new IoT devices, monitoring energy
+  consumption, and remotely controlling operation of IoT devices. We developed and configured two IoT devices (WeMo switch and embedded mobile robot) that are supported with the the proposed intelligent building energy management platform. The iBEMS is tested in a laboratory environment. The performance of the proposed iBEMS is backed up by a set of experimental results. 
   
 \end{abstract}
 
@@ -266,7 +274,7 @@ to the WiFi network. %
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[scale=0.3]{figs/agents/setDeviceStatus.pdf}
+    \includegraphics[scale=0.2]{figs/agents/setDeviceStatus.pdf}
     \caption{setDeviceStatus Flow Chart}
     \label{fig:setDeviceStatus}
 \end{figure}
@@ -281,7 +289,7 @@ required device data. %
 %
 \begin{figure}[htbp]
     \centering
-    \includegraphics[scale=0.4]{figs/agents/getDeviceStatus.pdf}
+    \includegraphics[scale=0.3]{figs/agents/getDeviceStatus.pdf}
     \caption{getDeviceStatus Flow Chart}
     \label{fig:getDeviceStatus}
 \end{figure}
@@ -290,7 +298,7 @@ Every device connected to iBEMS will have a thread associated with it started fr
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[scale=0.4]{figs/agents/periodicQueryBehavior.pdf}
+    \includegraphics[scale=0.3]{figs/agents/periodicQueryBehavior.pdf}
     \caption{periodicQueryBehavior Flow Chart}
     \label{fig:periodicQueryBehavior}
 \end{figure}
@@ -300,21 +308,21 @@ To reduce latency, the device status is retrieved directly from the API module i
 The scheduling agent is able to update the device status of each device dependent on whether a schedule is set for the specific time period and day. One of the methods that is called, \texttt{updateScheduleFromServer} is invoked when the user presses the \say{Update Schedule} button from the UI on the scheduling page. A flow chart of this method is shown in Figure~\ref{fig:updateScheduleFromServer}. When this method is called the desired schedule is loaded in as a dictionary and parsed to extract the necessary periods and given day. First the times are stored in military time in the database for more convenient storage and parsing later on. Then, a table is created in the Apache Cassandra database where the device ID and day are embedded in the name. The previous table's data is destroyed to ensure there are no errors regarding overlapping schedules. Lastly, all the scheduling periods extracted from the dictionary are stored as rows in the table. 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[scale=0.3]{figs/agents/updateScheduleFromServer.pdf}
+    \includegraphics[scale=0.2]{figs/agents/updateScheduleFromServer.pdf}
     \caption{updateScheduleFromServer Flow Chart}
     \label{fig:updateScheduleFromServer}
 \end{figure}
 A second method that is run inside each device thread is \texttt{periodicDeviceUpdateMethod}, defined in Figure~\ref{fig:periodicDeviceUpdateMethod}, which is started when the discovery agent sets the discovered device to active. By first loading the device's API name, the scheduling agent can begin checking for scheduling periods inside an infinite loop. The status dictionary is queried from the Cassandra database and loaded into a dictionary. All these scheduling periods are looped over for the current day while constantly checking whether the current time in seconds is within the starting and ending time. A conversion of both starting and ending time to seconds is necessary as it is challenging to work with these quantities in standard and military time when comparing times. If the current time does lie inside the scheduling period, the device's state is set dependent on the API. 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[scale=0.3]{figs/agents/periodicDeviceUpdateMethod.pdf}
+    \includegraphics[scale=0.2]{figs/agents/periodicDeviceUpdateMethod.pdf}
     \caption{periodicDeviceUpdateMethod Flow Chart}
     \label{fig:periodicDeviceUpdateMethod}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[scale=0.25]{figs/beaglebone/Beaglebone_Receiver_Diagram.pdf}
+    \includegraphics[scale=0.2]{figs/beaglebone/Beaglebone_Receiver_Diagram.pdf}
     \caption{Receiver Running on Embedded Computer}
     \label{fig:Beaglebone_Receiver_Diagram}
 \end{figure}
@@ -341,7 +349,7 @@ Here, the user will simply click the \say{Start iBEMS} button to launch the web 
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[scale=0.5]{figs/GUI/BEMS_GUI_Linux_Warning.png}
+    \includegraphics[scale=0.3]{figs/GUI/BEMS_GUI_Linux_Warning.png}
     \caption{Popup Error}
     \label{fig:popuperror}
 \end{figure}
@@ -351,7 +359,7 @@ After launching iBEMS, the web browser will open and the user will be presented 
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[scale=0.3]{figs/webServer/Login.png}
+    \includegraphics[scale=0.2]{figs/webServer/Login.png}
     \caption{Login Page}
     \label{fig:Home_screen}
 \end{figure}
@@ -396,7 +404,13 @@ After clicking \say{View Status Plots}, a modal will pop up for the user to furt
 Mode 4, or the scheduling page, can be loaded by clicking the \say{Device Scheduling} button in the navigation bar. Much like the active devices page, each connected device is listed in order of when they connected to iBEMS. Instead of directly controlling the devices, the user can enter in time periods when they want each device to maintain a specified status. For example, the WeMo Insight Switch can be scheduled to be on from 5 to 8 P.M. on Fridays. Likewise, the embedded computer can be scheduled to maintain a duty cycle of 0.5 for the same time period every Friday. Scheduled times can be added with the \say{Add new Period} and deleted by clicking the red \say{X} by the corresponding time period.
 
 
+\section{Conclusion and Future Work}
+\label{sec:conclusion}
 
+We have presented a platform of an intelligent building energy management system,
+which is open source, and easy-to-use. It is also developed using a modular, agent-based code base. Being open source makes it freely available to anyone who has the supported devices and wants to begin managing their home energy usage. The simple interface is easy to figure out for less tech-savvy users and the modular code base makes this system relatively easy for others to continue development. Despite its advantages, potential users are to be aware of the rather obvious disadvantages at this point. A typical commercial building energy management system will include many more features like predicting future energy use and supporting more devices.
+
+One of the main ways to improve the software is to refactor the user interface as the current interface is fairly primitive. Adding elements like collapsible drop down menus and a collapsible side bar would make the interface more professional and user-friendly. To improve the overall reliability and speed of the software, a better agent communication protocol could be researched and implemented. Many problems are visible with the use of ZeroMQ as exceptions are thrown occasionally when device status updates are sent in quick succession to the control agent. Potentially, there exists a better solution than publish-subscribe. One of the major issues with the software is lack of device data persistence across system restarts. Developers in the future could help alleviate this problem by refactoring the device storage system in the Cassandra database.
 
 \bibliographystyle{IEEEtran}
 \bibliography{bib/references.bib}
