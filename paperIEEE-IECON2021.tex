@@ -55,11 +55,7 @@ Peoria, Illinois, United States of America \\
 \end{abstract}
 
 \begin{IEEEkeywords}
-<<<<<<< HEAD
-  Building energy management, internet of things, multi-agent systems, energy monitoring  
-=======
-  Internet of Things, web server, database, smart plug, embedded computer
->>>>>>> 11090492c36d749dc32800b7bcfff4f4c3c794af
+  Building energy management, embedded computer, internet of things, multi-agent systems, smart plug,  web server
 \end{IEEEkeywords}
 
 \section{Introduction}
@@ -84,23 +80,6 @@ platform, allowing precise control over the building's energy use. The minimum
 viable product of this project will be to connect to 1 to 3 devices via the the
 platform and control them.
 
-% The previous senior project group worked on creating a remote motor control system with a Raspberry Pi and XBee module. To supply power directly to the motor and XBee with a single power supply, they used a buck-boost converter capable of stepping down power supply voltage to 3.3 V. They implemented a Python script that uses the Linux command \texttt{nmap} to search for the Raspberry Pi on the network. The Raspberry Pi connects to the transmitter XBee via a serial connection to transmit commands to the receiver XBee mounted to the motor. They were able to simply toggle the motor on and off and partially implemented this functionality in BEMOSS (Building Energy Management Open Source Software). A second portion of their project was implementing an HVAC control algorithm capable of controlling the temperature of a home with the Linear Quadratic Regulator control algorithm.
-
-% During a research project led by Miah \textit{et al.,} the DC motor interface was successfully
-% implemented into the BEMOSS platform which required adding a great deal of source code
-% to the platform to fully implement the device as BEMOSS does not support adding
-% new devices currently. The research also consisted of adding new
-% features such as a logo to the
-% platform for the motor. A possible improvement our platform will make is helping
-% developers on the project add new devices more easily.
-
-% One of the improvements our project makes over the previous is the use of UDP (user datagram protocol) multicasting which does not require any superuser privileges to locate an
-% embedded computer (Beaglebone Blue, for example). This implementation is also more convenient
-% because it does not require installing any packages as multicasting is natively
-% supported by most embedded Linux systems. If in the future, multiple embedded
-% computers are needed to be discovered, the multicasting system works elegantly
-% as each device can simply listen on a provided multicast group which consists of
-% an IP address and port number.
 
 A great deal of research has been conducted in the field of building energy
 management. Multiple different platforms have been developed that demonstrate
@@ -259,6 +238,7 @@ corresponding agents in Table~\ref{tab:pubsubspecs}. %
     \caption{Publish/Subscribe Communication Specifications}
     \label{tab:pubsubspecs}
 \end{table}
+%
 The agents contained in the software are associated with a Python class of the
 same name. Each class is instantiated and run with specifications declared in
 Table~\ref{tab:pubsubspecs}. 
@@ -275,14 +255,14 @@ drivers is set. If the shutdown key is set, the single board computer is
 shutdown. In order to reconnect to the single board computer, the board must be
 started and receiver program ran. If necessary, the device must be reconnected
 to the WiFi network. %
-
+%
 \begin{figure}[htbp]
     \centering
     \includegraphics[scale=0.2]{figs/agents/setDeviceStatus.pdf}
     \caption{setDeviceStatus Flow Chart}
     \label{fig:setDeviceStatus}
 \end{figure}
-
+%
 To obtain necessary data quantities from the device, the
 \texttt{getDeviceStatus} method defined in \texttt{ControlAgent}, defined in Figure~\ref{fig:getDeviceStatus}, is called. Once the proper data parameters are
 obtained, the \texttt{getState} function defined in the devices API module can
@@ -297,7 +277,7 @@ required device data. %
     \caption{getDeviceStatus Flow Chart}
     \label{fig:getDeviceStatus}
 \end{figure}
-
+%
 Every device connected to iBEMS will have a thread associated with it started from the control agent. This thread will run the \texttt{periodicQueryBehavior} method defined in \texttt{ControlAgent} to periodically query for device data and store in the corresponding Cassandra database table. A user specified delay is placed in the class's module to prevent the thread from overwhelming the system.
 
 \begin{figure}[htbp]
@@ -309,20 +289,24 @@ Every device connected to iBEMS will have a thread associated with it started fr
 
 To reduce latency, the device status is retrieved directly from the API module in the \texttt{periodicQueryBehavior} method defined in \texttt{ControlAgent} rather than calling \texttt{getDeviceStatus} as this prevents the API from being imported unnecessarily.
 
-The scheduling agent is able to update the device status of each device dependent on whether a schedule is set for the specific time period and day. One of the methods that is called, \texttt{updateScheduleFromServer} is invoked when the user presses the \say{Update Schedule} button from the UI on the scheduling page. A flow chart of this method is shown in Figure~\ref{fig:updateScheduleFromServer}. When this method is called the desired schedule is loaded in as a dictionary and parsed to extract the necessary periods and given day. First the times are stored in military time in the database for more convenient storage and parsing later on. Then, a table is created in the Apache Cassandra database where the device ID and day are embedded in the name. The previous table's data is destroyed to ensure there are no errors regarding overlapping schedules. Lastly, all the scheduling periods extracted from the dictionary are stored as rows in the table. 
+The scheduling agent is able to update the device status of each device dependent on whether a schedule is set for the specific time period and day. One of the methods that is called, \texttt{updateScheduleFromServer} is invoked when the user presses the \say{Update Schedule} button from the UI on the scheduling page. A flow chart of this method is shown in Figure~\ref{fig:updateScheduleFromServer}. When this method is called the desired schedule is loaded in as a dictionary and parsed to extract the necessary periods and given day. First the times are stored in military time in the database for more convenient storage and parsing later on. Then, a table is created in the Apache Cassandra database where the device ID and day are embedded in the name. The previous table's data is destroyed to ensure there are no errors regarding overlapping schedules. Lastly, all the scheduling periods extracted from the dictionary are stored as rows in the table. %
+%
 \begin{figure}[htbp]
     \centering
     \includegraphics[scale=0.3]{figs/agents/updateScheduleFromServer.pdf}
     \caption{updateScheduleFromServer Flow Chart}
     \label{fig:updateScheduleFromServer}
 \end{figure}
-A second method that is run inside each device thread is \texttt{periodicDeviceUpdateMethod}, defined in Figure~\ref{fig:periodicDeviceUpdateMethod}, which is started when the discovery agent sets the discovered device to active. By first loading the device's API name, the scheduling agent can begin checking for scheduling periods inside an infinite loop. The status dictionary is queried from the Cassandra database and loaded into a dictionary. All these scheduling periods are looped over for the current day while constantly checking whether the current time in seconds is within the starting and ending time. A conversion of both starting and ending time to seconds is necessary as it is challenging to work with these quantities in standard and military time when comparing times. If the current time does lie inside the scheduling period, the device's state is set dependent on the API. 
+%
+A second method that is run inside each device thread is \texttt{periodicDeviceUpdateMethod}, defined in Figure~\ref{fig:periodicDeviceUpdateMethod}, which is started when the discovery agent sets the discovered device to active. By first loading the device's API name, the scheduling agent can begin checking for scheduling periods inside an infinite loop. The status dictionary is queried from the Cassandra database and loaded into a dictionary. All these scheduling periods are looped over for the current day while constantly checking whether the current time in seconds is within the starting and ending time. A conversion of both starting and ending time to seconds is necessary as it is challenging to work with these quantities in standard and military time when comparing times. If the current time does lie inside the scheduling period, the device's state is set dependent on the API. %
+%
 \begin{figure}[htbp]
     \centering
     \includegraphics[scale=0.2]{figs/agents/periodicDeviceUpdateMethod.pdf}
     \caption{periodicDeviceUpdateMethod Flow Chart}
     \label{fig:periodicDeviceUpdateMethod}
 \end{figure}
+%
 
 \begin{figure}[htbp]
     \centering
