@@ -134,8 +134,7 @@ shortcomings of some existing platforms, BEMOSS, for instance.
 
 At the center of the iBEMS architecture is the iBEMS core. This core interacts
 with multiple peripherals including IoT devices and a weather API over the
-internet. In this work, we developed the iBEMS to support for two 
-IoT devices displayed in the high-level architecture shown in Fig.~\ref{fig:highLevelArchitecture}. %
+internet. In this work, we developed the iBEMS to support two IoT devices displayed in the high-level architecture shown in Fig.~\ref{fig:highLevelArchitecture}. %
 %
 \begin{figure}[htbp]
   \centering
@@ -146,7 +145,7 @@ IoT devices displayed in the high-level architecture shown in Fig.~\ref{fig:high
 %
 These devices are the WeMo Insight Switch and an embedded computer known as the Beaglebone
 Blue.  The core is also able to
-connect the internet to download weather data for a local city through
+connect to the internet to download weather data for a local city through
 OpenWeatherMap. Fig.~\ref{fig:functional_bd} gives the lower level functional block diagram of the system
 architecture. %
 %
@@ -162,7 +161,20 @@ updates (On/Off, power usage, etc...) and the weather data. The iBEMS Core
 itself consists of a Flask Web Server, 2 databases (Apache Cassandra and
 SQLite), and 3 software agents (Discovery, Control, and Scheduling).
 
+Fig.~\ref{fig:systemComponentInterconnection} provides an explanation of how
+the components of the system interact with each other. %
+%
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.3]{figs/overallDiagram.pdf}
+  \caption{Interconnection between system components}
+  \label{fig:systemComponentInterconnection}
+\end{figure}
+%
+The Apache Cassandra database and SQLite database are accessible from the web server, control agent, discovery agent, and scheduling agent. The web server queries the time series database and metadata database for vastly different purposes. Power plotting requires querying the Apache Cassandra database. To distinguish between the different devices on the front end, the metadata database is used. The agents utilize the Apache Cassandra database for storing and extracting time-series data. The agents use the metadata database to distinguish between different devices. 
 
+\section{Software Implementation}
+\label{sec:SoftwareImplementation}
 The Flask web server is built using a Python web framework titled Flask which
 allows programmers to develop a dynamic web server capable of rendering data to
 HTML pages. The benefit of this framework over other Python web frameworks like
@@ -189,22 +201,6 @@ scheduling will take input from the user and place the corresponding scheduling
 periods in the Apache Cassandra database. Then, a thread is created to poll the
 current device status at regular intervals and update the status if it does not
 match the defined status in the Apache Cassandra database.
-
-
-Fig.~\ref{fig:systemComponentInterconnection} provides an explanation of how
-the components of the system interact with each other. %
-%
-\begin{figure}
-  \centering
-  \includegraphics[scale=0.3]{figs/overallDiagram.pdf}
-  \caption{Interconnection between system components}
-  \label{fig:systemComponentInterconnection}
-\end{figure}
-%
-The Apache Cassandra database and SQLite database are accessible from the web server, control agent, discovery agent, and scheduling agent. The web server queries the time series database and metadata database for vastly different purposes. Power plotting requires querying the Apache Cassandra database. To distinguish between the different devices on the front end, the metadata database is used. The agents utilize the Apache Cassandra database for storing and extracting time-series data. The agents use the metadata database to distinguish between different devices. 
-
-\section{Software Implementation}
-\label{sec:SoftwareImplementation}
 
 To provide the ability to recognize and control devices at any moment, three agents are used. All three agents communicate with each other and the web server using the Zero MQ asynchronous messaging library. Essentially, this library works as a way to implement inter process communication without a message
 broker\footnote{\href{https://zeromq.org/}{https://zeromq.org/}}. In other words, different processes are able to communicate with each
@@ -398,7 +394,7 @@ Mode 4, or the scheduling page, can be loaded by clicking the \say{Device Schedu
 We have presented a platform of an intelligent building energy management system,
 which is open source, and easy-to-use. It is also developed using a modular, agent-based code base. Being open source makes it freely available to anyone who has the supported devices and wants to begin managing their home energy usage. The simple interface is easy to figure out for less tech-savvy users and the modular code base makes this system relatively easy for others to continue development. Despite its advantages, potential users are to be aware of the rather obvious disadvantages at this point. A typical commercial building energy management system will include many more features like predicting future energy use and supporting more devices.
 
-One of the main ways to improve the software is to refactor the user interface as the current interface is fairly primitive. Adding elements like collapsible drop down menus and a collapsible side bar would make the interface more professional and user-friendly. To improve the overall reliability and speed of the software, a better agent communication protocol could be researched and implemented. Many problems are visible with the use of ZeroMQ as exceptions are thrown occasionally when device status updates are sent in quick succession to the control agent. Potentially, there exists a better solution than publish-subscribe. One of the major issues with the software is lack of device data persistence across system restarts. Developers in the future could help alleviate this problem by refactoring the device storage system in the Cassandra database.
+One of the main ways to improve the software is to refactor the user interface as the current interface is fairly primitive. Adding elements like collapsible drop down menus and a collapsible side bar would make the interface more professional and user-friendly. To improve the overall reliability and speed of the software, a better agent communication protocol could be researched and implemented. Many problems are visible with the use of ZeroMQ as exceptions are thrown occasionally when device status updates are sent in quick succession to the control agent. Scalability is another issue that comes to mind as users will undoubtedly want to connect more than two devices. Potentially, there exists a better solution than publish-subscribe. One of the major issues with the software is lack of device data persistence across system restarts. Developers in the future could help alleviate this problem by refactoring the device storage system in the Cassandra database.
 
 \bibliographystyle{IEEEtran}
 \bibliography{bib/references.bib}
