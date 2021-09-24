@@ -187,15 +187,15 @@ access the relevant databases. However, the current iBEMS uses direct queries wi
 SQLite and the Cassandra query language to query the databases. We used
 2 different databases to store information on. The Apache Cassandra database was
 better suited for the time series data such as device status and power usage.
-This database was therefore utilized a lot by the Control and Scheduling Agents.
+This database was therefore utilized a lot by the control and scheduling agents.
 The SQLite database hold parameters that do not change over time like device
-ID's, IP addresses, and MAC addresses which made it amendable to the processes
-in the Discovery Agent. The first agent that is
+ID's, IP (Internet Protocol) addresses, and MAC addresses which made it amendable to the processes
+in the discovery agent. The first agent that is
 used by the iBEMS Core on startup is the discovery agent. It is responsible for
 reaching out on the network and finding all devices that the iBEMS Core has
 support for. This process involves retrieving the following parameters: IP
-address, Port number, MAC address, Manufacturer, Name, and API. Once all
-available devices are connected, the Control agent is used to change the status
+address, Port number, MAC address, Manufacturer, Name, and API. The discovery agent accomplishes this by cycling through all the API modules and calls the corresponding discovery method. IP multicasting via UDP (User Datagram Protocol) is used for finding all devices that respond to a specific multicast group and port. The device's local IP address can be obtained from the response and stored in the metadata database which can allow the system to obtain information from the device later on. Once all
+available devices are connected, the control agent is used to change the status
 of each device and collect power usage data in real time. Finally, the
 scheduling will take input from the user and place the corresponding scheduling
 periods in the Apache Cassandra database. Then, a thread is created to poll the
